@@ -1,4 +1,4 @@
-import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE } from '../constants/constants';
+import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE,  UNSET_USERS, SET_USERS } from '../constants/constants';
 
 //user reducer
 const initUserState = {
@@ -17,7 +17,7 @@ export const userReducer = (state=initUserState, action={}) => {
         case UNSET_USER_FROM_STATE:
             return {
                 ...state,
-                user: {},
+                user: null,
                 loading: false
             }
         default:
@@ -25,3 +25,27 @@ export const userReducer = (state=initUserState, action={}) => {
     }
 }
 
+//users reducer
+const initUsers = {
+    users: [],
+    isLoading: true
+}
+
+export const setUsersReducer = (state=initUsers, action={}) => {
+    switch(action.type) {
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.payload,
+                isLoading: false
+            }
+        case UNSET_USERS:
+            return {
+                ...state,
+                users: [],
+                isLoading: false
+            }
+        default:
+            return state;
+    }
+}

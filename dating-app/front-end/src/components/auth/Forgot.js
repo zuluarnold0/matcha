@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Forgot = () => {
     return (
         <div className="bg">
-            <div className="register-box">
+            <div className="register-box box__">
                 <img src={imgP} alt="img" className="avatar"/>
                 <h1>FORGOT PASSWORD</h1>
                 <form>
@@ -21,7 +21,7 @@ const Forgot = () => {
                         name="submit"
                         value="SUBMIT"
                     />
-                    <Link className="a__links"  to="/login"><span>Already a member?</span></Link><br/>
+                    <Link className="success__links"  to="/login"><span>Already a member?</span></Link><br/>
                 </form>
             </div>
         </div>

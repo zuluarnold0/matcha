@@ -7,22 +7,15 @@ import Login from './auth/Login';
 import Forgot from './auth/Forgot';
 import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
-import { connect } from 'react-redux';
 import Notification from '../components/notifications/Notification';
 
 class App extends React.Component {
-
-  state = {
-    user: this.props.user
-  }
 
   render() {
     return (
       <Router>
         <Switch>
-            <Route exact path="/">
-              <DashBoard user={this.props.user}/>
-            </Route>
+            <Route exact path="/" component={DashBoard}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register} />
             <Route path="/forgot" component={Forgot} />
@@ -35,10 +28,4 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user_reducer.user
-  }
-}
-
-export default connect(mapStateToProps, null)(App);
+export default App;

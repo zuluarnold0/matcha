@@ -42,21 +42,22 @@ class Register extends Component {
         tags: [],
         invalid_input: "",
         error_msg: '',
-        longi: 0.00,
-        lati: 0.00,
+        longi: '',
+        lati: '',
         city: ''
     }
 
     componentDidMount() {
         fetch('https://ipapi.co/json')
         .then(response => response.json())
-        .then(loc => {
+        .then(location => {
             this.setState({
-                city: loc.city,
-                longi: loc.longitude,
-                lati: loc.latitude
+                city: location.city,
+                longi: location.longitude,
+                lati: location.latitude
             })
         })
+        .catch(err => console.log(err));
     }
 
     onFormSubmit = () => {
@@ -73,7 +74,10 @@ class Register extends Component {
                 age: this.state.age,
                 sexpref: this.state.sexpref,
                 tags: this.state.tags,
-                password: this.state.password
+                password: this.state.password,
+                city: this.state.city,
+                lati: this.state.lati,
+                longi: this.state.longi
             })
         })
         .then(response => this.nextStep());

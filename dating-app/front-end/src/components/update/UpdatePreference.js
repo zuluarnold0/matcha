@@ -1,14 +1,16 @@
 import React from 'react';
 
-const UpdatePreference = () => {
+const UpdatePreference = ({ gender, sexpref, age, error_message, handleInputChange, handlePrefSubmit }) => {
     return (
         <div>
-            <form className="profile__form" >
+            <form className="profile__form" onSubmit={handlePrefSubmit}>
                 <h5 className="profile__heading">Update Preference</h5>
                 <span className="form__title">Gender</span><br/>
                 <select
                     className="form-control form-control-sm mb-2"
                     name="gender"
+                    value={gender}
+                    onChange={handleInputChange}
                 >
                     <option value="">Choose...</option>
                     <option value="bisexual">Bisexual</option>
@@ -18,7 +20,9 @@ const UpdatePreference = () => {
                 <span className="form__title">Preference</span><br/>
                 <select
                     className="form-control form-control-sm mb-2"
-                    name="sexPref"
+                    name="sexpref"
+                    value={sexpref}
+                    onChange={handleInputChange}
                 >
                     <option value="">Choose...</option>
                     <option value="female">Female</option>
@@ -31,13 +35,17 @@ const UpdatePreference = () => {
                         className="form-control form-control-sm mb-2"
                         name="age" 
                         placeholder="Enter your age"
+                        value={age}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <br/>
                 <button type="submit" className="btn btn-sm btn-warning">Update</button>
-                <div className="update__err">
-                    error encountered
-                </div>
+                {
+                    error_message ? <div><br />
+                        <p className="error__msg">{ error_message }</p>
+                    </div> : ''
+                }
             </form>
         </div>
     )

@@ -1,5 +1,4 @@
 import React from 'react';
-//import img_ from '../imgs/4.jpeg';
 
 const ProfileCover = ({ user }) => {
     return (

@@ -7,11 +7,14 @@ import { connect } from 'react-redux';
 
 class Login extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
-        error_msg: '',
-        user: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            error_msg: '',
+            user: null
+        }
     }
 
     handleInputChange = (event) => {
@@ -61,7 +64,7 @@ class Login extends React.Component {
         if (!user) {
             return (
                 <div className="bg">
-                    <div className="register-box">
+                    <div className="register-box box__">
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>LOGIN TO MATCHA</h1>
                         <div>
@@ -87,8 +90,8 @@ class Login extends React.Component {
                                 value="LOGIN"
                                 onClick={this.onFormSubmit}
                             />
-                            <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                            <Link className="a__links" to="/register"><span>Don't have an account?</span></Link><br/>
+                            <Link className="success__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
+                            <Link className="success__links" to="/register"><span>Don't have an account?</span></Link><br/>
                             {
                                 this.state.error_msg ? <p className="error__msg">
                                     { this.state.error_msg }
@@ -106,7 +109,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-      setUserToState: (user) => dispatch(setUserToState(user))
+        setUserToState: (user) => dispatch(setUserToState(user))
     }
 }
 
