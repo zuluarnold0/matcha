@@ -24,7 +24,7 @@ const UsersDisplay = ({ myprofile, isSortPopularity, isSortAge, sortValue, sexpr
                             .filter(isSearchedPopularity(popularity_))
                             .sort(isSortAge(sortValue))
                             .sort(isSortPopularity(sortValue))
-                            .map(user => <Card key={user.id} user={user} myprofile={myprofile}/>)
+                            .map(user => <Card key={user.email} user={user} myprofile={myprofile}/>)
                     }
                 </div>
             }

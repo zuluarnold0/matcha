@@ -225,6 +225,14 @@ app.get('/getmatches', (req, res) => {
     .catch(err => res.status(400).json('Unable to get matches'));
 })
 
+//SETTING BLOCKS TO DASHBORD
+app.get('/getblocks', (req, res) => {
+    db.select('*')
+    .from('blocks')
+    .then(blocks => { res.json(blocks) })
+    .catch(err => res.status(400).json('Unable to get blocks'));
+})
+
 //BLOCKING A USER
 app.post('/block', (req, res) => {
     db('blocks')
@@ -236,12 +244,26 @@ app.post('/block', (req, res) => {
         db('likes')
         .where(function() {
             this.where({
-                user1: req.body.blocker,
-                user2: req.body.blocked
+                liker: req.body.blocker,
+                liked: req.body.blocked
             })
             .orWhere({
-                user1: req.body.blocked,
-                user2: req.body.blocker
+                liked: req.body.blocked,
+                liked: req.body.blocker
+            })
+        })
+        .del()
+    })
+    .then(() => {
+        db('views')
+        .where(function() {
+            this.where({
+                viewer: req.body.blocker,
+                viewed: req.body.blocked
+            })
+            .orWhere({
+                viewer: req.body.blocked,
+                viewed: req.body.blocker
             })
         })
         .del()
