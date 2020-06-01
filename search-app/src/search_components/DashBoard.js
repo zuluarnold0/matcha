@@ -1,38 +1,50 @@
 import React, { Component } from 'react';
+import CheckBox from "./CheckBox";
 import AppHeader from "./AppHeader";
 import AppSideBar from "./AppSideBar";
 import AppContent from "./AppContent";
-import { users } from './Profile';
+import { connect } from 'react-redux';
+import { searchChangeAction, fetchUsersAction } from '../store/actions/actions';
 
-class Dashboard extends Component {
-    state = {
-        users: users,
-        searchField: ""
-    }
-
-    handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-            [name] : value
-        })
-    }
-
-    render() {
-        const { users, searchField } = this.state;
-        
-        return users.length < 0 ? ("FETCHING DATA!!!!") : (
-            <div>
-                <input type="checkbox" id="check" />
-                <AppHeader />
-                <AppSideBar />
-                <AppContent
-                    users={users}
-                    searchField={searchField}
-                    handleInputChange={this.handleInputChange}
-                />
-            </div>
-            );
+const mapStateToProps = state => {
+    return {
+        searchField: state.searchReducer.searchField,
+        users: state.userReducer.users,
+        isLoading: state.userReducer.isLoading
     }
 }
 
-export default Dashboard;
+const mapDispatchToProps = dispatch => {
+    return {
+        searchChangeAction: (text) => dispatch(searchChangeAction(text)),
+        fetchUsersAction: () => dispatch(fetchUsersAction())
+    }
+}
+
+class Dashboard extends Component {
+
+    handleInputChange = (event) => {
+        this.props.searchChangeAction(event.target.value);
+    }
+
+    componentDidMount() {
+        this.props.fetchUsersAction();
+    }
+
+    render() {
+        return this.props.isLoading ? ("Please Wait While We Fetch Users....") : (
+            <div>
+                <CheckBox />
+                <AppHeader />
+                <AppSideBar />
+                <AppContent
+                    users={this.props.users}
+                    searchField={this.props.searchField}
+                    handleInputChange={this.handleInputChange}
+                />
+            </div>
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

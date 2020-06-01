@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DashBoard from './DashBoard';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-        <DashBoard />
-    )
-  }
+const App = () => {
+  return (
+      <DashBoard />
+  )
 }
 
 export default App;
