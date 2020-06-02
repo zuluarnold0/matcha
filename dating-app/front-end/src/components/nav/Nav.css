@@ -1,0 +1,81 @@
+.nav-ba {
+    width: 100%;
+    background-color: white;
+    font-size: 15px;
+    box-shadow: 0 5px 5px -5px dimgray;
+    top: 0;
+    position: fixed;
+    z-index: 200;
+}
+  
+.nav-img img {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+}
+  
+  .nav-name {
+    font-size: 15px;
+  }
+  
+  .nav-ba .logo-matcha {
+    text-shadow: 2px 2px #888;
+  }
+  
+  .nav-tags {
+    font-size: 20px;
+  }
+  
+  .notify {
+    background-color: red;
+    color: #fff;
+    font-size: x-small;
+    padding: 1px 2px;
+  }
+  
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    padding: 20px;
+  }
+  
+  li a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  }
+  
+  li a:hover {
+    text-decoration: none;
+  }
+  
+  .logo-matcha {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .nav-ba .nav-logout {
+    color: red;
+  }
+  
+  @media only screen and (max-width: 600px) {
+      ul {
+          font-size: 13px;
+      }
+      .logo-matcha {
+          font-size: 15px;
+      }
+      li {
+          padding: 20px 0px 20px 20px;
+      }
+      .nav-tags {
+        font-size: 16px;
+      }
+  }
