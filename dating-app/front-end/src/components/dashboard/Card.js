@@ -8,17 +8,13 @@ const Card = () => {
         <div className="float-left">
             <div className="card__">
                 <Link  to={'/viewuser/'+1}>
-                    <div className="container2"> {/*cannot find*/}
-                        <div className="card_banner">
-                            <img src={img_} alt="img"/>
-                        </div>
+                    <div className="card__image">
+                        <img src={img_} alt="img"/>
                     </div>
                     <div className="card__text">
-                        <div className="box_1"> {/*cannot find*/}
-                            <span className="card__name">Star Arnold, </span>
-                            <span className="card__info">37</span>
-                            <p className="card__info">male</p>
-                        </div>
+                        <span className="card__name">Star Arnold, </span>
+                        <span className="card__info">37</span>
+                        <p className="card__info">male</p>
                     </div>
                 </Link>
             </div>

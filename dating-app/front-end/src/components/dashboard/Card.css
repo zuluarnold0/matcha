@@ -1,6 +1,7 @@
 .card__ {
     margin: 0px 0px 20px 20px;
     width: 240px;
+    height: 300px;
     background: white;
     border-left: 1px solid rgb(218, 215, 215);
     transition: all 1.8s ease;
