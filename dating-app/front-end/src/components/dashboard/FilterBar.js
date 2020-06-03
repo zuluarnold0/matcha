@@ -45,7 +45,7 @@ const FilterBar = () => {
                         <span className="tag__">gym</span>
                     </div>
                     <input
-                        className="form-control inputField"
+                        className="form-control"
                         type="text"
                         name="searchedTag"
                         placeholder="Enter one tag from above..."
@@ -70,7 +70,7 @@ const FilterBar = () => {
                 <div className="filter-section">
                   <span className="filter-title">Filter by location: </span>
                     <input
-                        className="form-control inputField"
+                        className="form-control"
                         type="text"
                         name="city"
                         placeholder="Enter city or town..."
@@ -86,6 +86,7 @@ const FilterBar = () => {
                     />
                 </div>
             </div>
+
         </div>
     )
 }

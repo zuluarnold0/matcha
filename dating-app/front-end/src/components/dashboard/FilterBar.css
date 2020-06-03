@@ -1,21 +1,29 @@
+.filter-section {
+    width: 22%;
+    padding: 5px 0px 5px 30px;
+}
+
 .sort-box {
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
     background-color: #ddd;
+    padding: 10px;
 }
 
-.filter-section {
-    width: 24%;
-    padding: 5px 10px 5px 10px;
+.filter-section input[type="range"] , input[type="text"]
+{
+    width: 90%;
 }
 
-.filter-section input {
+.filter-section  input[type="text"]
+{
     height: 26px;
     padding: 4px;
     font-size: 13px;
     margin-bottom: 3px;
-    border: 1px solid #ccc;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 @media only screen and (max-width: 640px) {
@@ -54,16 +62,16 @@
 .display-tags {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 5px;
 }
 
 .tag__ {
-    margin: 2px;
     padding: 2px;
-    color: dimgray;
+    color: crimson;
     background-color: #fff;
     font-size: 13px;
+    margin-right: 8px;
     border-radius: 5px;
-    border: 1px solid dimgray;
+    border: 1px solid crimson;
 }
