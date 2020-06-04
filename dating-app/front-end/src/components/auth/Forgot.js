@@ -1,8 +1,9 @@
 import React from 'react';
 import './Auth.css';
 import imgP from "./images/profile.jpg";
+import { Link } from 'react-router-dom';
 
-const Forgot = ({ onRouteChange }) => {
+const Forgot = () => {
     return (
         <div className="bg">
             <div className="register-box">
@@ -20,7 +21,7 @@ const Forgot = ({ onRouteChange }) => {
                         name="submit"
                         value="SUBMIT"
                     />
-                    <span onClick={() => onRouteChange("login")}>Already a member?</span><br/>
+                    <Link class="a__links"  to="/login"><span>Already a member?</span></Link><br/>
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import UserMap from './UserMap';
-import img_ from '../imgs/1.jpeg';
+import img_ from '../imgs/4.jpeg';
+import UserMap from '../map/UserMap';
+import Bio from '../bio/Bio';
 
 const UserProfile = () => {
     return (
@@ -14,21 +15,7 @@ const UserProfile = () => {
                 <button type="button" className="btn__xs btn__warning "><span className="fas fa-house-user"></span> REPORT</button>
             </div>
             <div className="user__info">
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="info__value"> male </span><br/>
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="info__value">25 years</span><br/>
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="info__value">female</span><br/>
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="info__value">1000</span><br/>
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="info__value">london</span><br/>
-                <span className="info__key"><span className="fas fa-house-user"></span> </span><span className="status__value">Online</span><br/>
-                <hr/>
-                <span className="info__key"></span><span className="user__bio">{"I love food!!"}</span><br/>
-                <hr/>
-                <span className="info__key"><span className="fas fa-house-user"></span></span>{" "}
-                <span className="user__tag"> code </span>
-                <span className="user__tag"> gym </span>
-                <span className="user__tag"> date </span>
-                <span className="user__tag"> love </span>
-                <hr/>
+                <Bio />
                 <span className="you__liked">
                    {"You liked Arnold's profile" }
                 </span><br/><hr/>
@@ -37,7 +24,7 @@ const UserProfile = () => {
                 </span><br/><hr/>
                 <span className="you__matched">
                     {"You Matched with Skott" }
-                </span><br/>
+                </span><br/><hr/>
             </div>
             <UserMap />
         </div>

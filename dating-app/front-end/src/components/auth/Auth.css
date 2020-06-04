@@ -93,3 +93,7 @@ body {
     color: gray;
     cursor: pointer;
 }
+
+.a__links {
+    text-decoration: none;
+}

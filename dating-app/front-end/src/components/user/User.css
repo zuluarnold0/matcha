@@ -1,0 +1,85 @@
+.user__profile {
+    margin: 90px auto;
+    width: 80%;
+}
+
+.user__name {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif, fantasy;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.user__profile img {
+    width: 196px;
+    height: 257px;
+}
+
+.user__btns {
+    background-color: gainsboro;
+    box-shadow: 0 -5px 5px -5px dimgray;
+  }
+  
+.user__btns .btn__xs {
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    font-size: 8px;
+    margin: 3px;
+}
+
+.btn__success {
+    color: #fff;
+    background-color: rgb(31, 146, 31);
+}
+
+.btn__danger {
+    color: #fff;
+    background-color: rgba(252, 24, 24, 0.938);
+}
+
+.btn__warning {
+    color: #000;
+    background-color: yellow;
+}
+
+.btn__primary {
+    color: #fff;
+    background-color: rgb(0, 140, 255);
+}
+  
+@media only screen and (max-width: 640px) {
+    .user__btns .btn__xs {
+        border-radius: 2px;
+        padding: 6px;
+        margin: 2px;
+    }
+}
+
+.user__info {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #eee;
+    margin-bottom: 10px;
+    box-shadow: 0 -5px 5px -5px dimgray;
+}
+
+.liked__you, .you__liked, .you__matched {
+  font-size: 14px;
+  font-weight: 800;
+}
+  
+.liked__you {
+  color: rgb(74, 179, 109);
+  font-weight: 300;
+}
+  
+.you__liked {
+  color: coral;
+  font-weight: 300;
+}
+  
+.you__matched {
+  color: rgb(185, 156, 77);
+  font-weight: 300;
+}

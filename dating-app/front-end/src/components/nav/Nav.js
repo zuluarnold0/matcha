@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Nav.css";
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink, Link } from 'react-router-dom';
 
 const Nav = () => {
     return (
@@ -28,7 +28,7 @@ const Nav = () => {
                     <NavLink to="/news"><span className="nav-tags fas fa-bell"></span></NavLink>
                 </li>
                 <li>
-                    <Link className="nav-logout nav-tags fas fa-power-off" to="/signin"></Link>
+                    <Link  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
                 </li>
                 </div>
             </ul>

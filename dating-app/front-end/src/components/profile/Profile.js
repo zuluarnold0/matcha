@@ -1,10 +1,15 @@
 import React from 'react';
 import './Profile.css';
+import Nav from '../nav/Nav';
+import Footer from '../footer/Footer';
+import MyProfile from "./MyProfile";
 
 const Profile = () => {
     return (
         <div>
-            Profile!!
+            <Nav/>
+            <MyProfile />
+            <Footer/>   
         </div>
     )
 }
