@@ -1,13 +1,13 @@
 .footer {
-    left: 0;
-    bottom: 0;
-    position: fixed;
-    box-shadow: 0 -5px 5px -5px dimgray;
-    width: 100%;
-    color: #111;
-    text-align: center;
-    line-height:2em;
-    font-size: 14px;
-    background-color: #fff;
-    font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  }
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  box-shadow: 0 -5px 5px -5px dimgray;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  line-height:2em;
+  font-size: 14px;
+  background-color: palevioletred;
+  font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}

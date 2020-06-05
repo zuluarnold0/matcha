@@ -1,0 +1,10 @@
+.noti__container {
+    margin: 90px auto;
+    width: 80%;
+}
+
+.noti__title {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif, fantasy;
+    font-weight: 700;
+}

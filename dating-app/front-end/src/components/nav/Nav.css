@@ -1,6 +1,6 @@
 .nav-ba {
     width: 100%;
-    background-color: white;
+    background-color: palevioletred;
     font-size: 15px;
     box-shadow: 0 5px 5px -5px dimgray;
     top: 0;
@@ -14,82 +14,72 @@
     border-radius: 15px;
 }
   
-.nav-name {
-    font-size: 15px;
+  
+.nav-tags {
+  font-size: 20px;
 }
   
-.nav-ba .logo-matcha {
-    text-shadow: 2px 2px gainsboro;
-}
-  
-  .nav-tags {
-    font-size: 20px;
-  }
-  
-  .notify {
-    background-color: red;
-    color: #fff;
-    font-size: x-small;
-    padding: 1px 2px;
-  }
-  
-  ul {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-between;
-  }
+}
   
-  .push-nav-start {
+.push-nav-start {
     display: flex;
     padding-left: 30px;
-  }
+}
 
-  .push-nav-end {
+.push-nav-end {
     display: flex;
     padding-right: 50px;
-  }
+}
 
-  li {
+li {
     padding: 24px 20px 18px 20px;
-  }
+}
   
-  li a {
-    color: black;
+li a {
+    color: #fff;
     text-align: center;
     text-decoration: none;
     font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  }
-  
-  li a:hover {
-    text-decoration: none;
-  }
-  
-  .logo-matcha {
-    color:crimson;
-    text-align: center;
-    font-family: sans-serif, serif;
-    font-size: 20px;
-    font-weight: 900;
-    padding-bottom: 5px;
 }
   
-  .nav-ba .nav-logout {
-    color:crimson;
-  }
+li a:hover {
+    text-decoration: none;
+}
   
-  @media only screen and (max-width: 600px) {
-      ul {
-          font-size: 13px;
-      }
-      .logo-matcha {
-          font-size: 15px;
-      }
-      li {
-          padding: 20px 0px 20px 20px;
-      }
-      .nav-tags {
-        font-size: 16px;
-      }
+.logo-matcha {
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif, serif;
+  font-size: 20px;
+  font-weight: 900;
+  padding-bottom: 5px;
+}
+  
+.logo-matcha:hover {
+  color: #fff;
+}
+
+.nav-ba .nav-logout {
+  color: rgb(60, 61, 65);
+}
+  
+@media only screen and (max-width: 600px) {
+  ul {
+    font-size: 13px;
   }
+  .logo-matcha {
+    font-size: 15px;
+  }
+  li {
+    padding: 20px 0px 20px 20px;
+  }
+  .nav-tags {
+    font-size: 16px;
+  }
+}

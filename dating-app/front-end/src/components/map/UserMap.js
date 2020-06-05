@@ -5,7 +5,7 @@ const position = [-26.2309, 28.0583];
 
 const UserMap = () => {
   return (
-    <Map style={{height:"50vh",zIndex:"-1"}} center={position} zoom="12">
+    <Map style={{height:"30vh",zIndex:"-1"}} center={position} zoom="15">
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

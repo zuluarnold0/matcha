@@ -5,13 +5,18 @@
     margin-bottom: 40px;
 }
 
+.update__important {
+    display: flex;
+    justify-content: center;
+}
+
 .update__box {
-    background-color:#eee;
+    background-color: pink;
     width: 50%;
 }
 
 .update__box form {
-    border: 5px solid dimgray;
+    border: 5px solid palevioletred;
     padding: 20px 10px;
     margin-bottom: 5px;
 }
@@ -31,8 +36,8 @@
 }
 
 .update__box form .btn-warning {
-    background-color: #333;
-    border: 1px solid dimgray;
+    background-color: palevioletred;
+    border: 1px solid #ccc;
     color: #fff;
 }
 
@@ -49,16 +54,16 @@
 .form__title {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
     padding:3px;
-    color: rgba(0, 0, 0, 0.7);
+    color: palevioletred;
 }
 
 .wrong__input {
     color: red;
     font-style: oblique;
     font-size: 14px;
-  }
+}
 
 .form__tags {
     font-size: 14px;
@@ -74,7 +79,7 @@
 }
 
 .upload__container {
-    border: 5px solid dimgray;
+    border: 5px solid palevioletred;
     padding: 20px 10px;
     margin-bottom: 5px;
     background-color: pink;

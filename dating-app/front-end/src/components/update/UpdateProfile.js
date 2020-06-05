@@ -3,8 +3,6 @@ import './Update.css';
 import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
 import ProfileForm from './ProfileForm';
-import EmailForm from './EmailForm';
-import PasswordForm from './PasswordForm';
 
 const containerStyle = {
     position: "relative",
@@ -72,8 +70,6 @@ class UpdateProfile extends Component  {
                             onDeleteTag={this.onDeleteTag}
                             onKeyUp={this.onKeyUp}
                         />
-                        <EmailForm />
-                        <PasswordForm />
                     </div>
                 </div>
                 <Footer/>

@@ -2,7 +2,7 @@ import React from 'react';
 import img_ from '../imgs/4.jpeg';
 import { Link } from 'react-router-dom';
 
-const Match = () => {
+const LikeCard = () => {
     return (
         <div>
             <Link style={{ textDecoration: 'none' }} to={'/user/'+ 1}>
@@ -11,8 +11,8 @@ const Match = () => {
                         <img src={img_} alt="img"/>
                     </div>
                     <div className="history__content">
-                        <span className="history__msg">You matched with </span>
-                        <span className="history__name"> Pro Sniper </span>
+                        <span className="history__name">Skott Anola </span>
+                        <span className="history__msg">Liked your profile</span>
                         <br/>
                     </div>
                 </div>
@@ -21,4 +21,4 @@ const Match = () => {
     )
 }
 
-export default Match;
+export default LikeCard;

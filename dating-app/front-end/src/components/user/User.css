@@ -16,9 +16,9 @@
 }
 
 .user__btns {
-    background-color: gainsboro;
-    box-shadow: 0 -5px 5px -5px dimgray;
-  }
+    background-color: lightpink;
+    box-shadow: 0 -5px 5px -5px palevioletred;
+}
   
 .btn-xs {
     border: none;

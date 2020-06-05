@@ -45,7 +45,7 @@ const ProfileForm = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid
                     <option value="bisexual">Bisexual</option>
                     <option value="female">Female</option>
                     <option value="male">Male</option>
-                </select><br/>
+                </select>
                 <span className="form__title">Preference</span><br/>
                 <select
                     className="form-control form-control-sm mb-2"
@@ -64,7 +64,6 @@ const ProfileForm = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid
                         placeholder="Enter your age"
                     />
                 </div>
-                <br/>
                 <span className="form__title">Enter any from the following TAGS</span><br/>
                 <span className="form__tags"> art, photography, coding, gym, music </span><br />
                 <div className="wrong__input">{ invalid_input }</div>
@@ -74,7 +73,6 @@ const ProfileForm = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid
                     <br/>
                 </div>
                 <div>
-                    <br/>
                     <span className="form__title">Biography</span><br/>
                     <textarea
                         className="form-control"

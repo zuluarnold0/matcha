@@ -1,20 +1,22 @@
 import React from 'react';
 import './DashBoard.css';
-import Nav from '../nav/Nav';
-import Footer from '../footer/Footer';
 import FilterBar from './FilterBar';
 import UsersDisplay from './UsersDisplay';
-//import { users } from './users';
+import Footer from '../footer/Footer';
+import AppHeader from './AppHeader';
+import AppSideBar from './AppSideBar';
 
 const DashBoard = () => {
     return (
         <div>
-            <Nav/>
-            <div className="dashboard">
+            <input type="checkbox" id="check" />
+            <AppHeader />
+            <AppSideBar />
+            <div className="content">
                 <FilterBar />
                 <UsersDisplay  />
+                <Footer />
             </div>
-            <Footer/>
         </div>
     )
 }

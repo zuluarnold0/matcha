@@ -9,6 +9,7 @@ import Register from './auth/Register';
 import Profile from './profile/Profile';
 import UpdateProfile from './update/UpdateProfile';
 import UploadImages from './update/UploadImages';
+import Notification from '../components/notifications/Notification';
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/profile" component={Profile} />
               <Route path="/update/:id" component={UpdateProfile} />
               <Route path="/upload/:id" component={UploadImages} />
+              <Route path="/notification" component={Notification} />
             </Switch>
         </div>
       </Router>

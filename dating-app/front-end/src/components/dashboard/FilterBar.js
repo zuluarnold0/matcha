@@ -3,8 +3,7 @@ import './FilterBar.css';
 
 const FilterBar = () => {
     return (
-        <div className="dash-sidebar">{/**cant find */}
-            
+        <div>
             <div className="sort-box">
                 <div className="filter-section">
                     <span className="filter-title">Sort: </span>

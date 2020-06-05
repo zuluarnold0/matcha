@@ -2,7 +2,7 @@ import React from 'react';
 import img_ from '../imgs/4.jpeg';
 import { Link } from 'react-router-dom';
 
-const Match = () => {
+const MatchCard = () => {
     return (
         <div>
             <Link style={{ textDecoration: 'none' }} to={'/user/'+ 1}>
@@ -21,4 +21,4 @@ const Match = () => {
     )
 }
 
-export default Match;
+export default MatchCard;
