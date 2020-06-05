@@ -9,10 +9,10 @@ const UserProfile = () => {
             <span className="user__name">Star Arnold</span><br/>
             <img src={img_}  alt="img"/>
             <div className="user__btns">
-                <button type="button" className="btn__xs btn__success likebtn"><span className="fas fa-house-user"></span> LIKE</button>
-                <button type="button" className="btn__xs btn__primary"><span className="fas fa-house-user"></span> UNLIKE</button>
-                <button type="button" className="btn__xs btn__danger"><span className="fas fa-house-user"></span> BLOCK</button>
-                <button type="button" className="btn__xs btn__warning "><span className="fas fa-house-user"></span> REPORT</button>
+                <button type="button" className="btn btn-xs btn-success likebtn"><span className="fas fa-house-user"></span> LIKE</button>
+                <button type="button" className="btn btn-xs btn-primary"><span className="fas fa-house-user"></span> UNLIKE</button>
+                <button type="button" className="btn btn-xs btn-danger"><span className="fas fa-house-user"></span> BLOCK</button>
+                <button type="button" className="btn btn-xs btn-warning "><span className="fas fa-house-user"></span> REPORT</button>
             </div>
             <div className="user__info">
                 <Bio />

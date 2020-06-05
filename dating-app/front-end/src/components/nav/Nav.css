@@ -14,13 +14,13 @@
     border-radius: 15px;
 }
   
-  .nav-name {
+.nav-name {
     font-size: 15px;
-  }
+}
   
-  .nav-ba .logo-matcha {
+.nav-ba .logo-matcha {
     text-shadow: 2px 2px gainsboro;
-  }
+}
   
   .nav-tags {
     font-size: 20px;
@@ -67,12 +67,16 @@
   }
   
   .logo-matcha {
-    font-weight: 600;
-    font-size: 18px;
-  }
+    color:crimson;
+    text-align: center;
+    font-family: sans-serif, serif;
+    font-size: 20px;
+    font-weight: 900;
+    padding-bottom: 5px;
+}
   
   .nav-ba .nav-logout {
-    color: red;
+    color:crimson;
   }
   
   @media only screen and (max-width: 600px) {

@@ -15,9 +15,9 @@
     position: absolute;
     top: 90%;
     left: 25%;
-    width: 240px;
-    height: 240px;
-    border-radius: 120px;
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
     border: 5px solid #fff;
     transform: translate(-50%, -50%);
 }
@@ -31,20 +31,6 @@
     transform: translate(-50%, -50%);
 }
 
-
-@media only screen and (max-width: 640px) {
-    .profile__cover img {
-        width: 160px;
-        height: 160px;
-        border-radius: 80px;
-        border: 1px solid #fff;
-    }
-    .profile__name {
-        left: 60%;
-        transform: translate(-50%, -50%);
-    }
-}
-
 .profile__imgs {
     display: flex;
     justify-content: space-evenly;
@@ -52,7 +38,112 @@
 }
 
 .profile__imgs img {
-    width: 84px;
-    height: 90px;
+    width: 68px;
+    margin-right: 4px;
+    height: 74px;
     border-radius: 4px;
+}
+
+.links__bar {
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 2px solid rgb(216, 214, 214);
+}
+
+.edit__profile {
+    margin-right: 30px;
+    height: 30px;
+    margin-top: 15px;
+    border: 1px solid maroon;
+    color: maroon;
+    padding: 1px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.edit__profile:hover {
+    background-color: rgb(236, 177, 177);
+}
+
+.profile__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #eee;
+    margin-bottom: 10px;
+}
+
+.profile__info {
+    font-family: sans-serif;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.image__upload {
+    margin:10px 0px 10px 0px;
+    font-size: 13px;
+    color: salmon;
+}
+
+.my__history {
+    padding: 20px;
+    background-color: #fff;
+    margin: 10px;
+    width: 50%;
+}
+
+.history__title  {
+    font-family: Arial, Helvetica, sans-serif, fantasy;
+    font-weight: 900;
+    color: dimgray;
+    margin-bottom: 10px;
+}
+
+.history__container {
+    display: flex;
+    border: 1px solid #eee;
+}
+
+.history__img  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.history__content {
+    padding: 5px;
+}
+
+.history__name {
+    font-size: 13px;
+    color: #111;
+    font-weight: bold;
+}
+  
+.history__msg {
+    font-size: 13px;
+    color: #333;
+}
+
+@media only screen and (max-width: 640px) {
+    .profile__cover img {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        border: 3px solid #fff;
+    }
+    .profile__name {
+        left: 55%;
+        font-size: 20px;
+        transform: translate(-50%, -50%);
+    }
+    .edit__profile {
+        margin-right: 10px;
+    }
+    .my__history {
+        width: 100%;
+    }
 }

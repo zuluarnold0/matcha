@@ -4,7 +4,7 @@ import MyHistory from './MyHistory';
 
 const ProfileContent = () => {
     return (
-        <div className="logged-visits">
+        <div className="profile__content">
             <ProfileInfo />
             <MyHistory />
         </div>

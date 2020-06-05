@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileCover from './ProfileCover';
 import UpdateLinks from './UpdateLinks';
-import ProfileContent from './ProfleContent';
+import ProfileContent from './ProfileContent';
 import UserMap from '../map/UserMap';
 
 const MyProfile = () => {

@@ -6,17 +6,23 @@ import User from './user/User';
 import Login from './auth/Login';
 import Forgot from './auth/Forgot';
 import Register from './auth/Register';
+import Profile from './profile/Profile';
+import UpdateProfile from './update/UpdateProfile';
+import UploadImages from './update/UploadImages';
 
-const App = ({ onRouteChange }) => {
+const App = () => {
     return (
       <Router>
         <div>
             <Switch>
               <Route exact path="/" component={DashBoard} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/forgot" component={Forgot} />
-              <Route exact path="/user/:id" component={User} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/forgot" component={Forgot} />
+              <Route path="/user/:id" component={User} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/update/:id" component={UpdateProfile} />
+              <Route path="/upload/:id" component={UploadImages} />
             </Switch>
         </div>
       </Router>
