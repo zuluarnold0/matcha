@@ -21,7 +21,7 @@ const Forgot = () => {
                         name="submit"
                         value="SUBMIT"
                     />
-                    <Link class="a__links"  to="/login"><span>Already a member?</span></Link><br/>
+                    <Link className="a__links"  to="/login"><span>Already a member?</span></Link><br/>
                 </form>
             </div>
         </div>

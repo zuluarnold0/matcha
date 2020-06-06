@@ -27,8 +27,8 @@ const Login = () => {
                         name="submit"
                         value="LOGIN"
                     />
-                    <Link class="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                    <Link class="a__links" to="/register"><span>Don't have an account?</span></Link><br/>
+                    <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
+                    <Link className="a__links" to="/register"><span>Don't have an account?</span></Link><br/>
                 </form>
             </div>
         </div>

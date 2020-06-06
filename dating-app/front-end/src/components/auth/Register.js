@@ -51,8 +51,8 @@ const Register = () => {
                     name="submit"
                     value="REGISTER"
                 />
-                <Link class="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                <Link class="a__links" to="/login"><span>Already a member?</span></Link><br/>
+                <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
+                <Link className="a__links" to="/login"><span>Already a member?</span></Link><br/>
             </form>
         </div>
     </div>
