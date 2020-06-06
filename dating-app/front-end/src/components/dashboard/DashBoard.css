@@ -4,42 +4,6 @@
     font-family: "Roboto", sans-serif;
 }
 
-.app__header {
-    position: fixed;
-    background: palevioletred;
-    padding: 0 20px;
-    width: 100%;
-    height: 60px;
-    z-index: 1;
-    line-height: 15px;
-}
-
-.left_area h3 {
-    color: rgb(60, 61, 65);
-    margin: 0;
-    text-transform: uppercase;
-    font-size:  20px;
-    font-weight: 900;
-}
-
-.left_area span {
-    color: #fff;
-}
-
-.logout_btn {
-    float: right;
-    margin-top: -20px;
-    margin-right: 40px;
-    transition: 0.5s;
-    font-size: 20px;
-    color: rgb(60, 61, 65);
-    transition-property: background;
-}
-
-.logout_btn:hover {
-    cursor: pointer;
-}
-
 .sidebar {
     background: rgb(228, 148, 160);
     margin-top: 60px;
@@ -89,19 +53,15 @@
     padding-right: 10px;
 }
 
-label #sidebar_btn {
+li #sidebar_btn {
     color: #fff;
-    z-index: 1;
-    position: fixed;
-    left: 245px;
-    font-size: 17px;
+    margin-left: 40px;
     cursor: pointer;
-    margin-top: 15px;
     transition: 0.5s;
     transition-property: background;
 }
 
-label #sidebar_btn:hover {
+li #sidebar_btn:hover {
     color: rgb(95, 50, 65);
 }
 
@@ -122,7 +82,7 @@ label #sidebar_btn:hover {
 .content {
     margin-left: 250px;
     transition: 0.5s;
-    padding: 60px 10px 20px 0px;
+    padding: 76px 0px 20px 0px;
 }
 
 #check:checked ~ .content {

@@ -1,11 +1,11 @@
 .nav-ba {
     width: 100%;
     background-color: palevioletred;
-    font-size: 15px;
     box-shadow: 0 5px 5px -5px dimgray;
     top: 0;
+    line-height: 30px;
     position: fixed;
-    z-index: 200;
+    z-index: 2;
 }
   
 .nav-img img {
@@ -45,7 +45,7 @@ li a {
     color: #fff;
     text-align: center;
     text-decoration: none;
-    font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-family: "Source Sans Pro","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
   
 li a:hover {
@@ -53,16 +53,15 @@ li a:hover {
 }
   
 .logo-matcha {
-  color: #fff;
+  color: rgb(60, 61, 65);
   text-align: center;
   font-family: sans-serif, serif;
   font-size: 20px;
   font-weight: 900;
-  padding-bottom: 5px;
 }
   
 .logo-matcha:hover {
-  color: #fff;
+  color: rgb(60, 61, 65);
 }
 
 .nav-ba .nav-logout {

@@ -1,21 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../nav/Nav.css";
 
 const AppHeader = () => {
     return (
-        <div>
-            <header className="app__header">
-                <label htmlFor="check">
-                    <i className="fas fa-bars" id="sidebar_btn"></i>
-                </label>
-                <div className="left_area">
-                    <h3>Matcha <span>Dating</span></h3>
+        <nav className="nav-ba">
+            
+            <ul>
+                <div className="push-nav-start">
+                    <li>
+                        <Link className="logo-matcha" to="/">Matcha</Link>
+                    </li>
+                    <li>
+                        <label htmlFor="check">
+                            <i className="fas fa-bars" id="sidebar_btn"></i>
+                        </label>
+                    </li>
                 </div>
-                <div className="right_area">
-                    <Link  to="/login" className="logout_btn fas fa-power-off"></Link>
+                <div className="push-nav-end">
+                    <li>
+                        <Link  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
+                    </li>
                 </div>
-            </header>
-        </div>
+            </ul>
+        </nav>
     )
 }
 
