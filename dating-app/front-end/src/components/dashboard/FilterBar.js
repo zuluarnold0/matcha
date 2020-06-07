@@ -20,7 +20,7 @@ const FilterBar = () => {
             </div>
 
             <div className="filter-box">
-                <div className="filter-section">
+                <div className="filter-section age__color">
                     <span className="filter-title">Filter by age: </span>
                     <span className="filter-range">18 - 70</span><br/>
                     <input
@@ -34,7 +34,7 @@ const FilterBar = () => {
                     <div className="filter-range-value">33</div>
                 </div>
 
-                <div className="filter-section">
+                <div className="filter-section tags__color">
                     <span className="filter-title">Filter by tags: </span>
                     <div className="display-tags">
                         <span className="tag__">photography</span>
@@ -52,7 +52,7 @@ const FilterBar = () => {
                     />
                 </div>
 
-                <div className="filter-section">
+                <div className="filter-section rating__color">
                     <span className="filter-title">Filter popularity: </span>
                     <span className="filter-range">0 - 2000</span><br/>
                     <input

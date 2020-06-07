@@ -1,35 +1,61 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import UploadImages from '../update/UploadImages';
+import UpdateNames from '../update/UpdateNames';
+import UpdatePreference from '../update/UpdatePreference';
+import UpdateInfoContainer from '../update/UpdateInfoContainer';
 
-const UpdateLinks = ({ show, updateCity, closeModal, showUpload, uploadPics, closeUploadModal }) => {
+const UpdateLinks = ({ showNamesModal, updateNames, closeNamesModal, showPrefModal, updatePref, closePrefModal, showInfoModal, updateInfo, closeInfoModal }) => {
     return (
         <div className="links__bar">
-            <button type="button" className="edit__profile" onClick={updateCity}>
-                <span className="fas fa-pen">city</span> 
+
+            {/* Update Name */}
+            <button type="button" className="edit__profile" onClick={updateNames}>
+                <span className="fas fa-pen">names</span> 
             </button>
             {
-                show === true ? <div id="myModal" className="modal">
-                <div className="modal-content">
-                    <span onClick={closeModal} className="close">&times;</span>
-                        <p className="modalMessage">Your location was successfully updated</p>
+                showNamesModal === true ? <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span onClick={closeNamesModal} className="close">&times;</span>
+                        <div className="update__important">
+                            <div className="update__box">
+                                <UpdateNames />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 : ""
             }
-            <Link style={{ textDecoration: 'none' }} to={'/update/'+ 1}>
-                <button type="button" className="edit__profile">
-                    <span className="fas fa-pen">profile</span> 
-                </button>
-            </Link>
-            <button type="button" className="edit__profile" onClick={uploadPics}>
-                <span className="fas fa-pen">pics</span>  
+
+            {/* Update Preference */}
+            <button type="button" className="edit__profile" onClick={updatePref}>
+                <span className="fas fa-pen">pref</span>  
             </button>
             {
-                showUpload === true ? <div id="myModal" className="modal">
-                <div className="modal-content">
-                    <span onClick={closeUploadModal} className="close">&times;</span>
-                        <UploadImages/>
+                showPrefModal === true ? <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span onClick={closePrefModal} className="close">&times;</span>
+                        <div className="update__important">
+                            <div className="update__box">
+                                <UpdatePreference/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                : ""
+            }
+
+            {/*Update Info*/}
+            <button type="button" className="edit__profile" onClick={updateInfo}>
+                <span className="fas fa-pen">info</span>  
+            </button>
+            {
+                showInfoModal === true ? <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span onClick={closeInfoModal} className="close">&times;</span>
+                        <div className="update__important">
+                            <div className="update__box">
+                                <UpdateInfoContainer />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 : ""

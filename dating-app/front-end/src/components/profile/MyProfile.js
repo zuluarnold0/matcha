@@ -6,47 +6,69 @@ import UserMap from '../map/UserMap';
 
 class MyProfile extends Component {
     state = {
-        show: false,
+        showNamesModal: false,
+        showInfoModal: false,
+        showCityModal: false,
         showEmailModal: false,
         showPasswordModal: false,
-        showUpload: false
+        showUploadModal: false,
+        showPrefModal: false,
     }
 
-    closeModal = () => this.setState({ show: false });
+    upateNames = () => this.setState({ showNamesModal: true });
+    closeNamesModal = () => this.setState({ showNamesModal: false });
 
-    closeEmailModal = () => this.setState({ showEmailModal: false });
+    updatePref = () => this.setState({ showPrefModal: true });
+    closePrefModal = () => this.setState({ showPrefModal: false });
 
-    closePasswordModal = () => this.setState({ showPasswordModal: false });
-
-    closeUploadModal = () => this.setState({ showUpload: false });
-
-    updateCity = () => this.setState({ show: true });
+    updateInfo = () => this.setState({ showInfoModal: true });
+    closeInfoModal = () => this.setState({ showInfoModal: false });
 
     updateEmail = () => this.setState({ showEmailModal: true });
+    closeEmailModal = () => this.setState({ showEmailModal: false });
+
+    updateCity = () => this.setState({ showCityModal: true });
+    closeCityModal = () => this.setState({ showCityModal: false });
 
     updatePassword = () => this.setState({ showPasswordModal: true });
+    closePasswordModal = () => this.setState({ showPasswordModal: false });
 
-    uploadPics = () => this.setState({ showUpload: true });
+    uploadPics = () => this.setState({ showUploadModal: true });
+    closeUploadModal = () => this.setState({ showUploadModal: false });
 
     render () {
         return (
             <div>
                 <ProfileCover />
                 <UpdateLinks
-                    show={this.state.show}
-                    closeModal={this.closeModal}
-                    updateCity={this.updateCity}
-                    showUpload={this.state.showUpload}
-                    closeUploadModal={this.closeUploadModal}
-                    uploadPics={this.uploadPics}
+                    showInfoModal={this.state.showInfoModal}
+                    closeInfoModal={this.closeInfoModal}
+                    updateInfo={this.updateInfo}
+
+                    showPrefModal={this.state.showPrefModal}
+                    closePrefModal={this.closePrefModal}
+                    updatePref={this.updatePref}
+
+                    showNamesModal={this.state.showNamesModal}
+                    closeNamesModal={this.closeNamesModal}
+                    updateNames={this.upateNames}
                 />
                 <ProfileContent
-                    showPasswordModal={this.state.showPasswordModal}
-                    showEmailModal={this.state.showEmailModal}
                     closeEmailModal={this.closeEmailModal}
-                    closePasswordModal={this.closePasswordModal}
+                    showEmailModal={this.state.showEmailModal}
                     updateEmail={this.updateEmail}
+                    
+                    closePasswordModal={this.closePasswordModal}
+                    showPasswordModal={this.state.showPasswordModal}
                     updatePassword={this.updatePassword}
+
+                    updateCity={this.updateCity}
+                    showCityModal={this.state.showCityModal}
+                    closeCityModal={this.closeCityModal}
+
+                    uploadPics={this.uploadPics}
+                    showUploadModal={this.state.showUploadModal}
+                    closeUploadModal={this.closeUploadModal}
                 />
                 <UserMap />
             </div>

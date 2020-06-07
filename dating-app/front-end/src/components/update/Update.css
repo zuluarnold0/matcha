@@ -72,17 +72,10 @@
 }
 
 .update__err {
-    color: orangered;
+    color: crimson;
     font-size: 14px;
     font-weight: 800;
     text-align: center;
-}
-
-.upload__container {
-    border: 5px solid palevioletred;
-    padding: 20px 10px;
-    margin-bottom: 5px;
-    background-color: pink;
 }
 
 .upload_outer_box {
@@ -93,9 +86,15 @@
 }
   
 .upload_inner_box {
-    width: 40%;
+    width: 50%;
 }
 
+.upload__container {
+    border: 5px solid palevioletred;
+    padding: 20px 10px;
+    margin-bottom: 5px;
+    background-color: pink;
+}
   
 @media only screen and (max-width: 640px) {
     .upload_inner_box {

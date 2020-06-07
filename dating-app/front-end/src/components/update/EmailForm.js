@@ -4,6 +4,7 @@ const EmailForm = () => {
     return (
         <div>
             <form >
+                <h5 className="profile__heading">Update Email</h5>
                 <div className="form-group">
                     <span className="form__title">Email</span><br/>
                     <input

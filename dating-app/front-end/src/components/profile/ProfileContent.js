@@ -2,16 +2,25 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import MyHistory from './MyHistory';
 
-const ProfileContent = ({ showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword }) => {
+const ProfileContent = ({ showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity }) => {
     return (
         <div className="profile__content">
             <ProfileInfo
-                showPasswordModal={showPasswordModal}
-                showEmailModal={showEmailModal}
                 closeEmailModal={closeEmailModal}
-                closePasswordModal={closePasswordModal}
+                showEmailModal={showEmailModal}
                 updateEmail={updateEmail}
+                    
+                closePasswordModal={closePasswordModal}
+                showPasswordModal={showPasswordModal}
                 updatePassword={updatePassword}
+
+                updateCity={updateCity}
+                showCityModal={showCityModal}
+                closeCityModal={closeCityModal}
+
+                uploadPics={uploadPics}
+                showUploadModal={showUploadModal}
+                closeUploadModal={closeUploadModal}
             />
             <MyHistory />
         </div>

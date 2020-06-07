@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Update.css';
-import Nav from '../nav/Nav';
-import Footer from '../footer/Footer';
-import ProfileForm from './ProfileForm';
+import UpdateInfo from './UpdateInfo';
 
 const containerStyle = {
     position: "relative",
@@ -23,7 +21,7 @@ const inputStyle = {
     border: "0"
 }
 
-class UpdateProfile extends Component  {
+class UpdateInfoContainer extends Component  {
     state = {
         tags: [],
         invalid_input: ""
@@ -55,27 +53,20 @@ class UpdateProfile extends Component  {
           tags: tags
         });
     }
-
     render () {
         return (
             <div>
-                <Nav/>
-                <div className="update__container">
-                    <div className="update__box">
-                        <ProfileForm
-                            invalid_input={this.state.invalid_input}
-                            tags={this.state.tags}
-                            containerStyle={containerStyle}
-                            inputStyle={inputStyle}
-                            onDeleteTag={this.onDeleteTag}
-                            onKeyUp={this.onKeyUp}
-                        />
-                    </div>
-                </div>
-                <Footer/>
+                <UpdateInfo 
+                    containerStyle={containerStyle}
+                    inputStyle={inputStyle}
+                    onDeleteTag={this.onDeleteTag}
+                    onKeyUp={this.onKeyUp}
+                    invalid_input={this.state.invalid_input}
+                    tags={this.state.tags}
+                />
             </div>
         )
     }
 }
 
-export default UpdateProfile;
+export default UpdateInfoContainer;

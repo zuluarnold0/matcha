@@ -7,8 +7,6 @@ import Login from './auth/Login';
 import Forgot from './auth/Forgot';
 import Register from './auth/Register';
 import Profile from './profile/Profile';
-import UpdateProfile from './update/UpdateProfile';
-import UploadImages from './update/UploadImages';
 import Notification from '../components/notifications/Notification';
 
 const App = () => {
@@ -22,8 +20,6 @@ const App = () => {
               <Route path="/forgot" component={Forgot} />
               <Route path="/user/:id" component={User} />
               <Route path="/profile" component={Profile} />
-              <Route path="/update/:id" component={UpdateProfile} />
-              <Route path="/upload/:id" component={UploadImages} />
               <Route path="/notification" component={Notification} />
             </Switch>
         </div>

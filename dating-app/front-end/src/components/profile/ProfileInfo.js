@@ -3,7 +3,7 @@ import Bio from '../bio/Bio';
 import  ImageUpload from '../upload/ImageUpload';
 import ImportantUpdates from './ImportantUpdates';
 
-const ProfileInfo = ({ showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword }) => {
+const ProfileInfo = ({ showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity }) => {
     return (
         <div  className="profile_info_box">
             <div className="profile__info">
@@ -15,12 +15,21 @@ const ProfileInfo = ({ showEmailModal, showPasswordModal, closePasswordModal, cl
                 </div>
             </div>
             <ImportantUpdates
-                showPasswordModal={showPasswordModal}
-                showEmailModal={showEmailModal}
                 closeEmailModal={closeEmailModal}
-                closePasswordModal={closePasswordModal}
+                showEmailModal={showEmailModal}
                 updateEmail={updateEmail}
+                    
+                closePasswordModal={closePasswordModal}
+                showPasswordModal={showPasswordModal}
                 updatePassword={updatePassword}
+
+                updateCity={updateCity}
+                showCityModal={showCityModal}
+                closeCityModal={closeCityModal}
+
+                uploadPics={uploadPics}
+                showUploadModal={showUploadModal}
+                closeUploadModal={closeUploadModal}
             />
         </div>
     )

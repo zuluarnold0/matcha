@@ -4,6 +4,7 @@ const PasswordForm = () => {
     return (
         <div>
             <form >
+                <h5 className="profile__heading">Update Password</h5>
                 <div className="form-group">
                     <span className="form__title">Password</span><br/>
                     <input
