@@ -89,9 +89,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 90px;
     margin-bottom: 20px;
-  }
+}
   
 .upload_inner_box {
     width: 40%;
@@ -99,6 +98,9 @@
 
   
 @media only screen and (max-width: 640px) {
+    .upload_inner_box {
+        width: 100%;
+    }
     .upload_inner_box {
         width: 90%;
     }

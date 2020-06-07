@@ -17,7 +17,7 @@ const UserProfile = ({ show, reportUser, closeModal }) => {
                     show === true ? <div id="myModal" className="modal">
                         <div className="modal-content">
                             <span onClick={closeModal} className="close">&times;</span>
-                            <p>You reported <strong>{ "Star Arnold" }</strong>'s account as a fake account. Further investigations will be done by Matcha Team</p>
+                            <p className="modalMessage">You reported <strong>{ "Star Arnold" }</strong>'s account as a fake account. Further investigations will be done by Matcha Team</p>
                         </div>
                     </div>
                     : ""

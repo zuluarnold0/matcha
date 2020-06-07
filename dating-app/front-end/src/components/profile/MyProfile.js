@@ -8,7 +8,8 @@ class MyProfile extends Component {
     state = {
         show: false,
         showEmailModal: false,
-        showPasswordModal: false
+        showPasswordModal: false,
+        showUpload: false
     }
 
     closeModal = () => this.setState({ show: false });
@@ -17,11 +18,15 @@ class MyProfile extends Component {
 
     closePasswordModal = () => this.setState({ showPasswordModal: false });
 
+    closeUploadModal = () => this.setState({ showUpload: false });
+
     updateCity = () => this.setState({ show: true });
 
     updateEmail = () => this.setState({ showEmailModal: true });
 
     updatePassword = () => this.setState({ showPasswordModal: true });
+
+    uploadPics = () => this.setState({ showUpload: true });
 
     render () {
         return (
@@ -31,6 +36,9 @@ class MyProfile extends Component {
                     show={this.state.show}
                     closeModal={this.closeModal}
                     updateCity={this.updateCity}
+                    showUpload={this.state.showUpload}
+                    closeUploadModal={this.closeUploadModal}
+                    uploadPics={this.uploadPics}
                 />
                 <ProfileContent
                     showPasswordModal={this.state.showPasswordModal}
