@@ -31,3 +31,16 @@
   padding: 1px;
   border-radius: 3px;
 }
+
+.profile__imgs {
+  display: flex;
+  justify-content: flex-start;
+  background-color: pink;
+}
+
+.profile__imgs img {
+  width: 68px;
+  margin-right: 4px;
+  height: 74px;
+  border-radius: 4px;
+}

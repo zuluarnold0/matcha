@@ -1,7 +1,6 @@
 import React from 'react';
 import Bio from '../bio/Bio';
 import  ImageUpload from '../upload/ImageUpload';
-import img_ from '../imgs/4.jpeg';
 import ImportantUpdates from './ImportantUpdates';
 
 const ProfileInfo = ({ showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword }) => {
@@ -23,12 +22,6 @@ const ProfileInfo = ({ showEmailModal, showPasswordModal, closePasswordModal, cl
                 updateEmail={updateEmail}
                 updatePassword={updatePassword}
             />
-            <div className="profile__imgs">
-                <img src={ img_ } alt="img"/>
-                <img src={ img_ } alt="img"/>
-                <img src={ img_ } alt="img"/>
-                <img src={ img_ } alt="img"/>
-            </div>
         </div>
     )
 }

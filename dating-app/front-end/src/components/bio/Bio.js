@@ -1,5 +1,6 @@
 import React from 'react';
 import './Bio.css';
+import img_ from '../imgs/4.jpeg';
 
 const Bio = () => {
     return (
@@ -19,6 +20,13 @@ const Bio = () => {
             <span className="user__tag"> gym </span>
             <span className="user__tag"> date </span>
             <span className="user__tag"> love </span>
+            <hr/>
+            <div className="profile__imgs">
+                <img src={ img_ } alt="img"/>
+                <img src={ img_ } alt="img"/>
+                <img src={ img_ } alt="img"/>
+                <img src={ img_ } alt="img"/>
+            </div>
             <hr/>
         </div>
     )
