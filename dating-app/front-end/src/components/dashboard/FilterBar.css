@@ -60,12 +60,12 @@
 
 .tag__ {
     padding: 2px;
-    color: crimson;
+    color: palevioletred;
     background-color: #fff;
     font-size: 13px;
     margin-right: 8px;
     border-radius: 5px;
-    border: 1px solid crimson;
+    border: 1px solid palevioletred;
 }
 
 @media only screen and (max-width: 640px) {

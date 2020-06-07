@@ -9,10 +9,10 @@ const UserProfile = ({ show, reportUser, closeModal }) => {
             <span className="user__name">Star Arnold</span><br/>
             <img src={img_}  alt="img"/>
             <div className="user__btns">
-                <button type="button" className="btn btn-xs btn-success likebtn"><span className="fas fa-house-user"></span> LIKE</button>
-                <button type="button" className="btn btn-xs btn-primary"><span className="fas fa-house-user"></span> UNLIKE</button>
-                <button type="button" className="btn btn-xs btn-danger"><span className="fas fa-house-user"></span> BLOCK</button>
-                <button type="button" onClick={reportUser} className="btn btn-xs btn-warning "><span className="fas fa-house-user"></span> REPORT</button>
+                <button type="button" className="btn btn-xs btn-success likebtn"><span className="fas fa-thumbs-up"></span> LIKE</button>
+                <button type="button" className="btn btn-xs btn-primary"><span className="fas fa-thumbs-down"></span> UNLIKE</button>
+                <button type="button" className="btn btn-xs btn-danger"><span className="fas fa-ban"></span> BLOCK</button>
+                <button type="button" onClick={reportUser} className="btn btn-xs btn-warning "><span className="fas fa-bullhorn"></span> REPORT</button>
                 {
                     show === true ? <div id="myModal" className="modal">
                         <div className="modal-content">
