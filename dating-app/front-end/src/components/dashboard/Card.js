@@ -7,7 +7,7 @@ const Card = () => {
     return (
         <div className="float-left">
             <div className="card__">
-                <Link  to={'/user/'+1}>
+                <Link  to={'/user/'+10}>
                     <div className="card__image">
                         <img src={img_} alt="img"/>
                     </div>
