@@ -10,7 +10,7 @@ class PersonalDetails extends Component {
         const { firstname, lastname, username, email, password, cpassword, handleChange } = this.props;
         return (
             <div className="bg">
-                <div className="register-box">
+                <div className="register-box box__">
                     <img src={imgP} alt="img" className="avatar"/>
                     <h1>PERSONAL DETAILS</h1>
                     <form>

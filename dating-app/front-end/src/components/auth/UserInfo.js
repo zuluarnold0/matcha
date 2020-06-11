@@ -19,7 +19,7 @@ class UserInfo extends Component {
         return (
             <div>
                 <div className="bg">
-                    <div className="register-box">
+                    <div className="register-box box__">
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>USER INFO</h1>
                         <form>

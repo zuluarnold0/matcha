@@ -26,6 +26,18 @@ body {
     padding: 60px 30px 20px 30px;
 }
 
+.box__ {
+	width: 320px;
+	background: #fff;
+	border-radius: 10px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 60px 30px 20px 30px;
+}
+
 .register-box .avatar {
 	width: 100px;
 	height: 100px;
@@ -89,6 +101,7 @@ body {
     height: 36px;
     background: white;
     margin: 0 15px 0 15px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
     color: black;
     font-size: 14px;
     padding: 5px;
@@ -155,6 +168,14 @@ body {
     text-align: center;
 }
 
-.register-box .register-p {
-    color: #fff;
+.register-box .register-key {
+    color: crimson;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.register-box .register-vaue {
+    color: #111;
+    font-size: 16px;
+    font-weight: 100;
 }

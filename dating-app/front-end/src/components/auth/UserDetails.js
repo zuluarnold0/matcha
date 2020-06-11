@@ -15,7 +15,7 @@ class UserDetails extends Component {
         return (
             <div>
                 <div className="bg">
-                    <div className="register-box">
+                    <div className="register-box box__">
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>USER DETAILS</h1>
                         <form className="user__details">
