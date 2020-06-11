@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import imgP from "./images/profile.jpg";
-import { Link } from 'react-router-dom';
 import Tag from '../update/Tag';
 
 class UserInfo extends Component {
@@ -24,16 +23,16 @@ class UserInfo extends Component {
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>USER INFO</h1>
                         <form>
-                            <h2 className="form__title">Enter any from the following TAGS</h2>
-                            <h2 className="form__tags"> art, photography, coding, gym, music </h2>
-                            <div className="wrong__input">{ invalid_input }</div>
+                            <h2 className="form_title">Enter any from the following TAGS</h2>
+                            <h2 className="form_tags"> |art| |photography| |coding| |gym| |music| </h2>
+                            <div className="wrong_input">{ invalid_input }</div>
                             <div style={containerStyle}>
                                 { tags_ }
                                 <input className="form-control" style={inputStyle} onKeyUp={ (e) => onKeyUp(e) } type="text" placeholder="Type tag name and press SPACE..." />
                                 <br/>
                             </div>
                             <div>
-                                <h2 className="form__title">Biography</h2>
+                                <h2 className="form_title">Biography</h2>
                                 <textarea
                                     className="form-control"
                                     type="text"
@@ -53,9 +52,7 @@ class UserInfo extends Component {
                                 name="submit"
                                 onClick={this.back}
                             >GO BACK</button><br/><br/>
-                            <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                            <Link className="a__links" to="/login"><span>Already a member?</span></Link><br/>
-                           </form>
+                        </form>
                     </div>
                 </div>  
             </div>

@@ -3,6 +3,7 @@ import './Auth.css';
 import PersonalDetails from './PersonalDetails';
 import UserDetails from './UserDetails';
 import UserInfo from './UserInfo';
+import ConfirmDetails from './ConfirmDetails';
 
 const containerStyle = {
     position: "relative",
@@ -84,7 +85,7 @@ class Register extends Component {
 
     render() {
         const { step } = this.state;
-        const { firstname, lastname, username, email, password, cpassword, tags } = this.state;
+        const { firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexPref } = this.state;
         switch (step) {
             case 1:
                 return (
@@ -124,15 +125,18 @@ class Register extends Component {
                 )
             default:
                 return(
-                    <PersonalDetails 
+                    <ConfirmDetails 
                         firstname={firstname}
                         lastname={lastname}
                         username={username}
                         email={email}
-                        password={password}
-                        cpassword={cpassword}
+                        bio={bio}
+                        gender={gender}
+                        age={age}
+                        sexPref={sexPref}
+                        tags={tags}
+                        prevStep={this.prevStep}
                         nextStep={this.nextStep}
-                        handleChange={this.handleChange}
                     />
                 )
         }

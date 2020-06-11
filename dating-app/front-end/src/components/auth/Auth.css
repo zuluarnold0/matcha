@@ -128,29 +128,33 @@ body {
     text-decoration: none;
 }
 
-.form__title {
+.form_title {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 16px;
     padding:3px;
-    color: rgb(131, 54, 80);
+    color: crimson;
 }
 
-.wrong__input {
+.wrong_input {
     color: red;
     font-style: oblique;
     font-size: 14px;
 }
 
-.form__tags {
+.form_tags {
     font-size: 14px;
     font-weight: 900;
-    color: yellow;
+    color: limegreen;
 }
 
-.update__err {
+.update_err {
     color: crimson;
     font-size: 14px;
     font-weight: 800;
     text-align: center;
+}
+
+.register-box .register-p {
+    color: #fff;
 }
