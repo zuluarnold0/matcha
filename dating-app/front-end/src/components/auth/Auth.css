@@ -83,6 +83,35 @@ body {
     background: rgba(0, 0, 0, 0.6);
 }
 
+.continue__btn {
+    border:none;
+    outline: none;
+    height: 36px;
+    background: white;
+    margin: 0 15px 0 15px;
+    color: black;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.back__btn {
+    border:none;
+    outline: none;
+    height: 36px;
+    padding: 5px;
+    background: black;
+    margin: 0 15px 0 15px;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.continue__btn:hover, .back__btn:hover {
+    background: #333;
+    color: crimson;
+}
+
 .register-box span {
     text-decoration: none;
     font-size: 13px;
@@ -91,10 +120,37 @@ body {
 }
 
 .register-box span:hover {
-    color: gray;
+    color: #aaa;
     cursor: pointer;
 }
 
 .a__links {
     text-decoration: none;
+}
+
+.form__title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding:3px;
+    color: rgb(131, 54, 80);
+}
+
+.wrong__input {
+    color: red;
+    font-style: oblique;
+    font-size: 14px;
+}
+
+.form__tags {
+    font-size: 14px;
+    font-weight: 900;
+    color: yellow;
+}
+
+.update__err {
+    color: crimson;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
 }
