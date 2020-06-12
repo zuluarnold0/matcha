@@ -93,6 +93,7 @@ class Register extends Component {
 
     validatePersonal = () => {
         const { firstname, lastname, username, email, password, cpassword } = this.state;
+        //password validation
         var matchedCase = [];
         matchedCase.push("[$@$!%*#?&]");
         matchedCase.push("[A-Z]");    
@@ -105,9 +106,22 @@ class Register extends Component {
                 ctr++;
             }
         }
+
+        //email validation
+        var isEmailValid = false;
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+        {
+            isEmailValid = true;
+        }
+
         if (!firstname || !lastname  || !email || !username || !password || !cpassword) 
         {
             this.setState({ error_msg: 'fill in all field!' });
+            return false;
+        }
+        else if (!isEmailValid)
+        {
+            this.setState({ error_msg:"You have entered an invalid email address!" });
             return false;
         }
         else if (password !== cpassword)

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import imgP from "./images/profile.jpg";
 import { Link } from 'react-router-dom';
 
 class PersonalDetails extends Component {
@@ -15,7 +14,6 @@ class PersonalDetails extends Component {
         return (
             <div className="bg">
                 <div className="register-box box__">
-                    <img src={imgP} alt="img" className="avatar"/>
                     <h1>PERSONAL DETAILS</h1>
                     <form>
                         <p>First Name</p>
