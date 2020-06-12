@@ -26,18 +26,6 @@ body {
     padding: 60px 30px 20px 30px;
 }
 
-.box__ {
-	width: 320px;
-	background: #fff;
-	border-radius: 10px;
-	top: 50%;
-	left: 50%;
-	position: absolute;
-	transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 60px 30px 20px 30px;
-}
-
 .register-box .avatar {
 	width: 100px;
 	height: 100px;
@@ -101,8 +89,8 @@ body {
     height: 36px;
     background: white;
     margin: 0 15px 0 15px;
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    color: #222;
     font-size: 14px;
     padding: 5px;
     border-radius: 5px;
@@ -113,7 +101,7 @@ body {
     outline: none;
     height: 36px;
     padding: 5px;
-    background: black;
+    background: #222;
     margin: 0 15px 0 15px;
     color: white;
     font-size: 14px;
@@ -121,8 +109,9 @@ body {
 }
 
 .continue__btn:hover, .back__btn:hover {
-    background: #333;
+    background: #ccc;
     color: crimson;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .register-box span {
@@ -157,8 +146,47 @@ body {
 
 .form_tags {
     font-size: 14px;
-    font-weight: 900;
-    color: limegreen;
+}
+
+.tags_color1 {
+    margin: 3px;
+    color: #000 !important;
+    background-color: palevioletred;
+}
+
+.tags_color2 {
+    margin: 3px;
+    color: #000 !important;
+    background-color: orange;
+}
+
+.tags_color3 {
+    margin: 3px;
+    color: #000 !important;
+    background-color: limegreen;
+}
+
+.tags_color4 {
+    color: #000 !important;
+    margin: 3px;
+    background-color: pink;
+}
+
+.tags_color5 {
+    color: #000 !important;
+    margin: 3px;
+    background-color: yellowgreen;
+}
+
+.confirm__tag {
+    font-size: 13px;
+    font-weight: 100;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 3px 5px 3px 0px;
+    padding: 1px;
+    border-radius: 3px;
 }
 
 .update_err {
@@ -168,14 +196,63 @@ body {
     text-align: center;
 }
 
-.register-box .register-key {
-    color: crimson;
+.error__msg {
+    font-size: 14px !important;
+    color: red !important;
+    text-align: center !important;
+}
+
+
+.box__ {
+	width: 320px;
+	background: #fff;
+	border-radius: 10px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 60px 30px 20px 30px;
+}
+
+.box__ input[type="email"], input[type="password"], input[type="text"]
+{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background:  transparent;
+    outline: none;
+    height: 20px;
+    color: #222;
+    font-size: 14px;
+}
+
+.box__ .register-key {
+    color: crimson !important;
     font-size: 14px;
     font-weight: 800;
 }
 
-.register-box .register-vaue {
-    color: #111;
-    font-size: 16px;
+.box__ .register-value {
+    color: #111 !important;
+    font-size: 14px;
     font-weight: 100;
+}
+
+.success__links span {
+    text-decoration: none !important;
+    font-size: 13px;
+    line-height: 20px;
+    color: gray !important;
+}
+
+.success__links span:hover {
+    text-decoration: none !important;
+    color: #ccc !important;
+    cursor: pointer;
+}
+
+.success__msg {
+    font-size: 15px !important;
+    color: crimson !important;
+    text-align: center !important;
 }

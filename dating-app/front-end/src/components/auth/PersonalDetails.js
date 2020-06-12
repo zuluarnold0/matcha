@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import imgP from "./images/profile.jpg";
+import { Link } from 'react-router-dom';
 
 class PersonalDetails extends Component {
     continue = (event) => {
         event.preventDefault();
-        this.props.nextStep();
+        if(this.props.validatePersonal())
+            this.props.nextStep();
+        else
+            this.props.currentStep();
     }
     render () {
-        const { firstname, lastname, username, email, password, cpassword, handleChange } = this.props;
+        const { error_msg, firstname, lastname, username, email, password, cpassword, handleChange } = this.props;
         return (
             <div className="bg">
                 <div className="register-box box__">
@@ -20,7 +24,7 @@ class PersonalDetails extends Component {
                             name="firstname"
                             value={firstname}
                             onChange={handleChange}
-                            placeholder="Enter FirstName..."
+                            placeholder="Enter First Name..."
                         />
                         <p>Last Name</p>
                         <input
@@ -28,7 +32,7 @@ class PersonalDetails extends Component {
                             name="lastname"
                             value={lastname}
                             onChange={handleChange}
-                            placeholder="Enter LastName..."
+                            placeholder="Enter Last Name..."
                         />
                         <p>User Name</p>
                         <input
@@ -68,6 +72,13 @@ class PersonalDetails extends Component {
                             value="CONTINUE"
                             onClick={this.continue}
                         />
+                        <br/>
+                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                        {
+                            error_msg ? <p className="error__msg">
+                                { error_msg }
+                            </p> : ''
+                        }
                     </form>
                 </div>
             </div>

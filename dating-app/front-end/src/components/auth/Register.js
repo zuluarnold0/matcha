@@ -4,6 +4,8 @@ import PersonalDetails from './PersonalDetails';
 import UserDetails from './UserDetails';
 import UserInfo from './UserInfo';
 import ConfirmDetails from './ConfirmDetails';
+import Success from './Success';
+import PageNotFound from './PageNotFound';
 
 const containerStyle = {
     position: "relative",
@@ -35,10 +37,11 @@ class Register extends Component {
         cpassword: '',
         gender: '',
         sexPref: '',
-        age: 18,
+        age: '',
         bio: '',
         tags: [],
-        invalid_input: ""
+        invalid_input: "",
+        error_msg: ''
     }
     onKeyUp = (e) => {
         if (e.which === 32) {
@@ -68,6 +71,11 @@ class Register extends Component {
         });
     }
 
+    currentStep = () => {
+        const { step } = this.state;
+        this.setState({ step: step });
+    }
+
     nextStep = () => {
         const { step } = this.state;
         this.setState({ step: step + 1 });
@@ -83,13 +91,50 @@ class Register extends Component {
         this.setState({ [name]: value });
     }
 
+    validatePersonal = () => {
+        const { firstname, lastname, username, email, password, cpassword } = this.state;
+        var matchedCase = [];
+        matchedCase.push("[$@$!%*#?&]");
+        matchedCase.push("[A-Z]");    
+        matchedCase.push("[0-9]"); 
+        matchedCase.push("[a-z]");
+        // Check the conditions
+        var ctr = 0;
+        for (var i = 0; i < matchedCase.length; i++) {
+            if (new RegExp(matchedCase[i]).test(password)) {
+                ctr++;
+            }
+        }
+        if (!firstname || !lastname  || !email || !username || !password || !cpassword) 
+        {
+            this.setState({ error_msg: 'fill in all field!' });
+            return false;
+        }
+        else if (password !== cpassword)
+        {
+            this.setState({ error_msg:'passwords dont match!' });
+            return false;
+        }
+        else if (ctr !== 4)
+        {
+            this.setState({ error_msg:"Password must have: [A-Z], [0-9], [a-z] and [$@$!%*#?&]" })
+            return false;
+        }
+        else
+        {
+            this.setState({ error_msg: '' });
+            return true;
+        }
+    }
+
     render() {
         const { step } = this.state;
-        const { firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexPref } = this.state;
+        const { error_msg, firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexPref } = this.state;
         switch (step) {
             case 1:
                 return (
-                    <PersonalDetails 
+                    <PersonalDetails
+                        error_msg={error_msg}
                         firstname={firstname}
                         lastname={lastname}
                         username={username}
@@ -97,12 +142,17 @@ class Register extends Component {
                         password={password}
                         cpassword={cpassword}
                         nextStep={this.nextStep}
+                        currentStep={this.currentStep}
                         handleChange={this.handleChange}
+                        validatePersonal={this.validatePersonal}
                     />
                 )
             case 2:
                 return (
                     <UserDetails
+                        gender={gender}
+                        age={age}
+                        sexPref={sexPref}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
@@ -118,12 +168,13 @@ class Register extends Component {
                         onKeyUp={this.onKeyUp}
                         invalid_input={this.state.invalid_input}
                         tags={tags}
+                        bio={bio}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                     />
                 )
-            default:
+            case 4:
                 return(
                     <ConfirmDetails 
                         firstname={firstname}
@@ -139,6 +190,12 @@ class Register extends Component {
                         nextStep={this.nextStep}
                     />
                 )
+
+            case 5:
+                return <Success/>;
+        
+            default:
+                return <PageNotFound/>;
         }
     }
 }

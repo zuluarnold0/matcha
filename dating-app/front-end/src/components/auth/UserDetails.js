@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import imgP from "./images/profile.jpg";
+import { Link } from 'react-router-dom';
 
 class UserDetails extends Component {
     back = (event) => {
@@ -11,7 +12,7 @@ class UserDetails extends Component {
         this.props.nextStep();
     }
     render () {
-        const { handleChange } = this.props;
+        const { handleChange, age, gender, sexPref } = this.props;
         return (
             <div>
                 <div className="bg">
@@ -23,9 +24,10 @@ class UserDetails extends Component {
                             <select
                                 className="form-control form-control-sm mb-2"
                                 name="gender"
-                                handleChange={handleChange}
+                                value={gender}
+                                onChange={handleChange}
                             >
-                                <option >Choose...</option>
+                                <option value="" >Choose...</option>
                                 <option value="bisexual">Bisexual</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
@@ -34,9 +36,10 @@ class UserDetails extends Component {
                             <select
                                 className="form-control form-control-sm mb-2"
                                 name="sexPref"
-                                handleChange={handleChange}
+                                value={sexPref}
+                                onChange={handleChange}
                             >
-                                <option >Choose...</option>
+                                <option value="" >Choose...</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
                             </select>
@@ -46,8 +49,9 @@ class UserDetails extends Component {
                                     type="text" 
                                     className="form-control form-control-sm mb-2"
                                     name="age"
+                                    value={age}
                                     placeholder="Enter your age"
-                                    handleChange={handleChange}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <button
@@ -62,6 +66,8 @@ class UserDetails extends Component {
                                 name="submit"
                                 onClick={this.back}
                             >GO BACK</button>
+                            <br/><br/>
+                            <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                         </form>
                     </div>
                 </div>  
