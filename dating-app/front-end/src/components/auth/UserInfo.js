@@ -10,10 +10,13 @@ class UserInfo extends Component {
     }
     continue = (event) => {
         event.preventDefault();
-        this.props.nextStep();
+        if(this.props.validateInfo())
+            this.props.nextStep();
+        else
+            this.props.currentStep();
     }
     render() {
-        const { containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_input, tags, bio, handleChange } = this.props;
+        const { error_msg, containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_input, tags, bio, handleChange } = this.props;
         var tags_ = tags && tags.map((tag, i) => {
             return <Tag onDeleteTag={onDeleteTag} key={i} tag={tag}/>
         });
@@ -63,6 +66,11 @@ class UserInfo extends Component {
                             >GO BACK</button>
                             <br/><br/>
                             <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                            {
+                                error_msg ? <p className="error__msg">
+                                    { error_msg }
+                                </p> : ''
+                            }
                         </form>
                     </div>
                 </div>  

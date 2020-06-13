@@ -40,7 +40,7 @@ class ConfirmDetails extends Component{
                                 <span className="register-value">
                                     {
                                         tags && tags.map(tag => {
-                                            return <span className="confirm__tag"> {tag} </span>;
+                                            return <span className="confirm__tag" key={tag}> {tag} </span>;
                                         })
                                     }
                                 </span><br/><br/>

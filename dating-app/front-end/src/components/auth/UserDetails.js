@@ -9,10 +9,13 @@ class UserDetails extends Component {
     }
     continue = (event) => {
         event.preventDefault();
-        this.props.nextStep();
+        if(this.props.validateDetails())
+            this.props.nextStep();
+        else
+            this.props.currentStep();
     }
     render () {
-        const { handleChange, age, gender, sexPref } = this.props;
+        const { error_msg, handleChange, age, gender, sexPref } = this.props;
         return (
             <div>
                 <div className="bg">
@@ -68,6 +71,11 @@ class UserDetails extends Component {
                             >GO BACK</button>
                             <br/><br/>
                             <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                            {
+                                error_msg ? <p className="error__msg">
+                                    { error_msg }
+                                </p> : ''
+                            }
                         </form>
                     </div>
                 </div>  

@@ -43,32 +43,30 @@ class Register extends Component {
         invalid_input: "",
         error_msg: ''
     }
+
     onKeyUp = (e) => {
         if (e.which === 32) {
             let input = e.target.value.trim().split(" ");
             if (input.length === 0 || input[0] === "") return;
             if (input[0].toLowerCase() !== "gym" && input[0].toLowerCase() !== "art" && input[0].toLowerCase() !== "music" && input[0].toLowerCase() !== "photography" && input[0].toLowerCase() !== "coding"){
-                this.setState({
-                invalid_input: "YOU ENTERED AN INVALID TAG!",
-                });
+                this.setState({ invalid_input: "Choose a valid tag!" });
                 return;
             }
-    
+            this.state.tags.includes(input[0]) ?
+            this.setState({ invalid_input: "Please choose another tag!" })
+             :
             this.setState({
-                tags: [ ...this.state.tags, input ],
-                invalid_input: ""
-            });
+                tags: [ ...this.state.tags, input[0] ], invalid_input: ""
+            })
             e.target.value = "";
         }
     }
 
     onDeleteTag = (tag) => {
-        var tags = this.state.tags.filter((t) => {
-          return (t !== tag);
+        var tags = this.state.tags.filter(t => {
+          return t !== tag;
         });
-        this.setState({
-          tags: tags
-        });
+        this.setState({ tags: tags });
     }
 
     currentStep = () => {
@@ -86,7 +84,7 @@ class Register extends Component {
         this.setState({ step: step - 1 });
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
@@ -106,17 +104,17 @@ class Register extends Component {
                 ctr++;
             }
         }
-
         //email validation
         var isEmailValid = false;
+        // eslint-disable-next-line
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
         {
             isEmailValid = true;
         }
-
+        //check for: empty fields, invalid email and passwords
         if (!firstname || !lastname  || !email || !username || !password || !cpassword) 
         {
-            this.setState({ error_msg: 'fill in all field!' });
+            this.setState({ error_msg: 'fill in all fields!' });
             return false;
         }
         else if (!isEmailValid)
@@ -132,6 +130,49 @@ class Register extends Component {
         else if (ctr !== 4)
         {
             this.setState({ error_msg:"Password must have: [A-Z], [0-9], [a-z] and [$@$!%*#?&]" })
+            return false;
+        }
+        else
+        {
+            this.setState({ error_msg: '' });
+            return true;
+        }
+    }
+
+    validateInfo = () => {
+        const { bio, tags } = this.state;
+        if (!bio)
+        {
+            this.setState({ error_msg: 'bio field cannot be empty!' });
+            return false;
+        }
+        else if (!tags.length)
+        {
+            this.setState({ error_msg: 'Enter atleast one tag!' });
+            return false;
+        }
+        else
+        {
+            this.setState({ error_msg: '' });
+            return true;
+        }
+    }
+
+    validateDetails = () => {
+        const { age, gender, sexPref } = this.state;
+        if (!age || !gender || !sexPref)
+        {
+            this.setState({ error_msg: 'fill in all field!' });
+            return false;
+        }
+        else if (!(Number(age)))
+        {
+            this.setState({ error_msg: 'age must be a number!' });
+            return false;
+        }
+        else if (age < 18 || age > 70)
+        {
+            this.setState({ error_msg: 'sorry u must be between 18 and 70 to join!' });
             return false;
         }
         else
@@ -164,11 +205,14 @@ class Register extends Component {
             case 2:
                 return (
                     <UserDetails
+                        error_msg={error_msg}
                         gender={gender}
                         age={age}
                         sexPref={sexPref}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
+                        currentStep={this.currentStep}
+                        validateDetails={this.validateDetails}
                         handleChange={this.handleChange}
                     />
                 )
@@ -176,6 +220,8 @@ class Register extends Component {
             case 3:
                 return (
                     <UserInfo
+                        error_msg={error_msg}
+                        validateInfo={this.validateInfo}
                         containerStyle={containerStyle}
                         inputStyle={inputStyle}
                         onDeleteTag={this.onDeleteTag}
@@ -186,6 +232,7 @@ class Register extends Component {
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        currentStep={this.currentStep}
                     />
                 )
             case 4:

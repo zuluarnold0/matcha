@@ -198,8 +198,10 @@ body {
 
 .error__msg {
     font-size: 14px !important;
-    color: red !important;
+    color: White !important;
     text-align: center !important;
+    background-color: rgb(228, 94, 94) !important;
+    padding: 5px !important;
 }
 
 
@@ -233,7 +235,7 @@ body {
 }
 
 .box__ .register-value {
-    color: #111 !important;
+    color: rgb(53, 53, 53) !important;
     font-size: 14px;
     font-weight: 100;
 }
