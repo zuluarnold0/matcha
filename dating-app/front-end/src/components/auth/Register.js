@@ -52,20 +52,18 @@ class Register extends Component {
                 this.setState({ invalid_input: "Choose a valid tag!" });
                 return;
             }
-            this.state.tags.includes(input[0]) ?
+            this.state.tags.includes(input[0].toLowerCase()) ?
             this.setState({ invalid_input: "Please choose another tag!" })
              :
             this.setState({
-                tags: [ ...this.state.tags, input[0] ], invalid_input: ""
+                tags: [ ...this.state.tags, input[0].toLowerCase() ], invalid_input: ""
             })
             e.target.value = "";
         }
     }
 
     onDeleteTag = (tag) => {
-        var tags = this.state.tags.filter(t => {
-          return t !== tag;
-        });
+        var tags = this.state.tags.filter(t => t !== tag);
         this.setState({ tags: tags });
     }
 

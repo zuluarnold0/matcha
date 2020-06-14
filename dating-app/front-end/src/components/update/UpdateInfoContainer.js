@@ -31,27 +31,22 @@ class UpdateInfoContainer extends Component  {
             let input = e.target.value.trim().split(" ");
             if (input.length === 0 || input[0] === "") return;
             if (input[0].toLowerCase() !== "gym" && input[0].toLowerCase() !== "art" && input[0].toLowerCase() !== "music" && input[0].toLowerCase() !== "photography" && input[0].toLowerCase() !== "coding"){
-                this.setState({
-                invalid_input: "YOU ENTERED AN INVALID TAG!",
-                });
+                this.setState({ invalid_input: "Choose a valid tag!" });
                 return;
             }
-    
+            this.state.tags.includes(input[0].toLowerCase()) ?
+            this.setState({ invalid_input: "Please choose another tag!" })
+             :
             this.setState({
-                tags: [ ...this.state.tags, input ],
-                invalid_input: ""
-            });
+                tags: [ ...this.state.tags, input[0].toLowerCase() ], invalid_input: ""
+            })
             e.target.value = "";
         }
     }
 
     onDeleteTag = (tag) => {
-        var tags = this.state.tags.filter((t) => {
-          return (t !== tag);
-        });
-        this.setState({
-          tags: tags
-        });
+        var tags = this.state.tags.filter(t => t !== tag);
+        this.setState({ tags: tags });
     }
     render () {
         return (
