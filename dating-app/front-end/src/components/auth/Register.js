@@ -41,7 +41,47 @@ class Register extends Component {
         bio: '',
         tags: [],
         invalid_input: "",
-        error_msg: ''
+        error_msg: '',
+        longi: 0.0,
+        lati: 0.0,
+        city: ''
+    }
+
+    componentDidMount() {
+        fetch('https://ipapi.co/json')
+        .then(response => response.json())
+        .then(loc => {
+            this.setState({
+                city: loc.city,
+                longi: loc.longitude,
+                lati: loc.latitude,
+            })
+        })
+    }
+
+    onFormSubmit = () => {
+        fetch('http://localhost:3000/register', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ 
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                username: this.state.username,
+                email: this.state.email,
+                bio: this.state.bio,
+                gender: this.state.gender,
+                age: this.state.age,
+                sexPref: this.state.sexPref,
+                tags: this.state.tags
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data !== "success")
+            {
+                this.setState({ error_msg: 'Unable to register' })
+            }
+        })
     }
 
     onKeyUp = (e) => {
@@ -180,6 +220,15 @@ class Register extends Component {
         }
     }
 
+    back = (event) => {
+        event.preventDefault();
+        this.prevStep();
+    }
+    continue_ = (event) => {
+        event.preventDefault();
+        this.nextStep();
+    }
+
     render() {
         const { step } = this.state;
         const { error_msg, firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexPref } = this.state;
@@ -245,8 +294,9 @@ class Register extends Component {
                         age={age}
                         sexPref={sexPref}
                         tags={tags}
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
+                        continue_={this.continue_}
+                        back={this.back}
+                        onFormSubmit={this.onFormSubmit}
                     />
                 )
 

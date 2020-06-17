@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import imgP from "./images/profile.jpg";
 import { Link } from 'react-router-dom';
 
-class ConfirmDetails extends Component{
-    back = (event) => {
-        event.preventDefault();
-        this.props.prevStep();
-    }
-    continue = (event) => {
-        event.preventDefault();
-        this.props.nextStep();
-    }
-    render () {
-        const { firstname, lastname, username, email, bio, gender, age, sexPref, tags } = this.props;
-        return (
-                <div>
-                    <div className="bg">
+const ConfirmDetails = ({ back, onFormSubmit, firstname, lastname, username, email, bio, gender, age, sexPref, tags }) => {
+    return (
+        <div className="bg">
                         <div className="register-box box__">
                             <img src={imgP} alt="img" className="avatar"/>
                             <h1>CONFIRM DETAILS</h1>
-                            <form >
+                            <div>
                                 <span className="register-key">FirstName:</span>
                                 <span className="register-value"> {firstname}</span><br/>
                                 <span className="register-key">LastName:</span>
@@ -48,22 +37,20 @@ class ConfirmDetails extends Component{
                                     className="continue__btn"
                                     type="submit"
                                     name="submit"
-                                    onClick={this.continue}
+                                    onClick={onFormSubmit}
                                 >CONFIRM</button>
                                 <button
                                     className="back__btn"
                                     type="submit"
                                     name="submit"
-                                    onClick={this.back}
+                                    onClick={back}
                                 >GO BACK</button>
                                 <br/><br/>
                                 <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
-                            </form>
+                            </div>
                         </div>
                     </div>  
-                </div>
-            )
-    }
+    )
 }
 
 export default ConfirmDetails;

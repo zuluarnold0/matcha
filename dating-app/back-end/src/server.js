@@ -1,51 +1,47 @@
-const express = require('express');
-//const bodyParser = require('body-parser');
+var express = require('express');
+const bodyParser = require('body-parser');
 //const bcrypt = require('bcrypt-nodejs');
-//const cors = require('cors');
+const cors = require('cors');
+const knex = require('knex');
 
-const db = require('knex')({
+var app = express();
+const port = 3000;
+
+const db = knex({
     client: 'pg',
     connection: {
-        host : '127.0.0.1',
+        host : '',
         user : '',
         password : 'rootadmin',
         database : 'matcha'
     }
 });
 
-const app = express();
-const port = 3000;
+app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/register', function (req, res) {
-    const { firstname, lastname, username, email, bio, gender, age, sexPref, tags } = req.body;
-    fetch('https://ipapi.co/json')
-    .then(res => res.json())
-    .then(loc => {
-        db('users')
+    db('users')
         .returning('*')
-        .insert({ 
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            bio: bio,
-            gender: gender,
-            age: age,
-            sexPref: sexPref,
-            tags: tags,
-            city: loc.city,
-            longi: loc.longitude,
-            lati: loc.latitude,
+        .insert({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            username: req.body.username,
+            email: req.body.email,
+            bio: req.body.bio,
+            gender: req.body.gender,
+            age: req.body.age,
+            sexPref: req.body.sexPref,
+            tags: req.body.tags,
+            city: req.body.city,
+            longi: req.body.longitude,
+            lati: req.body.latitude,
             popularity: 0,
             logged_time: new Date(),
-            is_logged_in: false,
+            is_logged_in: false
         })
-        .then(user => {
-            res.json(user[0]) 
-        })
-        .catch(err => res.status(400).json('Unable to register'));
-    })
-    .catch(err => res.status(400).json('location not found'));
+        .then(response => res.json("success"))
+        .catch(err => res.status(400).json(err));
 })
 
 app.listen(port, () => console.log(`matcha app is listening at http://localhost:${port}`));
