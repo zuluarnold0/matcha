@@ -15,7 +15,7 @@ class UserDetails extends Component {
             this.props.currentStep();
     }
     render () {
-        const { error_msg, handleChange, age, gender, sexPref } = this.props;
+        const { error_msg, handleChange, age, gender, sexpref } = this.props;
         return (
             <div>
                 <div className="bg">
@@ -38,8 +38,8 @@ class UserDetails extends Component {
                             <p>Preference</p>
                             <select
                                 className="form-control form-control-sm mb-2"
-                                name="sexPref"
-                                value={sexPref}
+                                name="sexpref"
+                                value={sexpref}
                                 onChange={handleChange}
                             >
                                 <option value="" >Choose...</option>

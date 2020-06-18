@@ -36,14 +36,14 @@ class Register extends Component {
         password: '',
         cpassword: '',
         gender: '',
-        sexPref: '',
+        sexpref: '',
         age: '',
         bio: '',
         tags: [],
         invalid_input: "",
         error_msg: '',
-        longi: 0.0,
-        lati: 0.0,
+        longi: 0.00,
+        lati: 0.00,
         city: ''
     }
 
@@ -54,7 +54,7 @@ class Register extends Component {
             this.setState({
                 city: loc.city,
                 longi: loc.longitude,
-                lati: loc.latitude,
+                lati: loc.latitude
             })
         })
     }
@@ -71,17 +71,12 @@ class Register extends Component {
                 bio: this.state.bio,
                 gender: this.state.gender,
                 age: this.state.age,
-                sexPref: this.state.sexPref,
-                tags: this.state.tags
+                sexpref: this.state.sexpref,
+                tags: this.state.tags,
+                password: this.state.password
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data !== "success")
-            {
-                this.setState({ error_msg: 'Unable to register' })
-            }
-        })
+        .then(response => this.nextStep());
     }
 
     onKeyUp = (e) => {
@@ -197,8 +192,8 @@ class Register extends Component {
     }
 
     validateDetails = () => {
-        const { age, gender, sexPref } = this.state;
-        if (!age || !gender || !sexPref)
+        const { age, gender, sexpref } = this.state;
+        if (!age || !gender || !sexpref)
         {
             this.setState({ error_msg: 'fill in all field!' });
             return false;
@@ -220,18 +215,9 @@ class Register extends Component {
         }
     }
 
-    back = (event) => {
-        event.preventDefault();
-        this.prevStep();
-    }
-    continue_ = (event) => {
-        event.preventDefault();
-        this.nextStep();
-    }
-
     render() {
         const { step } = this.state;
-        const { error_msg, firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexPref } = this.state;
+        const { error_msg, firstname, lastname, username, email, password, cpassword, tags, bio, age, gender, sexpref } = this.state;
         switch (step) {
             case 1:
                 return (
@@ -255,7 +241,7 @@ class Register extends Component {
                         error_msg={error_msg}
                         gender={gender}
                         age={age}
-                        sexPref={sexPref}
+                        sexpref={sexpref}
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         currentStep={this.currentStep}
@@ -292,10 +278,9 @@ class Register extends Component {
                         bio={bio}
                         gender={gender}
                         age={age}
-                        sexPref={sexPref}
+                        sexpref={sexpref}
                         tags={tags}
-                        continue_={this.continue_}
-                        back={this.back}
+                        prevStep={this.prevStep}
                         onFormSubmit={this.onFormSubmit}
                     />
                 )
