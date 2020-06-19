@@ -64,7 +64,7 @@ app.post('/register', (req, res) => {
                     city: req.body.city,
                     longi: req.body.longi,
                     lati: req.body.lati,
-                    popularity: 30,
+                    popularity: 0,
                     logged_time: new Date(),
                     is_logged_in: false
                 })

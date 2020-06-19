@@ -41,6 +41,12 @@ class Login extends React.Component {
                     password: this.state.password
                 })
             })
+            .then(response => response.json())
+            .then(user => {
+                if (!user.email) {
+                    this.setState({ error_msg: "error loggin in"})
+                }
+            })
         }
     }
     render() {
