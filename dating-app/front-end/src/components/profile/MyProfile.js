@@ -3,6 +3,10 @@ import ProfileCover from './ProfileCover';
 import UpdateLinks from './UpdateLinks';
 import ProfileContent from './ProfileContent';
 import UserMap from '../map/UserMap';
+import './Profile.css';
+import Nav from '../nav/Nav';
+import Footer from '../footer/Footer';
+import { connect } from 'react-redux';
 
 class MyProfile extends Component {
     state = {
@@ -13,6 +17,7 @@ class MyProfile extends Component {
         showPasswordModal: false,
         showUploadModal: false,
         showPrefModal: false,
+        user: this.props.user
     }
 
     upateNames = () => this.setState({ showNamesModal: true });
@@ -37,9 +42,11 @@ class MyProfile extends Component {
     closeUploadModal = () => this.setState({ showUploadModal: false });
 
     render () {
+        const { user } = this.state;
         return (
             <div>
-                <ProfileCover />
+                <Nav/>
+                <ProfileCover user={user}/>
                 <UpdateLinks
                     showInfoModal={this.state.showInfoModal}
                     closeInfoModal={this.closeInfoModal}
@@ -69,11 +76,20 @@ class MyProfile extends Component {
                     uploadPics={this.uploadPics}
                     showUploadModal={this.state.showUploadModal}
                     closeUploadModal={this.closeUploadModal}
+
+                    user={user}
                 />
                 <UserMap />
+                <Footer/> 
             </div>
         )
     }
 }
 
-export default MyProfile;
+const mapStateToProps = state => {
+    return {
+      user: state.user_reducer.user
+    }
+}
+  
+export default connect(mapStateToProps, null) (MyProfile);

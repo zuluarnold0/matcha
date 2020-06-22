@@ -6,25 +6,39 @@ import User from './user/User';
 import Login from './auth/Login';
 import Forgot from './auth/Forgot';
 import Register from './auth/Register';
-import Profile from './profile/Profile';
+import MyProfile from './profile/MyProfile';
+import { connect } from 'react-redux';
 import Notification from '../components/notifications/Notification';
 
-const App = () => {
+class App extends React.Component {
+
+  state = {
+    user: this.props.user
+  }
+
+  render() {
     return (
       <Router>
-        <div>
-            <Switch>
-              <Route exact path="/" component={DashBoard} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/forgot" component={Forgot} />
-              <Route path="/user/:id" component={User} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/notification" component={Notification} />
-            </Switch>
-        </div>
+        <Switch>
+            <Route exact path="/">
+              <DashBoard user={this.props.user}/>
+            </Route>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register} />
+            <Route path="/forgot" component={Forgot} />
+            <Route path="/user/:id" component={User} />
+            <Route path="/profile" component={MyProfile} />
+            <Route path="/notification" component={Notification} />
+        </Switch>
       </Router>
     );
   }
-  
-  export default App;
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user_reducer.user
+  }
+}
+
+export default connect(mapStateToProps, null)(App);

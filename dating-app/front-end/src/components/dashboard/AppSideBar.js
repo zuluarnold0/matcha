@@ -1,13 +1,13 @@
 import React from 'react';
-import img_ from '../imgs/4.jpeg';
+//import img_ from '../imgs/4.jpeg';
 import { Link } from 'react-router-dom';
 
-const AppSideBar = () => {
+const AppSideBar = ({ user }) => {
     return (
         <div className="sidebar">
             <center>
-                <img src={ img_ } className="profile_image" alt="img" />
-                <h4>{ "Star" }</h4>
+                <img src={ user.photourl } className="profile_image" alt="img" />
+                <h4>{ user.username }</h4>
             </center>
             <Link style={{ textDecoration: 'none' }} to="/"><p><i className="fas fa-house-user"></i><span>Home</span></p></Link>
             <Link style={{ textDecoration: 'none' }} to="/profile"><p><i className="fas fa-user-circle"></i><span>Profile</span></p></Link>

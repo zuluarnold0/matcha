@@ -56,6 +56,7 @@ app.post('/register', (req, res) => {
                     lastname: req.body.lastname,
                     username: req.body.username,
                     email: loginEmail[0],
+                    photourl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     bio: req.body.bio,
                     gender: req.body.gender,
                     age: req.body.age,

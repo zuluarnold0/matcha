@@ -1,14 +1,17 @@
 import React from 'react';
 import './Auth.css';
 import imgP from "./images/profile.jpg";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { setUserToState } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
 
     state = {
         email: '',
         password: '',
-        error_msg: ''
+        error_msg: '',
+        user: null
     }
 
     handleInputChange = (event) => {
@@ -43,52 +46,68 @@ class Login extends React.Component {
             })
             .then(response => response.json())
             .then(user => {
-                if (!user.email) {
+                if (user.email) {
+                    this.props.setUserToState(user);
+                    this.setState({ user: user});
+                } else {
                     this.setState({ error_msg: "error loggin in"})
                 }
             })
         }
     }
+
     render() {
-        return (
-            <div className="bg">
-                <div className="register-box">
-                    <img src={imgP} alt="img" className="avatar"/>
-                    <h1>LOGIN TO MATCHA</h1>
-                    <div>
-                        <p>Email</p>
-                        <input
-                            type="email"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.handleInputChange}
-                            placeholder="Enter Your Email..."
-                        />
-                        <p>Password</p>
-                        <input
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleInputChange}
-                            placeholder="Enter Your Password..."
-                        />
-                        <input
-                            type="submit"
-                            name="submit"
-                            value="LOGIN"
-                            onClick={this.onFormSubmit}
-                        />
-                        <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                        <Link className="a__links" to="/register"><span>Don't have an account?</span></Link><br/>
-                        {
-                            this.state.error_msg ? <p className="error__msg">
-                                { this.state.error_msg }
-                            </p> : ''
-                        }
+        const { user } = this.state;
+        if (!user) {
+            return (
+                <div className="bg">
+                    <div className="register-box">
+                        <img src={imgP} alt="img" className="avatar"/>
+                        <h1>LOGIN TO MATCHA</h1>
+                        <div>
+                            <p>Email</p>
+                            <input
+                                type="email"
+                                name="email"
+                                value={this.state.email}
+                                onChange={this.handleInputChange}
+                                placeholder="Enter Your Email..."
+                            />
+                            <p>Password</p>
+                            <input
+                                type="password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.handleInputChange}
+                                placeholder="Enter Your Password..."
+                            />
+                            <input
+                                type="submit"
+                                name="submit"
+                                value="LOGIN"
+                                onClick={this.onFormSubmit}
+                            />
+                            <Link className="a__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
+                            <Link className="a__links" to="/register"><span>Don't have an account?</span></Link><br/>
+                            {
+                                this.state.error_msg ? <p className="error__msg">
+                                    { this.state.error_msg }
+                                </p> : ''
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return <Redirect to="/"/>;
+        }
     }
 }
-export default Login;
+
+const mapDispatchToProps = dispatch => {
+    return {
+      setUserToState: (user) => dispatch(setUserToState(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
