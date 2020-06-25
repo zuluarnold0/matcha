@@ -5,9 +5,9 @@ import UsersDisplay from './UsersDisplay';
 import Footer from '../footer/Footer';
 import AppHeader from './AppHeader';
 import AppSideBar from './AppSideBar';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setUsers } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
 class DashBoard extends React.Component {
     
@@ -25,15 +25,14 @@ class DashBoard extends React.Component {
         .then(users => {
             if (users) {
                 this.props.setUsers(users);
-                this.setState({ users: users});
+                this.setState({ users: users });
             }
         })
         .catch(err => console.error('an error occured'));
     }
 
-
     render () {
-        const { user } = this.state;
+        const { user, users } = this.state;
         if (!user) {
             return <Redirect to="/login" />
         } else {
@@ -44,7 +43,7 @@ class DashBoard extends React.Component {
                     <AppSideBar user={user}/>
                     <div className="content">
                         <FilterBar />
-                        <UsersDisplay users={this.state.users} />
+                        <UsersDisplay users={users} />
                         <Footer />
                     </div>
                 </div>
@@ -58,10 +57,10 @@ const mapStateToProps = state => {
       user: state.user_reducer.user
     }
 }
-
+  
 const mapDispatchToProps = dispatch => {
     return {
-        setUsers: (users) => dispatch(setUsers(users))
+      setUsers: (users) => dispatch(setUsers(users))
     }
 }
   

@@ -2,6 +2,8 @@ import React from 'react';
 import UpdateNames from '../update/UpdateNames';
 import UpdatePreference from '../update/UpdatePreference';
 import UpdateInfo from '../update/UpdateInfo';
+import { connect } from 'react-redux';
+import { setUserToState } from '../../store/actions/actions';
 
 const containerStyle = {
     position: "relative",
@@ -30,7 +32,9 @@ class UpdateLinks extends React.Component {
             firstname: '',
             lastname: '',
             username: '',
-            error_message: '',
+            info_err_msg: '',
+            names_err_msg: '',
+            pref_err_msg: '',
             age: '',
             gender: '',
             sexpref: '',
@@ -63,12 +67,12 @@ class UpdateLinks extends React.Component {
         const { firstname, lastname, username } = this.state;
         if (!firstname || !lastname || !username)
         {
-            this.setState({ error_message: 'Input field cannot be empty!' });
+            this.setState({ names_err_msg: 'Input field cannot be empty!' });
             return false;
         }
         else
         {
-            this.setState({ error_message: '' });
+            this.setState({ names_err_msg: '' });
             return true;
         }
     }
@@ -77,7 +81,25 @@ class UpdateLinks extends React.Component {
         event.preventDefault();
         const { firstname, lastname, username } = this.state;
         if (this.validateNames()) {
-            console.log(firstname, lastname, username);
+            fetch('http://localhost:3000/names', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: this.props.user.id,
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ names_err_msg: "Names update successful" });
+                } else {
+                    this.setState({ names_err_msg: "Error updating names"})
+                }
+            })
         }
     }
 
@@ -85,22 +107,22 @@ class UpdateLinks extends React.Component {
         const { age, gender, sexpref } = this.state;
         if (!age || !gender || !sexpref)
         {
-            this.setState({ error_message: 'Input field cannot be empty!' });
+            this.setState({ pref_err_msg: 'Input field cannot be empty!' });
             return false;
         }
         else if (!(Number(age)))
         {
-            this.setState({ error_message: 'Age must be a number!' });
+            this.setState({ pref_err_msg: 'Age must be a number!' });
             return false;
         }
         else if (age < 18 || age > 70)
         {
-            this.setState({ error_message: 'Age must be between 18 and 70' });
+            this.setState({ pref_err_msg: 'Age must be between 18 and 70' });
             return false;
         }
         else
         {
-            this.setState({ error_message: '' });
+            this.setState({ pref_err_msg: '' });
             return true;
         }
     }
@@ -109,7 +131,25 @@ class UpdateLinks extends React.Component {
         event.preventDefault();
         const { age, gender, sexpref } = this.state;
         if (this.validatePref()) {
-            console.log(age, gender, sexpref);
+            fetch('http://localhost:3000/pref', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: this.props.user.id,
+                    age: age,
+                    gender: gender,
+                    sexpref: sexpref
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ pref_err_msg: "Preference update successful" });
+                } else {
+                    this.setState({ pref_err_msg: "Error updating preferences"})
+                }
+            })
         }
     }
 
@@ -140,17 +180,17 @@ class UpdateLinks extends React.Component {
         const { bio, tags } = this.state;
         if (!bio)
         {
-            this.setState({ error_message: 'Bio field cannot be empty!' });
+            this.setState({ info_err_msg: 'Bio field cannot be empty!' });
             return false;
         }
         else if (!tags.length)
         {
-            this.setState({ error_message: 'Enter atleast one tag!' });
+            this.setState({ info_err_msg: 'Enter atleast one tag!' });
             return false;
         }
         else
         {
-            this.setState({ error_message: '' });
+            this.setState({ info_err_msg: '' });
             return true;
         }
     }
@@ -159,12 +199,29 @@ class UpdateLinks extends React.Component {
         event.preventDefault();
         const { bio, tags } = this.state;
         if (this.validateInfo()) {
-            console.log(bio, tags);
+            fetch('http://localhost:3000/info', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: this.props.user.id,
+                    bio: bio,
+                    tags: tags
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ info_err_msg: "Info update successful" });
+                } else {
+                    this.setState({ info_err_msg: "Error updating Info"})
+                }
+            })
         }
     }
 
     render() {
-        const { bio, tags, age, sexpref, gender, firstname, lastname, username, error_message, invalid_input } = this.state;
+        const { bio, tags, age, sexpref, gender, firstname, lastname, username, info_err_msg, pref_err_msg, names_err_msg, invalid_input } = this.state;
         const { showNamesModal, updateNames, closeNamesModal, showPrefModal, updatePref, closePrefModal, showInfoModal, updateInfo, closeInfoModal } = this.props;
         return (
             <div className="links__bar">
@@ -183,7 +240,7 @@ class UpdateLinks extends React.Component {
                                         lastname={lastname}
                                         username={username}
                                         handleFormSubmit={this.handleFormSubmit}
-                                        error_message={error_message}
+                                        names_err_msg={names_err_msg}
                                         handleInputChange={this.handleInputChange}
                                     />
                                 </div>
@@ -208,7 +265,7 @@ class UpdateLinks extends React.Component {
                                         gender={gender}
                                         sexpref={sexpref}
                                         handlePrefSubmit={this.handlePrefSubmit}
-                                        error_message={error_message}
+                                        pref_err_msg={pref_err_msg}
                                         handleInputChange={this.handleInputChange}
                                     />
                                 </div>
@@ -237,7 +294,7 @@ class UpdateLinks extends React.Component {
                                         invalid_input={invalid_input}
                                         tags={tags}
                                         handleInfoSubmit={this.handleInfoSubmit}
-                                        error_message={error_message}
+                                        info_err_msg={info_err_msg}
                                         handleInputChange={this.handleInputChange}
                                     />
                                 </div>
@@ -251,4 +308,10 @@ class UpdateLinks extends React.Component {
     }
 }
 
-export default UpdateLinks;
+const mapDispatchToProps = dispatch => {
+    return {
+        setUserToState: (user) => dispatch(setUserToState(user))
+    }    
+}
+
+export default connect (null, mapDispatchToProps) (UpdateLinks);

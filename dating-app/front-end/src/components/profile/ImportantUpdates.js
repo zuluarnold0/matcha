@@ -2,6 +2,8 @@ import React from 'react';
 import PasswordForm from '../update/PasswordForm';
 import EmailForm from '../update/EmailForm';
 import UploadImages from '../update/UploadImages';
+import { connect } from 'react-redux';
+import { setUserToState } from '../../store/actions/actions';
 
 class ImportantUpdates extends React.Component {
 
@@ -56,9 +58,24 @@ class ImportantUpdates extends React.Component {
 
     handleEmailSubmit = (event) => {
         event.preventDefault();
-        const { email } = this.state;
         if (this.validateEmail()) {
-            console.log(email);
+            fetch('http://localhost:3000/email', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    oldEmail: this.props.user.email,
+                    newEmail: this.state.email
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ email_err_message: "Email update successful" });
+                } else {
+                    this.setState({ email_err_message: "Error updating Email"})
+                }
+            })
         }
     }
 
@@ -101,15 +118,30 @@ class ImportantUpdates extends React.Component {
 
     handlePassword = (event) => {
         event.preventDefault();
-        const { password } = this.state;
+        const { password, email } = this.state;
         if (this.validatePassword()) {
-            console.log(password);
+            fetch('http://localhost:3000/pass', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data === 'success') {
+                    this.setState({ passwd_err_message: "Password update successful" });
+                } else {
+                    this.setState({ passwd_err_message: "Error updating Password"})
+                }
+            })
         }
     }
 
     render() {
         const { email, email_err_message, passwd_err_message } = this.state;
-        const { showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword, closeCityModal, updateCity, showCityModal, closeUploadModal, uploadPics, showUploadModal } = this.props;
+        const { showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword, closeCityModal, updateCity, showCityModal, closeUploadModal, uploadPics, showUploadModal, city_err_msg } = this.props;
         return (
             <div className="important__updates">
                 {/*Update Password*/}
@@ -161,7 +193,7 @@ class ImportantUpdates extends React.Component {
                     showCityModal === true ? <div id="myModal" className="modal">
                     <div className="modal-content">
                         <span onClick={closeCityModal} className="close">&times;</span>
-                            <p className="modalMessage">Your location was successfully updated</p>
+                            <p className="modalMessage">{ city_err_msg }</p>
                         </div>
                     </div>
                     : ""
@@ -184,4 +216,10 @@ class ImportantUpdates extends React.Component {
     }
 }
 
-export default ImportantUpdates;
+const mapDispatchToProps = dispatch => {
+    return {
+        setUserToState: (user) => dispatch(setUserToState(user))
+    }    
+}
+
+export default connect (null, mapDispatchToProps) (ImportantUpdates);

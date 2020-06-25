@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UpdatePreference = ({ gender, sexpref, age, error_message, handleInputChange, handlePrefSubmit }) => {
+const UpdatePreference = ({ gender, sexpref, age, pref_err_msg, handleInputChange, handlePrefSubmit }) => {
     return (
         <div>
             <form className="profile__form" onSubmit={handlePrefSubmit}>
@@ -42,8 +42,8 @@ const UpdatePreference = ({ gender, sexpref, age, error_message, handleInputChan
                 <br/>
                 <button type="submit" className="btn btn-sm btn-warning">Update</button>
                 {
-                    error_message ? <div><br />
-                        <p className="error__msg">{ error_message }</p>
+                    pref_err_msg ? <div><br />
+                        <p className="error__msg">{ pref_err_msg }</p>
                     </div> : ''
                 }
             </form>

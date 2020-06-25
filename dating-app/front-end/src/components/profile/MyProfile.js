@@ -8,6 +8,7 @@ import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { setUserToState } from '../../store/actions/actions';
 
 class MyProfile extends Component {
 
@@ -21,7 +22,14 @@ class MyProfile extends Component {
             showPasswordModal: false,
             showUploadModal: false,
             showPrefModal: false,
+            city_err_msg: '',
             user: props.user
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.user !== this.props.user) {
+            this.setState({ user: this.props.user });
         }
     }
 
@@ -36,9 +44,38 @@ class MyProfile extends Component {
 
     updateEmail = () => this.setState({ showEmailModal: true });
     closeEmailModal = () => this.setState({ showEmailModal: false });
-
-    updateCity = () => this.setState({ showCityModal: true });
+    
     closeCityModal = () => this.setState({ showCityModal: false });
+
+    updateCity = () => {
+        this.setState({ showCityModal: true });
+        //FETCH LOCATION FROM AN API
+        fetch('https://ipapi.co/json')
+        .then(response => response.json())
+        .then(location => {
+            //SEND LOCATION DATA TO THE BACKEND
+            fetch('http://localhost:3000/city', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: this.props.user.id,
+                    city: location.city,
+                    longi: location.longitude,
+                    lati: location.latitude
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ city_err_msg: 'Your location was successfully updated'})
+                } else {
+                    this.setState({ city_err_msg: 'Unable to update City'})
+                }
+            })
+        })
+        .catch(err => this.setState({ city_err_msg: 'Error updating City'}));
+    }
 
     updatePassword = () => this.setState({ showPasswordModal: true });
     closePasswordModal = () => this.setState({ showPasswordModal: false });
@@ -47,7 +84,7 @@ class MyProfile extends Component {
     closeUploadModal = () => this.setState({ showUploadModal: false });
 
     render () {
-        const { user } = this.state;
+        const { user, city_err_msg } = this.state;
         if (!user) {
             return <Redirect to="/login" />
         } else {
@@ -87,6 +124,7 @@ class MyProfile extends Component {
                         showUploadModal={this.state.showUploadModal}
                         closeUploadModal={this.closeUploadModal}
 
+                        city_err_msg={city_err_msg}
                         user={user}
                     />
                     <UserMap user={user}/>
@@ -102,29 +140,11 @@ const mapStateToProps = state => {
       user: state.user_reducer.user
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUserToState: (user) => dispatch(setUserToState(user))
+    }    
+}
   
-export default connect(mapStateToProps, null) (MyProfile);
-
-/*
-
-                firstname: props.user.firstname,
-                lastname: props.user.lastname,
-                username: props.user.username,
-                email: props.user.email,
-                gender: props.user.gender,
-                sexpref: props.user.sexpref,
-                age: props.user.age,
-                bio: props.user.bio,
-                tags: props.user.tags,
-                city: props.user.city,
-                longi: props.user.longi,
-                lati: props.user.lati,
-                popularity: props.user.popularity,
-                logged_time: props.user.logged_time,
-                is_logged_in: props.user.is_logged_in,
-                photourl: props.user.photourl,
-                img1: props.user.img1,
-                img2: props.user.img2,
-                img3: props.user.img3,
-                img4: props.user.img4
-                */
+export default connect(mapStateToProps, mapDispatchToProps) (MyProfile);

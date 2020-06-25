@@ -1,10 +1,9 @@
 import React from 'react';
-//import img_ from '../imgs/4.jpeg';
 import  ImageUpload from '../upload/ImageUpload';
 import ImportantUpdates from './ImportantUpdates';
 import Bio from '../bio/Bio';
 
-const ProfileInfo = ({ user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity }) => {
+const ProfileInfo = ({ user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
     return (
         <div  className="profile_info_box">
             <div className="profile__info">
@@ -33,6 +32,7 @@ const ProfileInfo = ({ user, showEmailModal, showPasswordModal, showUploadModal,
                 showUploadModal={showUploadModal}
                 closeUploadModal={closeUploadModal}
 
+                city_err_msg={city_err_msg}
                 user={user}
             />
         </div>

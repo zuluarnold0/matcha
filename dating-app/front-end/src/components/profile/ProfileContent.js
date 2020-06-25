@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import MyHistory from './MyHistory';
 
-const ProfileContent = ({ user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity }) => {
+const ProfileContent = ({ user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
     return (
         <div className="profile__content">
             <ProfileInfo
@@ -22,6 +22,7 @@ const ProfileContent = ({ user, showEmailModal, showPasswordModal, showUploadMod
                 showUploadModal={showUploadModal}
                 closeUploadModal={closeUploadModal}
 
+                city_err_msg={city_err_msg}
                 user={user}
             />
             <MyHistory />

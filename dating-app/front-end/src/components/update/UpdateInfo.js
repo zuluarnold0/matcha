@@ -2,7 +2,7 @@ import React from 'react';
 import Tag from './Tag';
 import './Update.css';
 
-const UpdateInfo = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_input, tags, bio, error_message, handleInfoSubmit, handleInputChange }) => {
+const UpdateInfo = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_input, tags, bio, info_err_msg, handleInfoSubmit, handleInputChange }) => {
     var tags_ = tags && tags.map((tag, i) => {
         return <Tag onDeleteTag={onDeleteTag} key={i} tag={tag}/>
     });
@@ -31,8 +31,8 @@ const UpdateInfo = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_
                 </div><br/>
                 <button type="submit" className="btn btn-sm btn-warning">Update</button>
                 {
-                    error_message ? <div><br />
-                        <p className="error__msg">{ error_message }</p>
+                    info_err_msg ? <div><br />
+                        <p className="error__msg">{ info_err_msg }</p>
                     </div> : ''
                 }
             </form>

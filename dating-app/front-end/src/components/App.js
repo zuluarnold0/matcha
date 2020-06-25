@@ -9,23 +9,21 @@ import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
 import Notification from '../components/notifications/Notification';
 
-class App extends React.Component {
+const App = () => {
 
-  render() {
-    return (
-      <Router>
-        <Switch>
-            <Route exact path="/" component={DashBoard}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register} />
-            <Route path="/forgot" component={Forgot} />
-            <Route path="/user/:id" component={User} />
-            <Route path="/profile" component={MyProfile} />
-            <Route path="/notification" component={Notification} />
-        </Switch>
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={DashBoard}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register} />
+        <Route path="/forgot" component={Forgot} />
+        <Route path="/user/:id" component={User} />
+        <Route path="/profile" component={MyProfile} />
+        <Route path="/notification" component={Notification} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

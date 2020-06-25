@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UpdateNames = ({ firstname, lastname, username, handleInputChange, error_message, handleFormSubmit }) => {
+const UpdateNames = ({ firstname, lastname, username, handleInputChange, names_err_msg, handleFormSubmit }) => {
     return (
         <div>
             <form onSubmit={handleFormSubmit} className="profile__form" >
@@ -40,8 +40,8 @@ const UpdateNames = ({ firstname, lastname, username, handleInputChange, error_m
                 </div>
                 <button type="submit" className="btn btn-sm btn-warning">Update</button>
                 {
-                    error_message ? <div><br />
-                        <p className="error__msg">{ error_message }</p>
+                    names_err_msg ? <div><br />
+                        <p className="error__msg">{ names_err_msg }</p>
                     </div> : ''
                 }
             </form>

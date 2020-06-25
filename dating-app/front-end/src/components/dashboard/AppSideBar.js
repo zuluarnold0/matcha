@@ -1,9 +1,8 @@
 import React from 'react';
-//import img_ from '../imgs/4.jpeg';
 import { Link } from 'react-router-dom';
 
-const AppSideBar = ({ user }) => {
-    console.log(user.photourl);
+const AppSideBar = ({ user }) => { 
+
     return (
         <div className="sidebar">
             <center>
