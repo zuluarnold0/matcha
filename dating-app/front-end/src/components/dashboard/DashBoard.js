@@ -4,7 +4,6 @@ import Footer from '../footer/Footer';
 import AppHeader from './AppHeader';
 import AppSideBar from './AppSideBar';
 import { Redirect } from 'react-router-dom';
-import { setUsers } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import DashContent from './DashContent';
 
@@ -19,21 +18,21 @@ class DashBoard extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/')
-        .then(response => response.json())
-        .then(users => {
-            if (users) {
-                this.props.setUsers(users);
-                this.setState({ users: users });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        this.setState({ users: this.props.users });
+    }
+
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ users: props.users });
     }
 
     render () {
         const { user, users } = this.state;
         if (!user) {
-            return <Redirect to="/login" />
+            return (
+                <div>
+                    <Redirect to="/login" />
+                </div>
+            )
         } else {
             return (
                 <div>
@@ -52,14 +51,9 @@ class DashBoard extends React.Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user_reducer.user
+        user: state.user_reducer.user,
+        users: state.users_redu_cer.users
     }
 }
-  
-const mapDispatchToProps = dispatch => {
-    return {
-      setUsers: (users) => dispatch(setUsers(users))
-    }
-}
-  
-export default connect(mapStateToProps, mapDispatchToProps)(DashBoard);
+
+export default connect(mapStateToProps, null)(DashBoard);

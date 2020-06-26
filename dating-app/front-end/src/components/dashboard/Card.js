@@ -13,12 +13,7 @@ class Card extends Component {
                 viewed: this.props.user.email
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data === 'success') {
-                console.log('')
-            }
-        })
+        .catch(err => console.log(err))
     }
 
     render() {

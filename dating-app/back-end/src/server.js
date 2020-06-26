@@ -58,13 +58,25 @@ app.get('/', (req, res) => {
     .catch(err => res.status(400).json('Unable to get users'));
 })
 
-//SETTING VIEWS ON NOTIFICATIONS
+//SETTING VIEWS TO NOTIFICATIONS
 app.get('/getviews', (req, res) => {
     db.select('*').from('views')
-    .then(views => {
-        res.json(views)
-    })
+    .then(views => { res.json(views) })
     .catch(err => res.status(400).json('Unable to get views'));
+})
+
+//SETTING LIKES TO NOTIFICATIONS
+app.get('/getlikes', (req, res) => {
+    db.select('*').from('likes')
+    .then(likes => { res.json(likes) })
+    .catch(err => res.status(400).json('Unable to get likes'));
+})
+
+//SETTING MATCHES TO NOTIFICATIONS
+app.get('/getmatches', (req, res) => {
+    db.select('*').from('matches')
+    .then(matches => { res.json(matches) })
+    .catch(err => res.status(400).json('Unable to get matches'));
 })
 
 //UPDATING INFO AND RETURNING UPDATED USER
@@ -90,6 +102,15 @@ app.put('/pass', (req, res) => {
     })
     .then(response => res.json('success'))
     .catch(err => res.status(400).json('Error updating password'));
+})
+
+//LOGOUT
+app.put('/logout', (req, res) => {
+    db('users')
+    .where('email', '=', req.body.email)
+    .update({ is_logged_in: false })
+    .then(response => res.json('success'))
+    .catch(err => res.status(400).json('Error updating is_logged_in'));
 })
 
 //UPDATING EMAIL AND RETURNING UPDATED USER
@@ -152,6 +173,74 @@ app.post('/view', (req, res) => {
     .catch(err => res.status(400).json('error viewing user'));
 })
 
+//LIKING USER
+app.post('/like', (req, res) => {
+    db.select('*')
+    .from('likes')
+    .where({
+        liker: req.body.liker,
+        liked: req.body.liked
+    })
+    .then(data => {
+        if (!data.length) {
+            db.select('*')
+            .from('likes')
+            .where({
+                liker: req.body.liked,
+                liked: req.body.liker
+            })
+            .then(result => {
+                if (!result.length) {
+                    db('likes')
+                    .returning('liked')
+                    .insert({
+                        liker: req.body.liker,
+                        liked: req.body.liked,
+                        liketype: 1
+                    })
+                    .then(liked => {
+                        db('users')
+                        .where('email', '=', liked[0])
+                        .increment('popularity', 1)
+                        .returning('popularity')
+                        .then(popularity => res.json(popularity))
+                        .catch(err => res.status(400).json('unable to update popularity'))
+                    })
+                    .catch(err => res.status(400).json('error viewing user'))
+                }
+                else
+                {
+                    db('likes')
+                        .returning('liked')
+                        .insert({
+                            liker: req.body.liker,
+                            liked: req.body.liked,
+                            liketype: 1
+                        })
+                        .then(liked => {
+                            db('matches')
+                            .insert({
+                                user1: req.body.liker,
+                                user2: req.body.liked
+                            })
+                            .then(() => {
+                                db('users')
+                                    .where('email', '=', liked[0])
+                                    .increment('popularity', 1)
+                                    .returning('popularity')
+                                    .then(popularity => res.json(popularity))
+                                    .catch(err => res.status(400).json('unable to update popularity'))
+                            })
+                        })
+                        .catch(err => res.status(400).json('error updating user'))
+                }
+            })
+            .catch(err => res.status(400).json('error updating user'))
+        }
+    })
+    .catch(err => res.status(400).json('error updating user'));
+})
+
 //LOGGING IN AND RETURNING LOGGED USER
 app.post('/login', (req, res) => {
     db.select('email', 'hash').from('login')
@@ -159,11 +248,11 @@ app.post('/login', (req, res) => {
     .then(data => {
         const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
         if (isValid) {
-            return db.select('*').from('users')
+            return db('users')
+                .returning('*')
                 .where('email', '=', req.body.email)
-                .then(user => {
-                    res.json(user[0])
-                })
+                .update({ is_logged_in: true })
+                .then(user => { res.json(user[0]) })
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
             res.status(400).json('wrong credentials')

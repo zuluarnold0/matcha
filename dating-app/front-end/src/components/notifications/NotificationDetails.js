@@ -3,7 +3,7 @@ import LikesNotification from './LikesNotification';
 import MatchesNotification from './MatchesNotification';
 import VisitsNotification from './VisitsNotification';
 
-const NotificationDetails = ({ v_users }) => {
+const NotificationDetails = ({ users, user }) => {
     return (
         <div className="noti__container">
             <span className="noti__title">{ "Notifications" } </span><hr/><br/>
@@ -16,13 +16,13 @@ const NotificationDetails = ({ v_users }) => {
             </nav>
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-visit" role="tabpanel" aria-labelledby="nav-visit-tab">
-                    <VisitsNotification v_users={v_users}/>
+                    <VisitsNotification users={users} user={user}/>
                 </div>
                 <div className="tab-pane fade" id="nav-like" role="tabpanel" aria-labelledby="nav-like-tab ">
-                    <LikesNotification />
+                    <LikesNotification users={users} user={user}/>
                 </div>
                 <div className="tab-pane fade" id="nav-match" role="tabpanel" aria-labelledby="nav-match-tab">
-                    <MatchesNotification />
+                    <MatchesNotification users={users} user={user}/>
                 </div>
             </div>     
         </div>

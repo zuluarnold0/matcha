@@ -34,6 +34,7 @@ class User extends Component {
                 <div>
                     <Nav/>
                         <UserProfile
+                            user={user}
                             viewed_user={viewed_user[0]}
                             show={this.state.show}
                             closeModal={this.closeModal}

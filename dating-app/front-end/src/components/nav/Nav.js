@@ -9,6 +9,17 @@ class Nav extends React.Component {
     state = {
         user: this.props.user
     }
+
+    logout = () => {
+        fetch('http://localhost:3000/logout', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: this.props.user.email
+            })
+        })
+    }
+
     render () {
         const { user } = this.state;
         if (!user) {
@@ -38,7 +49,7 @@ class Nav extends React.Component {
                                 <NavLink to="/notification"><span className="nav-tags fas fa-bell"></span></NavLink>
                             </li>
                             <li>
-                                <Link  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
+                                <Link onClick={this.logout} to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
                             </li>
                         </div>
                     </ul>

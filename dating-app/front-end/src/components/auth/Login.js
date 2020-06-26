@@ -2,7 +2,7 @@ import React from 'react';
 import './Auth.css';
 import imgP from "./images/profile.jpg";
 import { Link, Redirect } from 'react-router-dom';
-import { setUserToState } from '../../store/actions/actions';
+import { setUserToState, setUsers } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -50,6 +50,16 @@ class Login extends React.Component {
             .then(response => response.json())
             .then(user => {
                 if (user.email) {
+                    //fetch users from database
+                    fetch('http://localhost:3000/')
+                    .then(response => response.json())
+                    .then(users => {
+                        if (users) {
+                            this.props.setUsers(users);
+                        }
+                    })
+                    .catch(err => console.log('an error occured'));
+                    //set user to global state
                     this.props.setUserToState(user);
                     this.setState({ user: user});
                 } else {
@@ -109,7 +119,8 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUserToState: (user) => dispatch(setUserToState(user))
+        setUserToState: (user) => dispatch(setUserToState(user)),
+        setUsers: (users) => dispatch(setUsers(users))
     }
 }
 
