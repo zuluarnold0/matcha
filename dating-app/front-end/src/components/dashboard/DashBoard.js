@@ -1,13 +1,12 @@
 import React from 'react';
 import './DashBoard.css';
-import FilterBar from './FilterBar';
-import UsersDisplay from './UsersDisplay';
 import Footer from '../footer/Footer';
 import AppHeader from './AppHeader';
 import AppSideBar from './AppSideBar';
 import { Redirect } from 'react-router-dom';
 import { setUsers } from '../../store/actions/actions';
 import { connect } from 'react-redux';
+import DashContent from './DashContent';
 
 class DashBoard extends React.Component {
     
@@ -28,7 +27,7 @@ class DashBoard extends React.Component {
                 this.setState({ users: users });
             }
         })
-        .catch(err => console.error('an error occured'));
+        .catch(err => console.log('an error occured'));
     }
 
     render () {
@@ -42,8 +41,7 @@ class DashBoard extends React.Component {
                     <AppHeader/>
                     <AppSideBar user={user}/>
                     <div className="content">
-                        <FilterBar />
-                        <UsersDisplay users={users} />
+                        <DashContent users={users} user={user}/>
                         <Footer />
                     </div>
                 </div>

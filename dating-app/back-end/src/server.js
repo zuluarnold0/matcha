@@ -122,6 +122,27 @@ app.put('/city', (req, res) => {
     .catch(err => res.status(400).json('Error updating location'));
 })
 
+//VIEWING A USER
+app.post('/view', (req, res) => {
+    db.select('*').from('views')
+    .where({
+        viewer: req.body.viewer,
+        viewed: req.body.viewed
+    })
+    .then(data => {
+        if (!data.length) {
+            return db('views')
+            .insert({
+                viewer: req.body.viewer,
+                viewed: req.body.viewed
+            })
+            .then(response => res.json('success'))
+            .catch(err => res.status(400).json('error viewing user'))
+        }
+    })
+    .catch(err => res.status(400).json('error viewing user'));
+})
+
 //LOGGING IN AND RETURNING LOGGED USER
 app.post('/login', (req, res) => {
     db.select('email', 'hash').from('login')
