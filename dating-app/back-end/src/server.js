@@ -58,6 +58,15 @@ app.get('/', (req, res) => {
     .catch(err => res.status(400).json('Unable to get users'));
 })
 
+//SETTING VIEWS ON NOTIFICATIONS
+app.get('/getviews', (req, res) => {
+    db.select('*').from('views')
+    .then(views => {
+        res.json(views)
+    })
+    .catch(err => res.status(400).json('Unable to get views'));
+})
+
 //UPDATING INFO AND RETURNING UPDATED USER
 app.put('/info', (req, res) => {
     db('users')
