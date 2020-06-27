@@ -1,7 +1,7 @@
 import React from 'react';
-import LikesNotification from './LikesNotification';
-import MatchesNotification from './MatchesNotification';
-import VisitsNotification from './VisitsNotification';
+import SetVisits from './SetVisits';
+import SetLikes from './SetLikes';
+import SetMatches from './SetMatches';
 
 const NotificationDetails = ({ users, user }) => {
     return (
@@ -16,13 +16,13 @@ const NotificationDetails = ({ users, user }) => {
             </nav>
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-visit" role="tabpanel" aria-labelledby="nav-visit-tab">
-                    <VisitsNotification users={users} user={user}/>
+                    <SetVisits users={users} user={user}/>
                 </div>
                 <div className="tab-pane fade" id="nav-like" role="tabpanel" aria-labelledby="nav-like-tab ">
-                    <LikesNotification users={users} user={user}/>
+                    <SetLikes users={users} user={user}/>
                 </div>
                 <div className="tab-pane fade" id="nav-match" role="tabpanel" aria-labelledby="nav-match-tab">
-                    <MatchesNotification users={users} user={user}/>
+                    <SetMatches users={users} user={user}/>
                 </div>
             </div>     
         </div>

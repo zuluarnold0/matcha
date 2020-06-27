@@ -22,15 +22,14 @@ class LikesNotification extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch('http://localhost:3000/getlikes')
-        .then(response => response.json())
-        .then(likes => {
-            if (likes) {
-                this.setState({ likes: likes });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ likes: props.likes });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.likes !== this.props.likes) {
+            this.setState({ likes: this.props.likes });
+        }
     }
 
     render() {

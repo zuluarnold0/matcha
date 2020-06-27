@@ -1,4 +1,4 @@
-import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE,  UNSET_USERS, SET_USERS } from '../constants/constants';
+import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE, SET_USERS, UNSET_USERS, SET_LIKES, SET_MATCHES, SET_VIEWS } from '../constants/constants';
 
 //user reducer
 const initUserState = {
@@ -44,6 +44,35 @@ export const setUsersReducer = (state=initUsers, action={}) => {
                 ...state,
                 users: [],
                 isLoading: false
+            }
+        default:
+            return state;
+    }
+}
+
+//users reducer
+const initTables = {
+    likes: [],
+    views: [],
+    matches: []
+}
+
+export const setTablesReducer = (state=initTables, action={}) => {
+    switch(action.type) {
+        case SET_LIKES:
+            return {
+                ...state,
+                likes: action.payload
+            }
+        case SET_VIEWS:
+            return {
+                ...state,
+                views: action.payload
+            }
+        case SET_MATCHES:
+            return {
+                ...state,
+                matches: action.payload
             }
         default:
             return state;

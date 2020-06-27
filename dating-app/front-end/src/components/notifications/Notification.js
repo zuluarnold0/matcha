@@ -16,6 +16,13 @@ class Notification extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.setState({ 
+            user: null,
+            users: [] 
+        })
+    }
+
     render() {
         const { user, users } = this.state;
         if (!user) {

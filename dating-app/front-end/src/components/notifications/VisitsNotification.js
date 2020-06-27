@@ -23,14 +23,11 @@ class VisitsNotification extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/getviews')
-        .then(response => response.json())
-        .then(views => {
-            if (views) {
-                this.setState({ views: views });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        this.setState({ views: this.props.views });
+    }
+
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ views: props.views });
     }
 
     render() {

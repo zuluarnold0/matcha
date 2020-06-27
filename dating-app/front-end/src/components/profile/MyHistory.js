@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileVisits from './ProfileVisits';
-import ProfileLikes from './ProfileLikes';
-import ProfileMatches from './ProfileMatches';
 import ScrollBar from '../scrollbar/ScrollBar';
+import SetVisits from './SetVisits';
+import SetLikes from './SetLikes';
+import SetMatches from './SetMatches';
 
-const MyHistory = () => {
+const MyHistory = ({ user, users }) => {
     return (
         <div className="my__history">
             <span className="history__title"> {"Your History"} </span><hr/><br/>
@@ -18,13 +18,13 @@ const MyHistory = () => {
             <ScrollBar>
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active" id="nav-visit" role="tabpanel" aria-labelledby="nav-visit-tab">
-                        <ProfileVisits />
+                        <SetVisits users={users} user={user}/>
                     </div>
                     <div className="tab-pane fade" id="nav-like" role="tabpanel" aria-labelledby="nav-like-tab ">
-                        <ProfileLikes />
+                        <SetLikes users={users} user={user}/>
                     </div>
                     <div className="tab-pane fade" id="nav-match" role="tabpanel" aria-labelledby="nav-match-tab">
-                        <ProfileMatches />
+                        <SetMatches users={users} user={user}/>
                     </div>
                 </div>
             </ScrollBar>

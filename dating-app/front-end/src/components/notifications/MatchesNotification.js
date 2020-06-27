@@ -3,13 +3,15 @@ import MatchCard from './MatchCard';
 
 const findMatches = (matches, users, user) => {
     const users_arr = [];
-    for (let i = 0; i < users.length; i++) {
-        for (let j = 0; j < matches.length; j++) {
-            if ((users[i].email === matches[j].user1 || users[i].email === matches[j].user2) && users[i].email !== user.email) {
-                users_arr.push(users[i]);
-            }
+    for (let i = 0; i < matches.length; i++) {
+        if (matches[i].user1 === user.email || matches[i].user2 === user.email) {
+           for (let j = 0; j < users.length; j++) {
+               if ((users[j].email === matches[i].user1 || users[j].email === matches[i].user2) && users[j].email !== user.email) {
+                users_arr.push(users[j]);
+               }
+           }
         }
-    }
+   }
     return users_arr;
 }
 
@@ -23,14 +25,11 @@ class MatchesNotification extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/getmatches')
-        .then(response => response.json())
-        .then(matches => {
-            if (matches) {
-                this.setState({ matches: matches });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        this.setState({ matches: this.props.matches });
+    }
+
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ matches: props.matches });
     }
 
     render() {

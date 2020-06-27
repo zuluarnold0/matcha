@@ -12,6 +12,7 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this.setState({ popularity: this.props.viewed_user.popularity })
+
     }
 
     handleClick = () => {
@@ -31,8 +32,19 @@ class UserProfile extends Component {
         })
     }
 
+    handleUnlike = () => {
+        fetch('http://localhost:3000/unlike', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                unliker: this.props.user.email,
+                unliked: this.props.viewed_user.email
+            })
+        })
+    }
+
     render() {
-        const { show, reportUser, closeModal, viewed_user } = this.props;
+        const { wasILiked, didILike, show, reportUser, closeModal, viewed_user, showBlock, showBlockModal, closeBlockModal } = this.props;
         const status = viewed_user.logged_time === true ? "Online" : viewed_user.logged_time;
         return (
             <div className="user__profile" >
@@ -40,8 +52,17 @@ class UserProfile extends Component {
                 <img src={viewed_user.photourl}  alt="img"/>
                 <div className="user__btns">
                     <button type="button" className="btn btn-xs btn-success likebtn" onClick={this.handleClick}><span className="fas fa-thumbs-up"></span> LIKE</button>
-                    <button type="button" className="btn btn-xs btn-primary"><span className="fas fa-thumbs-down"></span> UNLIKE</button>
-                    <button type="button" className="btn btn-xs btn-danger"><span className="fas fa-ban"></span> BLOCK</button>
+                    <button type="button" className="btn btn-xs btn-primary" onClick={this.handleUnlike}><span className="fas fa-thumbs-down"></span> UNLIKE</button>
+                    <button type="button" className="btn btn-xs btn-danger" onClick={showBlockModal}><span className="fas fa-ban"></span> BLOCK</button>
+                    {
+                        showBlock === true ? <div id="myModal" className="modal">
+                            <div className="modal-content">
+                                <span onClick={closeBlockModal} className="close">&times;</span>
+                                <p className="modalMessage">You attempted to block <strong>{ viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1) }</strong>'s account. Matcha Team will block the user for you.</p>
+                            </div>
+                        </div>
+                        : ""
+                    }
                     <button type="button" onClick={reportUser} className="btn btn-xs btn-warning "><span className="fas fa-bullhorn"></span> REPORT</button>
                     {
                         show === true ? <div id="myModal" className="modal">
@@ -79,13 +100,25 @@ class UserProfile extends Component {
                     </div>
                     <hr/>
                     <span className="you__liked">
-                    {`You liked ${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)}'s profile` }
+                    {
+                        didILike.length ?
+                        `You liked ${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)}'s profile` 
+                        : ''
+                    }
                     </span><br/><hr/>
                     <span className="liked__you">
-                        {`${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)} liked you` }
+                    { 
+                        wasILiked.length ?
+                            `${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)} liked you` 
+                        : ''    
+                    }
                     </span><br/><hr/>
                     <span className="you__matched">
-                        {`You Matched with ${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)}` }
+                    { 
+                        wasILiked.length > 0 && didILike.length > 0 ?
+                            `You Matched with ${viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1)}` 
+                        : ''
+                    }
                     </span><br/><hr/>
                 </div>
                 <UserMap user={viewed_user}/>

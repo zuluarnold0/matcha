@@ -23,8 +23,16 @@ class MyProfile extends Component {
             showUploadModal: false,
             showPrefModal: false,
             city_err_msg: '',
-            user: props.user
+            user: props.user,
+            users: props.users 
         }
+    }
+
+    componentWillUnmount() {
+        this.setState({ 
+            user: null,
+            users: [] 
+        })
     }
 
     componentDidUpdate(prevProps) {
@@ -84,7 +92,7 @@ class MyProfile extends Component {
     closeUploadModal = () => this.setState({ showUploadModal: false });
 
     render () {
-        const { user, city_err_msg } = this.state;
+        const { users, user, city_err_msg } = this.state;
         if (!user) {
             return <Redirect to="/login" />
         } else {
@@ -126,6 +134,7 @@ class MyProfile extends Component {
 
                         city_err_msg={city_err_msg}
                         user={user}
+                        users={users}
                     />
                     <UserMap user={user}/>
                     <Footer/> 
@@ -137,7 +146,8 @@ class MyProfile extends Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user_reducer.user
+      user: state.user_reducer.user,
+      users: state.users_redu_cer.users
     }
 }
 
