@@ -5,6 +5,7 @@ import DashBoard from './dashboard/DashBoard';
 import User from './user/User';
 import Login from './auth/Login';
 import Forgot from './auth/Forgot';
+import Chat from './chat/client/Chat';
 import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
 import Notification from '../components/notifications/Notification';
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register} />
         <Route path="/forgot" component={Forgot} />
+        <Route path="/chat" component={Chat} />
         <Route path="/user/:id" component={User} />
         <Route path="/profile" component={MyProfile} />
         <Route path="/notification" component={Notification} />
