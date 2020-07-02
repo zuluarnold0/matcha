@@ -1,3 +1,4 @@
+export const SET_CHATS = "SET_CHATS";
 export const SET_VIEWS = "SET_VIEWS";
 export const SET_MATCHES = "SET_MATCHES";
 export const SET_LIKES = "SET_LIKES";

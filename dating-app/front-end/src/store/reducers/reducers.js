@@ -1,4 +1,4 @@
-import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE, SET_USERS, UNSET_USERS, SET_LIKES, SET_MATCHES, SET_VIEWS } from '../constants/constants';
+import { SET_CHATS, SET_USER_TO_STATE, UNSET_USER_FROM_STATE, SET_USERS, UNSET_USERS, SET_LIKES, SET_MATCHES, SET_VIEWS } from '../constants/constants';
 
 //user reducer
 const initUserState = {
@@ -54,7 +54,8 @@ export const setUsersReducer = (state=initUsers, action={}) => {
 const initTables = {
     likes: [],
     views: [],
-    matches: []
+    matches: [],
+    chats: []
 }
 
 export const setTablesReducer = (state=initTables, action={}) => {
@@ -73,6 +74,11 @@ export const setTablesReducer = (state=initTables, action={}) => {
             return {
                 ...state,
                 matches: action.payload
+            }
+        case SET_CHATS:
+            return {
+                ...state,
+                chats: action.payload
             }
         default:
             return state;

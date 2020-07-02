@@ -65,6 +65,30 @@ app.get('/getviews', (req, res) => {
     .catch(err => res.status(400).json('Unable to get views'));
 })
 
+//SETTING CHATS TO CHATS
+app.get('/getchats', (req, res) => {
+    db.select('*').from('chats')
+    .then(chats => { res.json(chats) })
+    .catch(err => res.status(400).json('Unable to get chats'));
+})
+
+//INSERT CHAT MESSAGES TO DATABASE
+app.post('/sendmessage', (req, res) => {
+    db('chats')
+    .insert({
+        message: req.body.message,
+        sender: req.body.sender,
+        receiver: req.body.receiver
+    })
+    .then(() => {
+        return db.select('*')
+        .from('chats')
+        .then(lchats => { res.json(lchats) })
+        .catch(err => res.status(400).json('Unable to get chats'));
+    })
+    .catch(err => res.status(400).json('error inserting chats'))
+})
+
 //SETTING LIKES TO NOTIFICATIONS
 app.get('/getlikes', (req, res) => {
     db.select('*').from('likes')

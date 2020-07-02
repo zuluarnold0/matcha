@@ -43,7 +43,7 @@ class Nav extends React.Component {
                                 <NavLink to="/"><span className="nav-tags fas fa-house-user"></span></NavLink>
                             </li>
                             <li>
-                                <NavLink to="/chat"><span className="nav-tags fas fa-envelope"></span></NavLink>
+                                <NavLink to="/chats"><span className="nav-tags fas fa-envelope"></span></NavLink>
                             </li>
                             <li>
                                 <NavLink to="/notification"><span className="nav-tags fas fa-bell"></span></NavLink>

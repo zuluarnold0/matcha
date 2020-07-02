@@ -1,4 +1,4 @@
-import { SET_USER_TO_STATE, UNSET_USER_FROM_STATE, SET_USERS, UNSET_USERS, SET_LIKES, SET_MATCHES, SET_VIEWS } from '../constants/constants';
+import { SET_CHATS, SET_USER_TO_STATE, UNSET_USER_FROM_STATE, SET_USERS, UNSET_USERS, SET_LIKES, SET_MATCHES, SET_VIEWS } from '../constants/constants';
 
 // user actions
 export const setUserToState = (user) => {
@@ -50,5 +50,13 @@ export const setMatches = (matches) => {
 export const unSetUsers = () => {
     return {
         type: UNSET_USERS
+    }
+}
+
+//set chats actions
+export const setChats = (chats) => {
+    return {
+        type: SET_CHATS,
+        payload: chats
     }
 }

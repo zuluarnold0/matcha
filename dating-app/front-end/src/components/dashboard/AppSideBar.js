@@ -11,7 +11,7 @@ const AppSideBar = ({ user }) => {
             </center>
             <Link style={{ textDecoration: 'none' }} to="/"><p><i className="fas fa-house-user"></i><span>Home</span></p></Link>
             <Link style={{ textDecoration: 'none' }} to="/profile"><p><i className="fas fa-user-circle"></i><span>Profile</span></p></Link>
-            <Link style={{ textDecoration: 'none' }} to="/chat"><p><i className="fas fa-envelope"></i><span>Messages</span></p></Link>
+            <Link style={{ textDecoration: 'none' }} to="/chats"><p><i className="fas fa-envelope"></i><span>Messages</span></p></Link>
             <Link style={{ textDecoration: 'none' }} to="/notification"><p><i className="fas fa-bell"></i><span>Notifications</span></p></Link>
         </div>
     )
