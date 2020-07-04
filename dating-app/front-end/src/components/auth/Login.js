@@ -2,7 +2,7 @@ import React from 'react';
 import './Auth.css';
 import imgP from "./images/profile.jpg";
 import { Link, Redirect } from 'react-router-dom';
-import { setUserToState, setUsers, setChats } from '../../store/actions/actions';
+import { setUserToState, setUsers } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -50,6 +50,7 @@ class Login extends React.Component {
             .then(response => response.json())
             .then(user => {
                 if (user.email) {
+
                     //fetch users from database
                     fetch('http://localhost:3000/')
                     .then(response => response.json())
@@ -60,19 +61,10 @@ class Login extends React.Component {
                     })
                     .catch(err => console.log('an error occured'));
 
-                    //fetch chats from database 
-                    fetch('http://localhost:3000/getchats')
-                    .then(response => response.json())
-                    .then(chats => {
-                        if (chats) {
-                            this.props.setChats(chats);
-                        }
-                    })
-                    .catch(err => console.log('an error occured'));
-
                     //set user to global state
                     this.props.setUserToState(user);
                     this.setState({ user: user});
+
                 } else {
                     this.setState({ error_msg: "error loggin in"})
                 } 
@@ -131,8 +123,7 @@ class Login extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         setUserToState: (user) => dispatch(setUserToState(user)),
-        setUsers: (users) => dispatch(setUsers(users)),
-        setChats: (chats) => dispatch(setChats(chats))
+        setUsers: (users) => dispatch(setUsers(users))
     }
 }
 

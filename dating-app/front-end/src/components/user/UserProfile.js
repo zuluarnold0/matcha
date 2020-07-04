@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserMap from '../map/UserMap';
+import moment from 'moment';
 
 class UserProfile extends Component {
 
@@ -15,7 +16,8 @@ class UserProfile extends Component {
 
     }
 
-    handleClick = () => {
+    handleClick = (event) => {
+        event.preventDefault();
         fetch('http://localhost:3000/like', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -32,7 +34,8 @@ class UserProfile extends Component {
         })
     }
 
-    handleUnlike = () => {
+    handleUnlike = (event) => {
+        event.preventDefault();
         fetch('http://localhost:3000/unlike', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -45,7 +48,9 @@ class UserProfile extends Component {
 
     render() {
         const { wasILiked, didILike, show, reportUser, closeModal, viewed_user, showBlock, showBlockModal, closeBlockModal } = this.props;
-        const status = viewed_user.logged_time === true ? "Online" : viewed_user.logged_time;
+        if (viewed_user) {
+        const status = viewed_user.is_logged_in === true ? "Online" : moment(viewed_user.logged_time).calendar();//moment(viewed_user.logged_time.toDate()).calendar();
+        console.log(viewed_user.logged_time)
         return (
             <div className="user__profile" >
                 <span className="user__name">{ viewed_user.firstname[0].toUpperCase() + viewed_user.firstname.slice(1)} { viewed_user.lastname[0].toUpperCase() + viewed_user.lastname.slice(1) }</span><br/>
@@ -124,6 +129,9 @@ class UserProfile extends Component {
                 <UserMap user={viewed_user}/>
             </div>
         );
+                } else {
+                    return <h1>LOADING....</h1>
+                }
     }
 }
 

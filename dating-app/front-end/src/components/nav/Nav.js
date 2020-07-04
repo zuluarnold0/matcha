@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Nav.css";
 import {  NavLink, Link } from 'react-router-dom';
-//import img_ from '../imgs/4.jpeg';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 

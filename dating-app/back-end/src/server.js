@@ -132,7 +132,10 @@ app.put('/pass', (req, res) => {
 app.put('/logout', (req, res) => {
     db('users')
     .where('email', '=', req.body.email)
-    .update({ is_logged_in: false })
+    .update({ 
+        is_logged_in: false,
+        logged_time: new Date()
+     })
     .then(response => res.json('success'))
     .catch(err => res.status(400).json('Error updating is_logged_in'));
 })
