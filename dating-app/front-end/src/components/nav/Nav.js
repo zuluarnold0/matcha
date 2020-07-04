@@ -35,7 +35,7 @@ class Nav extends React.Component {
                         <div className="push-nav-end">
                             <li>
                                 <NavLink to="/profile" className="nav-img">
-                                    <img src={this.state.user.photourl} alt="img"/>
+                                    <img src={this.state.user.photourl} alt="photo"/>
                                 </NavLink>
                             </li>
                             <li>
