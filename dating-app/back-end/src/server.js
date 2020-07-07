@@ -1,8 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const cloudinary = require('cloudinary');
+const formData = require('express-form-data');
+const { CLIENT_ORIGIN } = require('./config.js');
 
 var app = express();
 const port = 3000;
