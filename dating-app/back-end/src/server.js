@@ -5,11 +5,11 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 const cloudinary = require('cloudinary');
-const formData = require('express-form-data');
-const { CLIENT_ORIGIN } = require('./config.js');
+//const formData = require('express-form-data');
+//const { CLIENT_ORIGIN } = require('./config.js');
 
 var app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //CONNECTING TO POSTGRES DATABASE
 const db = knex({
@@ -24,6 +24,18 @@ const db = knex({
 
 app.use(bodyParser.json());
 app.use(cors());
+
+//CONNECTING TO CLOUDINARY
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET
+})
+
+//IMAGE UPLOAD END POINT
+app.get('/test', (req, res) => {
+    res.send(process.env.API_SECRET);
+})
 
 //UPDATING NAMES AND RETURNING UPDATED USER
 app.put('/names', (req, res) => {
