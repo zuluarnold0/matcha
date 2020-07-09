@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
 const cloudinary = require('cloudinary');
-//const formData = require('express-form-data');
+const formData = require('express-form-data');
 //const { CLIENT_ORIGIN } = require('./config.js');
 
 var app = express();
@@ -14,17 +15,20 @@ const port =  3000;
 const db = knex({
     client: 'pg',
     connection: {
-        host : '127.0.0.1',
-        user : 'postgres',
-        password : 'rootadmin',
-        database : 'matcha'
+        host : process.env.HOST,
+        user : process.env.USER,
+        password : process.env.PASSWORD,
+        database : process.env.DATABASE
     }
 });
 
 app.use(bodyParser.json());
 app.use(cors());
 
-require('dotenv').config();
+app.use(cors({ 
+    origin: 'http://localhost:3000' 
+}));
+app.use(formData.parse());
 
 //CONNECTING TO CLOUDINARY
 cloudinary.config({ 
@@ -33,11 +37,9 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 })
 
-console.log(process.env.cloud_name);
-
 //IMAGE UPLOAD END POINT
-app.get('/test', (req, res) => {
-    res.send(process.env.api_secret);
+app.get('/image-upload', (req, res) => {
+    res.send(process.env.API_SECRET);
 })
 
 //UPDATING NAMES AND RETURNING UPDATED USER
