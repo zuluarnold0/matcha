@@ -49,8 +49,7 @@ class UserProfile extends Component {
     render() {
         const { wasILiked, didILike, show, reportUser, closeModal, viewed_user, showBlock, showBlockModal, closeBlockModal } = this.props;
         if (viewed_user) {
-        const status = viewed_user.is_logged_in === true ? "Online" : moment(viewed_user.logged_time).calendar();//moment(viewed_user.logged_time.toDate()).calendar();
-        console.log(viewed_user.logged_time)
+        const status = viewed_user.is_logged_in === true ? "Online" : moment(viewed_user.logged_time).calendar();
         return (
             <div className="user__profile" >
                 <span className="user__name">{ viewed_user.firstname[0].toUpperCase() + viewed_user.firstname.slice(1)} { viewed_user.lastname[0].toUpperCase() + viewed_user.lastname.slice(1) }</span><br/>

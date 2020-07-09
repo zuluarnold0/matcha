@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
@@ -9,7 +8,7 @@ const cloudinary = require('cloudinary');
 //const { CLIENT_ORIGIN } = require('./config.js');
 
 var app = express();
-const port = process.env.PORT || 3000;
+const port =  3000;
 
 //CONNECTING TO POSTGRES DATABASE
 const db = knex({
@@ -25,6 +24,8 @@ const db = knex({
 app.use(bodyParser.json());
 app.use(cors());
 
+require('dotenv').config();
+
 //CONNECTING TO CLOUDINARY
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
@@ -32,9 +33,11 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 })
 
+console.log(process.env.cloud_name);
+
 //IMAGE UPLOAD END POINT
 app.get('/test', (req, res) => {
-    res.send(process.env.API_SECRET);
+    res.send(process.env.api_secret);
 })
 
 //UPDATING NAMES AND RETURNING UPDATED USER
