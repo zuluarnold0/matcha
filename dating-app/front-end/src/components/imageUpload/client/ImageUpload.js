@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Spinner from '../Spinner'
+import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
-import { API_URL } from './config'
-import './App.css'
+//import { API_URL } from './config'
+import './ImageUpload.css'
 
-class App extends Component {
+class ImageUpload extends Component {
 
     state = {
         uploading: false,
@@ -22,7 +22,7 @@ class App extends Component {
           formData.append(i, file)
         })
 
-        fetch(`${API_URL}/image-upload`, {
+        fetch('http://localhost:3000/image-upload', {
             method: 'POST',
             body: formData
           })
@@ -65,4 +65,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default ImageUpload;

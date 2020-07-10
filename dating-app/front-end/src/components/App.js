@@ -11,6 +11,8 @@ import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
 import Notification from '../components/notifications/Notification';
 
+import ImageUpload from './imageUpload/client/ImageUpload';
+
 const App = () => {
 
   return (
@@ -22,7 +24,7 @@ const App = () => {
         <Route path="/forgot" component={Forgot} />
         <Route path="/chats" component={Chats} />
         <Route path="/chat" component={Chat} />
-        {/*<Route path="/chat/:id" component={Chat} />*/}
+        <Route path="/imageUpload" component={ImageUpload} />
         <Route path="/user/:id" component={User} />
         <Route path="/profile" component={MyProfile} />
         <Route path="/notification" component={Notification} />

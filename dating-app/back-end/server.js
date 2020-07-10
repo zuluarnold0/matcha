@@ -24,10 +24,6 @@ const db = knex({
 
 app.use(bodyParser.json());
 app.use(cors());
-
-app.use(cors({ 
-    origin: 'http://localhost:3000' 
-}));
 app.use(formData.parse());
 
 //CONNECTING TO CLOUDINARY
@@ -38,8 +34,15 @@ cloudinary.config({
 })
 
 //IMAGE UPLOAD END POINT
-app.get('/image-upload', (req, res) => {
-    res.send(process.env.API_SECRET);
+app.post('/image-upload', (req, res) => {
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+  
+    Promise
+        .all(promises)
+        .then(results => {
+            res.json(results)
+        })
 })
 
 //UPDATING NAMES AND RETURNING UPDATED USER

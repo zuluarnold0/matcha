@@ -1,8 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImages, faImage } from '@fortawesome/free-solid-svg-icons'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
 
-const Buttons = () => {
+const Buttons = (props) => {
     return (
         <div className='buttons fadein'>
             <div className='button'>
