@@ -55,7 +55,12 @@ class UserProfile extends Component {
                 <span className="user__name">{ viewed_user.firstname[0].toUpperCase() + viewed_user.firstname.slice(1)} { viewed_user.lastname[0].toUpperCase() + viewed_user.lastname.slice(1) }</span><br/>
                 <img src={viewed_user.photourl}  alt="img"/>
                 <div className="user__btns">
-                    <button type="button" className="btn btn-xs btn-success likebtn" onClick={this.handleClick}><span className="fas fa-thumbs-up"></span> LIKE</button>
+                    {
+                        viewed_user.photourl === "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS" ?
+                        <button type="button" className="btn btn-xs btn-success likebtn" disabled><span className="fas fa-thumbs-up"></span> LIKE</button>
+                        :
+                        <button type="button" className="btn btn-xs btn-success likebtn" onClick={this.handleClick}><span className="fas fa-thumbs-up"></span> LIKE</button>
+                    }
                     <button type="button" className="btn btn-xs btn-primary" onClick={this.handleUnlike}><span className="fas fa-thumbs-down"></span> UNLIKE</button>
                     <button type="button" className="btn btn-xs btn-danger" onClick={showBlockModal}><span className="fas fa-ban"></span> BLOCK</button>
                     {

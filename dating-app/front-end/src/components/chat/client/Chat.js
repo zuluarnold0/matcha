@@ -18,11 +18,11 @@ const Chat = ({ location }) => {
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
-        const {firstname, room, match_name } = queryString.parse(location.search);        
-        socket = io(ENDPOINT);
+        const {firstname, room, match_name } = queryString.parse(location.search);
         setFirstName(firstname);
         setMatchName(match_name);
-        setRoom(room);
+        setRoom(room);       
+        socket = io(ENDPOINT);
         socket.emit('join', { firstname, room }, () => {
             
         });
