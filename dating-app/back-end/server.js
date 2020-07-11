@@ -33,7 +33,7 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 })
 
-//IMAGE UPLOAD END POINT
+//PROFILE IMAGE UPLOAD END POINT
 app.post('/profile-upload', (req, res) => {
 
     const values = Object.values(req.files)
@@ -46,6 +46,78 @@ app.post('/profile-upload', (req, res) => {
             .where('id', '=', values[0].fieldName)
             .update({
                 photourl: images[0].secure_url
+            })
+            .then(user => res.json(user))
+        })
+})
+
+//IMAGE 1 UPLOAD END POINT
+app.post('/image1-upload', (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    Promise
+        .all(promises)
+        .then(images => {
+            db('users')
+            .returning('*')
+            .where('id', '=', values[0].fieldName)
+            .update({
+                img1: images[0].secure_url
+            })
+            .then(user => res.json(user))
+        })
+})
+
+//IMAGE 1 UPLOAD END POINT
+app.post('/image2-upload', (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    Promise
+        .all(promises)
+        .then(images => {
+            db('users')
+            .returning('*')
+            .where('id', '=', values[0].fieldName)
+            .update({
+                img2: images[0].secure_url
+            })
+            .then(user => res.json(user))
+        })
+})
+
+//IMAGE 1 UPLOAD END POINT
+app.post('/image3-upload', (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    Promise
+        .all(promises)
+        .then(images => {
+            db('users')
+            .returning('*')
+            .where('id', '=', values[0].fieldName)
+            .update({
+                img3: images[0].secure_url
+            })
+            .then(user => res.json(user))
+        })
+})
+
+//IMAGE 1 UPLOAD END POINT
+app.post('/image4-upload', (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    Promise
+        .all(promises)
+        .then(images => {
+            db('users')
+            .returning('*')
+            .where('id', '=', values[0].fieldName)
+            .update({
+                img4: images[0].secure_url
             })
             .then(user => res.json(user))
         })

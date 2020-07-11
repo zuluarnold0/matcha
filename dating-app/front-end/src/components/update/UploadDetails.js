@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UploadDetails = () => {
+const UploadDetails = ({ onUploadImage1 , onUploadImage2, onUploadImage3, onUploadImage4 }) => {
     return (
         <div >
             <div className="upload__container">
@@ -9,6 +9,7 @@ const UploadDetails = () => {
                     <input
                         type="file"
                         className="form-control-file mb2"
+                        onChange={onUploadImage1}
                     />
                 </div>
             </div>
@@ -18,6 +19,7 @@ const UploadDetails = () => {
                     <input
                         type="file"
                         className="form-control-file mb2"
+                        onChange={onUploadImage2}
                     />
                 </div>
             </div>
@@ -27,6 +29,7 @@ const UploadDetails = () => {
                     <input
                         type="file"
                         className="form-control-file mb2"
+                        onChange={onUploadImage3}
                     />
                 </div>
             </div>
@@ -36,6 +39,7 @@ const UploadDetails = () => {
                     <input
                         type="file"
                         className="form-control-file mb2"
+                        onChange={onUploadImage4}
                     />
                 </div>
             </div>

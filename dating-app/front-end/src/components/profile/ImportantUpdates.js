@@ -141,6 +141,7 @@ class ImportantUpdates extends React.Component {
 
     render() {
         const { email, email_err_message, passwd_err_message } = this.state;
+        const { onUploadImage1, onUploadImage2, onUploadImage3, onUploadImage4 } = this.props;
         const { showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword, closeCityModal, updateCity, showCityModal, closeUploadModal, uploadPics, showUploadModal, city_err_msg } = this.props;
         return (
             <div className="important__updates">
@@ -206,7 +207,12 @@ class ImportantUpdates extends React.Component {
                     showUploadModal === true ? <div id="myModal" className="modal">
                     <div className="modal-content">
                         <span onClick={closeUploadModal} className="close">&times;</span>
-                            <UploadImages/>
+                            <UploadImages
+                                onUploadImage1={onUploadImage1}
+                                onUploadImage2={onUploadImage2}
+                                onUploadImage3={onUploadImage3}
+                                onUploadImage4={onUploadImage4}
+                            />
                         </div>
                     </div>
                     : ""

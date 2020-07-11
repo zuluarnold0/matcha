@@ -3,7 +3,7 @@ import  ImageUpload from '../upload/ImageUpload';
 import ImportantUpdates from './ImportantUpdates';
 import Bio from '../bio/Bio';
 
-const ProfileInfo = ({ onUploadProfile, user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
+const ProfileInfo = ({ onUploadImage1, onUploadImage2, onUploadImage3, onUploadImage4, onUploadProfile, user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
     return (
         <div  className="profile_info_box">
             <div className="profile__info">
@@ -34,6 +34,10 @@ const ProfileInfo = ({ onUploadProfile, user, showEmailModal, showPasswordModal,
 
                 city_err_msg={city_err_msg}
                 user={user}
+                onUploadImage1={onUploadImage1}
+                onUploadImage2={onUploadImage2}
+                onUploadImage3={onUploadImage3}
+                onUploadImage4={onUploadImage4}
             />
         </div>
     )

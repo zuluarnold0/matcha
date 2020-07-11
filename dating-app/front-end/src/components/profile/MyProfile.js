@@ -112,6 +112,90 @@ class MyProfile extends Component {
         }
     }
 
+    onUploadImage1 = e => {
+        const _id = this.props.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image1-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                }
+            })
+        }
+    }
+
+    onUploadImage2 = e => {
+        const _id = this.props.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image2-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                }
+            })
+        }
+    }
+
+    onUploadImage3 = e => {
+        const _id = this.props.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image3-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                }
+            })
+        }
+    }
+
+    onUploadImage4 = e => {
+        const _id = this.props.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image4-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                }
+            })
+        }
+    }
+
     render () {
         const { users, user, city_err_msg } = this.state;
         if (!user) {
@@ -157,6 +241,10 @@ class MyProfile extends Component {
                         user={user}
                         users={users}
                         onUploadProfile={this.onUploadProfile}
+                        onUploadImage1={this.onUploadImage1}
+                        onUploadImage2={this.onUploadImage2}
+                        onUploadImage3={this.onUploadImage3}
+                        onUploadImage4={this.onUploadImage4}
                     />
                     <UserMap user={user}/>
                     <Footer/> 
