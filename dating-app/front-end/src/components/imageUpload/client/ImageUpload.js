@@ -3,7 +3,6 @@ import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
 //import { API_URL } from './config'
-import './ImageUpload.css'
 
 class ImageUpload extends Component {
 
@@ -13,15 +12,16 @@ class ImageUpload extends Component {
     }
 
     onChange = e => {
-        const files = Array.from(e.target.files);
+        const fileToUpload = e.target.files[0];
+        //const files = Array.from(e.target.files);
         this.setState({ uploading: true });
     
         const formData = new FormData();
     
-        files.forEach((file, i) => {
+        /*files.forEach((file, i) => {
           formData.append(i, file)
-        })
-
+        })*/
+        formData.append('1', fileToUpload, fileToUpload.name);
         fetch('http://localhost:3000/image-upload', {
             method: 'POST',
             body: formData
@@ -64,5 +64,35 @@ class ImageUpload extends Component {
         )
     }
 }
+/*
+import React from 'react'
+
+class ImageUpload extends React.Component {
+
+    state = {
+        selectedFile: null
+    }
+
+    fileSelectedHandler = (event) => {
+        const fileToUpload = event.target.files[0];
+        const formData = new FormData();
+        formData.append('1', fileToUpload, fileToUpload.name);
+        fetch('http://localhost:3000/image-upload', {
+            method: 'post',
+            body: formData
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <input 
+                    type="file"
+                    onChange={this.fileSelectedHandler}
+                />
+            </div>
+        )
+    }
+}*/
 
 export default ImageUpload;

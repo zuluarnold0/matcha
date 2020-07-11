@@ -24,7 +24,7 @@ class MyProfile extends Component {
             showPrefModal: false,
             city_err_msg: '',
             user: props.user,
-            users: props.users 
+            users: props.users
         }
     }
 
@@ -91,6 +91,24 @@ class MyProfile extends Component {
     uploadPics = () => this.setState({ showUploadModal: true });
     closeUploadModal = () => this.setState({ showUploadModal: false });
 
+    onUploadProfile = e => {
+        const _id = this.props.user.id;
+        const fileToUpload = e.target.files[0];
+        const formData = new FormData();
+
+        formData.append(_id, fileToUpload, fileToUpload.name);
+        fetch('http://localhost:3000/profile-upload', {
+            method: 'POST',
+            body: formData
+          })
+          .then(res => res.json())
+          .then(user => {
+            if (user) {
+                this.props.setUserToState(user[0]);
+            }
+        })
+    }
+
     render () {
         const { users, user, city_err_msg } = this.state;
         if (!user) {
@@ -135,6 +153,7 @@ class MyProfile extends Component {
                         city_err_msg={city_err_msg}
                         user={user}
                         users={users}
+                        onUploadProfile={this.onUploadProfile}
                     />
                     <UserMap user={user}/>
                     <Footer/> 

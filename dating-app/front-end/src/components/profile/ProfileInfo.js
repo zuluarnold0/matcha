@@ -3,11 +3,11 @@ import  ImageUpload from '../upload/ImageUpload';
 import ImportantUpdates from './ImportantUpdates';
 import Bio from '../bio/Bio';
 
-const ProfileInfo = ({ user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
+const ProfileInfo = ({ onUploadProfile, user, showEmailModal, showPasswordModal, showUploadModal, showCityModal, closeEmailModal, closePasswordModal, closeUploadModal, closeCityModal, updateEmail, updatePassword, uploadPics, updateCity, city_err_msg }) => {
     return (
         <div  className="profile_info_box">
             <div className="profile__info">
-                <ImageUpload />
+                <ImageUpload onUploadProfile={onUploadProfile} />
                 <div className="user__info">
                     <Bio user={user} />
                     <hr/>
