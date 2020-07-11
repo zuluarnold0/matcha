@@ -93,20 +93,23 @@ class MyProfile extends Component {
 
     onUploadProfile = e => {
         const _id = this.props.user.id;
-        const fileToUpload = e.target.files[0];
         const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
 
-        formData.append(_id, fileToUpload, fileToUpload.name);
-        fetch('http://localhost:3000/profile-upload', {
-            method: 'POST',
-            body: formData
-          })
-          .then(res => res.json())
-          .then(user => {
-            if (user) {
-                this.props.setUserToState(user[0]);
-            }
-        })
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/profile-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                }
+            })
+        }
     }
 
     render () {

@@ -9,6 +9,10 @@ class Nav extends React.Component {
         user: this.props.user
     }
 
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ user: props.user });
+    }
+
     logout = () => {
         fetch('http://localhost:3000/logout', {
             method: 'put',
