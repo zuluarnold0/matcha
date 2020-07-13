@@ -5,8 +5,13 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 class AppHeader extends React.Component {
+
     state = {
         user: this.props.user
+    }
+
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ user: props.user });
     }
 
     logout = () => {
@@ -18,6 +23,7 @@ class AppHeader extends React.Component {
             })
         })
     }
+
     render () {
         const { user } = this.state;
         if (!user) {
@@ -39,7 +45,7 @@ class AppHeader extends React.Component {
                         </div>
                         <div className="push-nav-end">
                             <li>
-                                <Link  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
+                                <Link onClick={this.logout}  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
                             </li>
                         </div>
                     </ul>

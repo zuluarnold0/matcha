@@ -4,6 +4,18 @@ import './Card.css';
 
 class Card extends Component {
     
+    state = {
+        viewer: null,
+        viewed: null
+    }
+
+    UNSAFE_componentWillReceiveProps(props) {
+        this.setState({ 
+            viewer: this.props.myprofile.email,
+            viewed: this.props.user.email
+        });
+    }
+
     handleView = () => {
         fetch('http://localhost:3000/view', {
             method: 'post',
@@ -14,6 +26,13 @@ class Card extends Component {
             })
         })
         .catch(err => console.log(err))
+    }
+
+    componentWillUnmount() {
+        this.setState({ 
+            viewer: null,
+            viewed: null
+        })
     }
 
     render() {
