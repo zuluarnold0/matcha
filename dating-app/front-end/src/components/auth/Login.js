@@ -50,7 +50,6 @@ class Login extends React.Component {
             .then(response => response.json())
             .then(user => {
                 if (user.email) {
-
                     //fetch users from database
                     fetch('http://localhost:3000/')
                     .then(response => response.json())
@@ -63,10 +62,10 @@ class Login extends React.Component {
 
                     //set user to global state
                     this.props.setUserToState(user);
-                    this.setState({ user: user});
+                    this.setState({ user: user });
 
                 } else {
-                    this.setState({ error_msg: "error loggin in"})
+                    this.setState({ error_msg: "Make sure your email is verified and your details are correct!"})
                 } 
             })
         }

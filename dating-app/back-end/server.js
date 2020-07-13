@@ -6,7 +6,7 @@ const cors = require('cors');
 const knex = require('knex');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
-//const { CLIENT_ORIGIN } = require('./config.js');
+const randomstring = require("randomstring");
 
 var app = express();
 const port =  3000;
@@ -430,11 +430,26 @@ app.post('/login', (req, res) => {
     .then(data => {
         const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
         if (isValid) {
-            return db('users')
+            db('users')
                 .returning('*')
                 .where('email', '=', req.body.email)
-                .update({ is_logged_in: true })
-                .then(user => { res.json(user[0]) })
+                .then(user => {
+                    if (user[0].active === false) {
+                        res.status(400).json('Please verify your email!');
+                    } else {
+                        db('users')
+                        .returning('*')
+                        .update({ is_logged_in: true })
+                        .where('email', '=', req.body.email)
+                        .then(user => {
+                            res.json(user[0]);
+                        })
+                    }
+                })
+                /*.update({ is_logged_in: true })
+                .then(user => { 
+                    res.json(user[0]);
+                })*/
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
             res.status(400).json('wrong credentials')
@@ -454,6 +469,8 @@ app.post('/register', (req, res) => {
         .into('login')
         .returning('email')
         .then(loginEmail => {
+            //qcAPzEvegaQqQ0QeVpE7lWlJyFifrg9W
+            const secrettoken = randomstring.generate();
             return trx('users')
                 .returning('*')
                 .insert({
@@ -470,15 +487,19 @@ app.post('/register', (req, res) => {
                     city: req.body.city,
                     longi: req.body.longi,
                     lati: req.body.lati,
-                    popularity:0,
+                    popularity: 0,
                     img1: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     img3: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     logged_time: new Date(),
-                    is_logged_in: false
+                    is_logged_in: false,
+                    secrettoken: secrettoken,
+                    active: false
                 })
-                .then(user => res.json(user[0]))
+                .then(user => {
+                    res.json(user[0]);
+                })
         })
         .then(trx.commit)
         .catch(trx.rollback)
