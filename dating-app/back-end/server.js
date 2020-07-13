@@ -33,6 +33,19 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 })
 
+//UPDATING CITY AND RETURNING UPDATED USER
+app.put('/verify', (req, res) => {
+    db('users')
+    .returning('*')
+    .where('secrettoken', '=', req.body.secrettoken)
+    .update({
+        secrettoken: '',
+        active: true
+    })
+    .then(user => res.json(user[0]))
+    .catch(err => res.status(400).json('Error updating location'));
+})
+
 //PROFILE IMAGE UPLOAD END POINT
 app.post('/profile-upload', (req, res) => {
 
@@ -446,10 +459,6 @@ app.post('/login', (req, res) => {
                         })
                     }
                 })
-                /*.update({ is_logged_in: true })
-                .then(user => { 
-                    res.json(user[0]);
-                })*/
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
             res.status(400).json('wrong credentials')

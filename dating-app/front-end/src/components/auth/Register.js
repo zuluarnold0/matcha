@@ -80,7 +80,14 @@ class Register extends Component {
                 longi: this.state.longi
             })
         })
-        .then(response => this.nextStep());
+        .then(response => response.json())
+        .then(user => {
+            if (user.email) {
+                this.setState({ error_msg: "success" });
+            }
+        })
+        
+        this.nextStep();
     }
 
     onKeyUp = (e) => {
@@ -119,6 +126,10 @@ class Register extends Component {
     prevStep = () => {
         const { step } = this.state;
         this.setState({ step: step - 1 });
+    }
+
+    tryAgain = () => {
+        this.setState({ step: 1 });
     }
 
     handleChange = event => {
@@ -290,7 +301,10 @@ class Register extends Component {
                 )
 
             case 5:
-                return <Success/>;
+                return <Success
+                            error_msg={error_msg}
+                            tryAgain={this.tryAgain}
+                        />;
         
             default:
                 return <PageNotFound/>;

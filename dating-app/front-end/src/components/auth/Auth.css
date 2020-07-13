@@ -200,7 +200,7 @@ body {
     font-size: 14px !important;
     color: red !important;
     text-align: center !important;
-    background-color: #bbb !important;
+    background-color: rgb(184, 242, 247) !important;
     padding: 5px !important;
     border: 1px solid red;
 }
@@ -251,6 +251,10 @@ body {
 .success__links span:hover {
     text-decoration: none !important;
     color: #ccc !important;
+    cursor: pointer;
+}
+
+.showClick {
     cursor: pointer;
 }
 

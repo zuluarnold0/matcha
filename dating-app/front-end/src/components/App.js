@@ -10,6 +10,7 @@ import Chat from './chat/client/Chat';
 import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
 import Notification from '../components/notifications/Notification';
+import Verify from './auth/Verify';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register} />
         <Route path="/forgot" component={Forgot} />
+        <Route path="/verify" component={Verify} />
         <Route path="/chats" component={Chats} />
         <Route path="/chat" component={Chat} />
         <Route path="/user/:id" component={User} />
