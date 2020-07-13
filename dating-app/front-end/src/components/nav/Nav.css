@@ -1,7 +1,6 @@
 .nav-ba {
     width: 100%;
-    /*background-color: palevioletred;*/
-    background-color: #fff;
+    background-color: palevioletred;
     box-shadow: 0 5px 5px -5px dimgray;
     top: 0;
     line-height: 30px;
