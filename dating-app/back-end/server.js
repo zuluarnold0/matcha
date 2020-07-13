@@ -7,6 +7,7 @@ const knex = require('knex');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 const randomstring = require("randomstring");
+const mailer = require("./mailer");
 
 var app = express();
 const port =  3000;
@@ -37,13 +38,13 @@ cloudinary.config({
 app.put('/verify', (req, res) => {
     db('users')
     .returning('*')
-    .where('secrettoken', '=', req.body.secrettoken)
+    .where('secrettoken', '=', req.body.secrettoken.trim())
     .update({
         secrettoken: '',
         active: true
     })
     .then(user => res.json(user[0]))
-    .catch(err => res.status(400).json('Error updating location'));
+    .catch(err => res.status(400).json('Error encountered while updating token'));
 })
 
 //PROFILE IMAGE UPLOAD END POINT
@@ -447,7 +448,7 @@ app.post('/login', (req, res) => {
                 .returning('*')
                 .where('email', '=', req.body.email)
                 .then(user => {
-                    if (user[0].active === false) {
+                   /* if (user[0].active === false) {
                         res.status(400).json('Please verify your email!');
                     } else {
                         db('users')
@@ -457,7 +458,8 @@ app.post('/login', (req, res) => {
                         .then(user => {
                             res.json(user[0]);
                         })
-                    }
+                    }*/
+                    res.json(user[0]);
                 })
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
@@ -507,6 +509,18 @@ app.post('/register', (req, res) => {
                     active: false
                 })
                 .then(user => {
+                    const html = `Hi ${user[0].firstname} ${user[0].lastname},
+                        Thank you for registering to Matcha app!
+                        <br/><br/>
+                        Please verify your email by typing the following token:
+                        <br/>
+                        Token: <strong>${secrettoken}</strong>
+                        <br/>
+                        On the following page:
+                        <a href="http://localhost:3000/verify">http://localhost:3000/verify</a>
+                        <br/>br/>
+                        Have a pleasant day!`;
+                    mailer.sendEmail('admin@matcha.com', user[0].email, 'Please verify your email', html);
                     res.json(user[0]);
                 })
         })
