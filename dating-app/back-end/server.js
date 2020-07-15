@@ -448,7 +448,8 @@ app.post('/login', (req, res) => {
                 .returning('*')
                 .where('email', '=', req.body.email)
                 .then(user => {
-                   /* if (user[0].active === false) {
+                    /*will update when sendmail works
+                    if (user[0].active === false) {
                         res.status(400).json('Please verify your email!');
                     } else {
                         db('users')
@@ -459,7 +460,13 @@ app.post('/login', (req, res) => {
                             res.json(user[0]);
                         })
                     }*/
-                    res.json(user[0]);
+                    db('users')
+                        .returning('*')
+                        .update({ is_logged_in: true })
+                        .where('email', '=', req.body.email)
+                        .then(user => {
+                            res.json(user[0]);
+                        })
                 })
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
@@ -480,7 +487,6 @@ app.post('/register', (req, res) => {
         .into('login')
         .returning('email')
         .then(loginEmail => {
-            //qcAPzEvegaQqQ0QeVpE7lWlJyFifrg9W
             const secrettoken = randomstring.generate();
             return trx('users')
                 .returning('*')
@@ -505,8 +511,10 @@ app.post('/register', (req, res) => {
                     img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     logged_time: new Date(),
                     is_logged_in: false,
-                    secrettoken: secrettoken,
-                    active: false
+                    //secrettoken: secrettoken, //will update when sendmail works
+                    //active: false, //will update when sendmail works
+                    secrettoken: '',
+                    active: true
                 })
                 .then(user => {
                     const html = `Hi ${user[0].firstname} ${user[0].lastname},
