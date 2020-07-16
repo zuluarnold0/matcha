@@ -12,15 +12,26 @@ class Notification extends React.Component {
         super(props);
         this.state = {
             user: props.user,
-            users: props.users
+            users: []
         }
     }
 
+    componentDidMount() {
+        //make fetch request to database to get users
+        this.usersAdder = setInterval(() => {
+            fetch('http://localhost:3000/')
+            .then(response => response.json())
+            .then(users_ => {
+                if (users_) {
+                    this.setState({ users: users_ });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+        }, 2000);
+    }
+
     componentWillUnmount() {
-        this.setState({ 
-            user: null,
-            users: [] 
-        })
+        clearInterval(this.usersAdder);
     }
 
     render() {
@@ -31,7 +42,18 @@ class Notification extends React.Component {
             return (
                 <div>
                     <Nav/>
+                    {
+                        (!users.length) ?
+                            <div id="dot-loader">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        :
                         <NotificationDetails users={users} user={user}/>
+                    }
                     <Footer/>     
                 </div>
             )
@@ -41,8 +63,7 @@ class Notification extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user_reducer.user,
-        users: state.users_redu_cer.users
+        user: state.user_reducer.user
     }
 }
 

@@ -13,28 +13,35 @@ class Chats extends React.Component {
         this.state = {
             matches: [],
             user: props.user,
-            users: props.users
+            users: []
         }
     }
 
     componentDidMount() {
-        //getting matches from database
-        fetch('http://localhost:3000/getmatches')
-        .then(response => response.json())
-        .then(matches => {
-            if (matches) {
-                this.setState({ matches: matches });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        this.usersMatches = setInterval(() => {
+            //getting matches from database
+            fetch('http://localhost:3000/getmatches')
+            .then(response => response.json())
+            .then(matches => {
+                if (matches) {
+                    this.setState({ matches: matches });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+
+            //fetching users from database
+            fetch('http://localhost:3000/')
+            .then(response => response.json())
+            .then(users_ => {
+                if (users_) {
+                    this.setState({ users: users_ });
+                }
+            })
+        }, 2000);
     }
 
     componentWillUnmount() {
-        this.setState({ 
-            matches: [],
-            user: null,
-            users: []
-        });
+        clearInterval(this.usersMatches);
     }
 
     render() {
@@ -45,11 +52,22 @@ class Chats extends React.Component {
                     <div className="matches__container">
                         <span className="matches__title">{ "Chats" } </span><hr/><br/>
                             <ScrollBar>
-                                <FindMatch
-                                    matches={matches}
-                                    user={user}
-                                    users={users}
-                                />
+                                {
+                                    !users.length ?
+                                        <div id="dot-loader">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    :
+                                    <FindMatch
+                                        matches={matches}
+                                        user={user}
+                                        users={users}
+                                    />
+                                }
                             </ScrollBar>
                     </div>
                 <Footer/>
@@ -60,8 +78,7 @@ class Chats extends React.Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user_reducer.user,
-      users: state.users_redu_cer.users
+      user: state.user_reducer.user
     }
 }
 

@@ -18,34 +18,28 @@ class VisitsNotification extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            views: []
+            views: props.views,
+            users: props.users,
+            user: props.user
         }
-    }
-
-    componentDidMount() {
-        this.setState({ views: this.props.views });
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ views: props.views });
+        this.setState({ 
+            views: props.views,
+            users: props.users,
+            user: props.user
+        });
     }
 
     render() {
-        const { views } = this.state;
-        const { users, user } = this.props;
-        const my_views = views && views.filter(view_ => {
-            return view_.viewed === user.email
-        })
-        let v_users = [];
-        if (my_views.length > 0 && users.length > 0) {
-            v_users = findViewers(my_views, users);
-        }
+        const { views, users, user } = this.state;
+        const my_views = views && views.filter(view_ => view_.viewed === user.email);
+        const v_users = (my_views.length > 0 && users.length > 0) ? findViewers(my_views, users) : [];
         return (
             <div>
                 {
-                    v_users && v_users.map(view => {
-                        return <VisitCard key={view.id} user={user} view={view}/>
-                    })
+                    v_users && v_users.map(view => <VisitCard key={view.id} user={user} view={view}/>)
                 }
             </div>
         )

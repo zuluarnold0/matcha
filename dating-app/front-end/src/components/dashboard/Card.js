@@ -5,38 +5,26 @@ import './Card.css';
 class Card extends Component {
     
     state = {
-        viewer: null,
-        viewed: null
-    }
-
-    UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ 
-            viewer: this.props.myprofile.email,
-            viewed: this.props.user.email
-        });
+        viewer:this.props.myprofile.email,
+        viewed: this.props.user.email,
+        user: this.props.user
     }
 
     handleView = () => {
+        const { viewer, viewed } = this.state;
         fetch('http://localhost:3000/view', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                viewer: this.props.myprofile.email,
-                viewed: this.props.user.email
+                viewer: viewer,
+                viewed: viewed
             })
         })
         .catch(err => console.log(err))
     }
 
-    componentWillUnmount() {
-        this.setState({ 
-            viewer: null,
-            viewed: null
-        })
-    }
-
     render() {
-        const { user } = this.props;
+        const { user } = this.state;
         return (
             <div className="float-left">
                 <div className="card__">

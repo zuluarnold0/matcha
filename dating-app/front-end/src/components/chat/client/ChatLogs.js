@@ -2,12 +2,12 @@ import React from 'react';
 import ChatBox from './ChatBox';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-const ChatLogs = ({ messages, firstname }) => {
+const ChatLogs = ({ user, receiver, chats }) => {
     return (
         <div className="chatlogs">
             <ScrollToBottom>
             {
-                messages && messages.map((message, i) => <div key={i}><ChatBox message={message} firstname={firstname} /></div>)
+                chats && chats.map(chat => <ChatBox key={chat.id} chat={chat} sender={user} receiver={receiver[0]} />)
             }
             </ScrollToBottom>
         </div>

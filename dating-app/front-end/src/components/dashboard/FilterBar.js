@@ -29,7 +29,7 @@ class FilterBar extends React.Component {
                         <span className="filter-range">18 - 70</span><br/>
                         <input
                             type="range"
-                            className="form-control"
+                            className=""
                             name="age_"
                             min="18"
                             max="70"
@@ -61,7 +61,7 @@ class FilterBar extends React.Component {
                         <span className="filter-range">0 - 2000</span><br/>
                         <input
                             type="range"
-                            className="form-control"
+                            className=""
                             name="popularity_"
                             min="0"
                             max="2000"

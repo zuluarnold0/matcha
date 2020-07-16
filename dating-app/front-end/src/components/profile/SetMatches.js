@@ -10,19 +10,21 @@ class SetMatches extends Component {
     }
 
     componentDidMount() {
-        //getting matches from database
-        fetch('http://localhost:3000/getmatches')
-        .then(response => response.json())
-        .then(matches => {
-            if (matches) {
-                this.setState({ matches: matches });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        //make fetch request to database to get matches
+        this.usersMatches = setInterval(() => {
+            fetch('http://localhost:3000/getmatches')
+            .then(response => response.json())
+            .then(matches => {
+                if (matches) {
+                    this.setState({ matches: matches });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+        }, 2000);
     }
 
     componentWillUnmount() {
-        this.setState({ matches: [] });
+        clearInterval(this.usersMatches);
     }
 
     render() {

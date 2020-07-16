@@ -18,36 +18,28 @@ class LikesNotification extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            likes: []
+            likes: props.likes,
+            user: props.user,
+            users: props.users
         }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ likes: props.likes });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.likes !== this.props.likes) {
-            this.setState({ likes: this.props.likes });
-        }
+        this.setState({ 
+            likes: props.likes,
+            user: props.user,
+            users: props.users
+        })
     }
 
     render() {
-        const { likes } = this.state;
-        const { users, user } = this.props;
-        const my_likes = likes && likes.filter(like_ => {
-            return like_.liked === user.email
-        })
-        let l_users = [];
-        if (my_likes.length > 0 && users.length > 0) {
-            l_users = findLikers(my_likes, users);
-        }
+        const { likes, user, users } = this.state;
+        const my_likes = likes && likes.filter(like_ => like_.liked === user.email)
+        const l_users = (my_likes.length > 0 && users.length > 0) ? findLikers(my_likes, users) : [];
         return (
             <div>
                 {
-                    l_users && l_users.map(like => {
-                        return <LikeCard key={like.id} like={like} user={user}/>
-                    })
+                    l_users && l_users.map(like => <LikeCard key={like.id} like={like} user={user}/>)
                 }
             </div>
         )

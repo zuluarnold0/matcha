@@ -20,34 +20,28 @@ class ProfileMatches extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            matches: props.matches
+            matches: props.matches,
+            users: props.users,
+            user: props.user
         }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ matches: props.matches });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.matches !== this.props.matches) {
-            this.setState({ matches: this.props.matches });
-        }
+        this.setState({ 
+            matches: props.matches,
+            users: props.users,
+            user: props.user
+        });
     }
 
     render() {
-        const { matches } = this.state;
-        const { users, user } = this.props;
-        let m_users = [];
-        if (matches.length > 0 && users.length > 0) {
-            m_users = findMatches(matches, users, user);
-        }
+        const { matches, users, user } = this.state;
+        let m_users =  (matches.length > 0 && users.length > 0) ? findMatches(matches, users, user) : [];
         return (
             <div>
-                {
-                    m_users && m_users.map(match => {
-                        return <Match key={match.id} user={user} match={match}/>
-                    })
-                }
+            {
+                m_users && m_users.map(match => <Match key={match.id} user={user} match={match}/>)
+            }
             </div>
         )
     }

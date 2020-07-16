@@ -1,19 +1,19 @@
 import React from 'react';
 
-const CreateChat = ({ message, setMessage, sendMessage }) => {
+const CreateChat = ({ message, handleChange, handleSubmit }) => {
     return (
         <div className="chat-form">
-            <form>
-                <textarea
-                    type="text"
+            <form onSubmit={handleSubmit}>
+                <textarea 
+                    onChange={handleChange} 
+                    type="text" 
+                    value={message} 
+                    name="message" 
                     placeholder="Write your message here..."
                     required
-                    value={message}
-                    onChange={(event) => setMessage(event.target.value)}
-                    onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 >
                 </textarea>
-                <button onClick={(event) => sendMessage(event)}>Send</button>
+                <button>Send</button>
             </form>
         </div>
     )

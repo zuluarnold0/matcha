@@ -1,7 +1,7 @@
 import React from 'react';
 import PasswordForm from '../update/PasswordForm';
 import EmailForm from '../update/EmailForm';
-import UploadImages from '../update/UploadImages';
+import UploadDetails from '../update/UploadDetails';
 import { connect } from 'react-redux';
 import { setUserToState } from '../../store/actions/actions';
 
@@ -10,19 +10,168 @@ class ImportantUpdates extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            email: props.user.email,
             password: '',
             cpassword: '',
             passwd_err_message: '',
-            email_err_message: ''
+            email_err_message: '',
+            city_err_msg: "",
+            showUploadModal: false,
+            showPasswordModal: false,
+            showEmailModal: false,
+            showCityModal: false,
+            user: props.user,
+            img1_err_msg: "",
+            img2_err_msg: "",
+            img3_err_msg: "",
+            img4_err_msg: ""
         }
     }
 
-    componentDidMount() {
-        const { user } = this.props;
-        this.setState({
-            email: user.email
+    updatePassword = () => this.setState({ showPasswordModal: true });
+    closePasswordModal = () => this.setState({ showPasswordModal: false, passwd_err_message: '' });
+
+    uploadPics = () => this.setState({ showUploadModal: true });
+    closeUploadModal = () => this.setState({ 
+                                        img1_err_msg: "",
+                                        img2_err_msg: "",
+                                        img3_err_msg: "",
+                                        img4_err_msg: "",
+                                        showUploadModal: false,
+                                    });
+
+    updateEmail = () => this.setState({ showEmailModal: true });
+    closeEmailModal = () => this.setState({ showEmailModal: false, email_err_message: "" });
+
+    closeCityModal = () => this.setState({ showCityModal: false, city_err_msg: "" });
+
+    updateCity = () => {
+        this.setState({ showCityModal: true, city_err_msg: "Getting your location...." });
+        //FETCH LOCATION FROM AN API
+        fetch('https://ipapi.co/json')
+        .then(response => response.json())
+        .then(location => {
+            //SEND LOCATION DATA TO THE BACKEND
+            fetch('http://localhost:3000/city', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: this.state.user.id,
+                    city: location.city,
+                    longi: location.longitude,
+                    lati: location.latitude
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ city_err_msg: `Your city is ${user[0].city}`})
+                }
+            })
+            .catch(err => this.setState({ city_err_msg: 'Unable to update City'}));
         })
+        .catch(err => this.setState({ city_err_msg: 'Error updating City'}));
+    }
+
+    onUploadImage1 = e => {
+        const _id = this.state.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image1-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ img1_err_msg: 'Image 1 uploaded successfully'});
+                } else {
+                    this.setState({ img1_err_msg: 'Failed to upload image 1'});
+                }
+            })
+            .catch(err => this.setState({ img1_err_msg: 'Failed to upload image 1'}));
+        }
+    }
+
+    onUploadImage2 = e => {
+        const _id = this.state.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image2-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ img2_err_msg: 'Image 2 uploaded successfully'});
+                } else {
+                    this.setState({ img2_err_msg: 'Failed to upload image 2'});
+                }
+            })
+            .catch(err => this.setState({ img2_err_msg: 'Failed to upload image 2'}));
+        }
+    }
+
+    onUploadImage3 = e => {
+        const _id = this.state.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image3-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ img3_err_msg: 'Image 3 uploaded successfully'});
+                } else {
+                    this.setState({ img3_err_msg: 'Failed to upload image 3'});
+                }
+            })
+            .catch(err => this.setState({ img3_err_msg: 'Failed to upload image 3'}));
+        }
+    }
+
+    onUploadImage4 = e => {
+        const _id = this.state.user.id;
+        const formData = new FormData();
+        let fileToUpload = null;
+        fileToUpload = e.target.files[0];
+
+        if (fileToUpload) {
+            formData.append(_id, fileToUpload, fileToUpload.name);
+            fetch('http://localhost:3000/image4-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(user => {
+                if (user) {
+                    this.props.setUserToState(user[0]);
+                    this.setState({ img4_err_msg: 'Image 4 uploaded successfully'});
+                } else {
+                    this.setState({ img4_err_msg: 'Failed to upload image 4'});
+                }
+            })
+            .catch(err => this.setState({ img4_err_msg: 'Failed to upload image 4'}));
+        }
     }
 
     handleInputChange = (event) => {
@@ -72,10 +221,9 @@ class ImportantUpdates extends React.Component {
                 if (user) {
                     this.props.setUserToState(user[0]);
                     this.setState({ email_err_message: "Email update successful" });
-                } else {
-                    this.setState({ email_err_message: "Error updating Email"})
                 }
             })
+            .catch(err => this.setState({ email_err_message: "Error updating Email"}))
         }
     }
 
@@ -136,13 +284,15 @@ class ImportantUpdates extends React.Component {
                     this.setState({ passwd_err_message: "Error updating Password"})
                 }
             })
+            .catch(err => this.setState({ passwd_err_message: "Error updating Password"}))
         }
     }
 
     render() {
-        const { email, email_err_message, passwd_err_message } = this.state;
-        const { onUploadImage1, onUploadImage2, onUploadImage3, onUploadImage4 } = this.props;
-        const { showEmailModal, showPasswordModal, closePasswordModal, closeEmailModal, updateEmail, updatePassword, closeCityModal, updateCity, showCityModal, closeUploadModal, uploadPics, showUploadModal, city_err_msg } = this.props;
+        const { email, email_err_message, passwd_err_message, city_err_msg, showEmailModal, showPasswordModal, showCityModal, showUploadModal } = this.state;
+        const { onUploadImage1, onUploadImage2, onUploadImage3, onUploadImage4, updateEmail, updatePassword, updateCity, uploadPics } = this;
+        const { img1_err_msg, img2_err_msg, img3_err_msg, img4_err_msg } = this.state;
+        const { closePasswordModal, closeEmailModal, closeCityModal, closeUploadModal } = this;
         return (
             <div className="important__updates">
                 {/*Update Password*/}
@@ -207,7 +357,11 @@ class ImportantUpdates extends React.Component {
                     showUploadModal === true ? <div id="myModal" className="modal">
                     <div className="modal-content">
                         <span onClick={closeUploadModal} className="close">&times;</span>
-                            <UploadImages
+                            <UploadDetails
+                                img1_err_msg={img1_err_msg}
+                                img2_err_msg={img2_err_msg}
+                                img3_err_msg={img3_err_msg}
+                                img4_err_msg={img4_err_msg}
                                 onUploadImage1={onUploadImage1}
                                 onUploadImage2={onUploadImage2}
                                 onUploadImage3={onUploadImage3}

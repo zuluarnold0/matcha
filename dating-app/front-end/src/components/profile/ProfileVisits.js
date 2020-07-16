@@ -18,39 +18,30 @@ class ProfileVisits extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            views: props.views
+            views: props.views,
+            users: props.users,
+            user: props.user
         }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ views: props.views });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.views !== this.props.views) {
-            this.setState({ views: this.props.views });
-        }
+        this.setState({ 
+            views: props.views,
+            users: props.users,
+            user: props.user
+        });
     }
 
     render() {
         const { views } = this.state;
         const { users, user } = this.props;
-        const my_views = views && views.filter(view_ => {
-            return view_.viewer === user.email
-        })
-        let v_users = [];
-        if (my_views.length > 0 && users.length > 0) {
-            v_users = findViewers(my_views, users);
-        }
-        return (
-            <div>
+        const my_views = views && views.filter(view_ =>  view_.viewer === user.email);
+        const v_users = (my_views.length > 0 && users.length > 0) ? findViewers(my_views, users) : [];
+        return <div>
                 {
-                    v_users && v_users.map(view => {
-                        return <Visit key={view.id} user={user} view={view}/>
-                    })
+                    v_users && v_users.map(view => <Visit key={view.id} user={user} view={view}/>)
                 }
             </div>
-        )
     }
 }
 

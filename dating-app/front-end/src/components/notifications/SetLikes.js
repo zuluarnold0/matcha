@@ -10,19 +10,21 @@ class SetLikes extends Component {
     }
 
     componentDidMount() {
-       //fetch likes from database
-       fetch('http://localhost:3000/getlikes')
-       .then(response => response.json())
-       .then(likes => {
-           if (likes) {
-               this.setState({ likes: likes });
-           }
-       })
-       .catch(err => console.log('an error occured'));
+        //make fetch request to database to get likes
+        this.usersLikes = setInterval(() => {
+            fetch('http://localhost:3000/getlikes')
+            .then(response => response.json())
+            .then(likes => {
+                if (likes) {
+                    this.setState({ likes: likes });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+        }, 2000);
     }
 
     componentWillUnmount() {
-        this.setState({ likes: [] });
+        clearInterval(this.usersLikes);
     }
 
     render() {

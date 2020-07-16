@@ -13,7 +13,6 @@ import Notification from '../components/notifications/Notification';
 import Verify from './auth/Verify';
 
 const App = () => {
-
   return (
     <Router>
       <Switch>
@@ -23,7 +22,7 @@ const App = () => {
         <Route path="/forgot" component={Forgot} />
         <Route path="/verify" component={Verify} />
         <Route path="/chats" component={Chats} />
-        <Route path="/chat" component={Chat} />
+        <Route path="/chat/:id" component={Chat} />
         <Route path="/user/:id" component={User} />
         <Route path="/profile" component={MyProfile} />
         <Route path="/notification" component={Notification} />

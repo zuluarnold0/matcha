@@ -80,6 +80,7 @@ app.post('/image1-upload', (req, res) => {
                 img1: images[0].secure_url
             })
             .then(user => res.json(user))
+            .catch(err => res.status(400).json("Error Uploading image"))
         })
 })
 
@@ -98,6 +99,7 @@ app.post('/image2-upload', (req, res) => {
                 img2: images[0].secure_url
             })
             .then(user => res.json(user))
+            .catch(err => res.status(400).json("Error Uploading image"))
         })
 })
 
@@ -116,6 +118,7 @@ app.post('/image3-upload', (req, res) => {
                 img3: images[0].secure_url
             })
             .then(user => res.json(user))
+            .catch(err => res.status(400).json("Error Uploading image"))
         })
 })
 
@@ -134,6 +137,7 @@ app.post('/image4-upload', (req, res) => {
                 img4: images[0].secure_url
             })
             .then(user => res.json(user))
+            .catch(err => res.status(400).json("Error Uploading image"))
         })
 })
 
@@ -194,7 +198,8 @@ app.post('/sendmessage', (req, res) => {
     .insert({
         message: req.body.message,
         sender: req.body.sender,
-        receiver: req.body.receiver
+        receiver: req.body.receiver,
+        time_: new Date()
     })
     .then(() => {
         return db.select('*')

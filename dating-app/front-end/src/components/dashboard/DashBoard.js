@@ -18,21 +18,27 @@ class DashBoard extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ users: this.props.users });
+        //make fetch request to database to get users
+        this.usersAdder = setInterval(() => {
+            fetch('http://localhost:3000/')
+            .then(response => response.json())
+            .then(users_ => {
+                if (users_) {
+                    this.setState({ users: users_ });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+        }, 2000);
     }
 
-    UNSAFE_componentWillReceiveProps(props) {
-        this.setState({ users: props.users });
+    componentWillUnmount() {
+        clearInterval(this.usersAdder);
     }
 
     render () {
         const { user, users } = this.state;
         if (!user) {
-            return (
-                <div>
-                    <Redirect to="/login" />
-                </div>
-            )
+            return <Redirect to="/login" />;
         } else {
             return (
                 <div>
@@ -41,8 +47,8 @@ class DashBoard extends React.Component {
                     <AppSideBar user={user}/>
                     <div className="content">
                         <DashContent users={users} user={user}/>
-                        <Footer />
                     </div>
+                    <Footer />
                 </div>
             )
         }
@@ -51,8 +57,7 @@ class DashBoard extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user_reducer.user,
-        users: state.users_redu_cer.users
+        user: state.user_reducer.user
     }
 }
 

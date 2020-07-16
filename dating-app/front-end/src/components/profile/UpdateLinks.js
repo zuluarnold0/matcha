@@ -29,23 +29,35 @@ class UpdateLinks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname: '',
-            username: '',
+            firstname: props.user.firstname,
+            lastname: props.user.lastname,
+            username: props.user.username,
+            age: props.user.age,
+            gender: props.user.gender,
+            sexpref: props.user.sexpref,
+            bio: props.user.bio,
+            tags: props.user.tags,
             info_err_msg: '',
             names_err_msg: '',
             pref_err_msg: '',
-            age: '',
-            gender: '',
-            sexpref: '',
-            bio: '',
-            tags: [],
-            invalid_input: ""
+            invalid_input: "",
+            showNamesModal: false,
+            showInfoModal: false,
+            showPrefModal: false
         }
     }
 
-    componentDidMount() {
-        const { user } = this.props;
+    updateNames = () => this.setState({ showNamesModal: true });
+    closeNamesModal = () => this.setState({ showNamesModal: false, names_err_msg: "" });
+
+    updatePref = () => this.setState({ showPrefModal: true });
+    closePrefModal = () => this.setState({ showPrefModal: false, pref_err_msg: "" });
+
+    updateInfo = () => this.setState({ showInfoModal: true });
+    closeInfoModal = () => this.setState({ showInfoModal: false, info_err_msg: "" });
+
+    UNSAFE_componentWillReceiveProps(props) {
+        const { user } = props;
         this.setState({
             firstname: user.firstname,
             lastname: user.lastname,
@@ -72,7 +84,6 @@ class UpdateLinks extends React.Component {
         }
         else
         {
-            this.setState({ names_err_msg: '' });
             return true;
         }
     }
@@ -221,8 +232,8 @@ class UpdateLinks extends React.Component {
     }
 
     render() {
-        const { bio, tags, age, sexpref, gender, firstname, lastname, username, info_err_msg, pref_err_msg, names_err_msg, invalid_input } = this.state;
-        const { showNamesModal, updateNames, closeNamesModal, showPrefModal, updatePref, closePrefModal, showInfoModal, updateInfo, closeInfoModal } = this.props;
+        const { showNamesModal, showPrefModal, showInfoModal, bio, tags, age, sexpref, gender, firstname, lastname, username, info_err_msg, pref_err_msg, names_err_msg, invalid_input } = this.state;
+        const { updateNames, closeNamesModal, updatePref, closePrefModal, updateInfo, closeInfoModal } = this;
         return (
             <div className="links__bar">
                 {/* UPDATE NAMES */}

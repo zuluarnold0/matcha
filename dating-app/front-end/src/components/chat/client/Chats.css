@@ -34,12 +34,13 @@
 
 .chat-content-container {
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .chat-container {
     position: relative;
     margin-top: 90px;
-    padding-bottom: 30px;
+    padding-bottom: 16px;
 }
 
 .chatbox {
@@ -50,6 +51,12 @@
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+}
+
+.time__ {
+    font-size: 11px;
+    color: gray;
+    float: right;
 }
 
 @media only screen and (min-width: 380px) {
@@ -98,6 +105,14 @@
     overflow-y: scroll;
 }
 
+.chatlogs::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #ccc;
+}
 
 .chat {
     display: flex;
@@ -106,16 +121,31 @@
     margin-bottom: 20px;
 }
 
-.chat-with {
+.chat-with .chat-name {
     font-weight: bold;
+    color: dimgrey;
     font-size: 17px;
     font-family: sans-serif, serif;
-    padding:  10px 0px 0px 15px;
+    padding:  20px 0px 0px 10px;
+}
+
+.chat-with img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 10px 0px 0px 10px;
 }
 
 .chat .user-photo {
-    font-weight: 700;
-    font-size:  14px;
+    width: 40px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.chat .user-photo img {
+    width: 100%;
 }
 
 .chat .chat-message {
@@ -126,23 +156,15 @@
 }
 
 .friend .chat-message {
-    border-radius: 0px 20px 20px 20px;
     background-color: #f0eaea;
+    border-radius: 0px 15px 15px 15px;
 }
 
 .self .chat-message {
     /*background: lightskyblue;*/
-    border-radius: 20px 0px 20px 20px;
     background: pink;
+    border-radius: 15px 0px 15px 15px;
     order: -1;
-}
-
-.self .text__color {
-    color: palevioletred;
-}
-
-.friend .text__color {
-    color: dimgray;
 }
 
 .chat-form  form {

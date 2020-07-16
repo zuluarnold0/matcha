@@ -10,19 +10,21 @@ class SetVisits extends Component {
     }
 
     componentDidMount() {
-        //fetch views from database
-        fetch('http://localhost:3000/getviews')
-        .then(response => response.json())
-        .then(views => {
-            if (views) {
-                this.setState({ views: views });
-            }
-        })
-        .catch(err => console.log('an error occured'));
+        //make fetch request to database to get likes
+        this.usersViews = setInterval(() => {
+            fetch('http://localhost:3000/getviews')
+            .then(response => response.json())
+            .then(views => {
+                if (views) {
+                    this.setState({ views: views });
+                }
+            })
+            .catch(err => console.log('an error occured'));
+        }, 2000);
     }
-
+    
     componentWillUnmount() {
-        this.setState({ views: [] });
+        clearInterval(this.usersViews);
     }
 
     render() {
