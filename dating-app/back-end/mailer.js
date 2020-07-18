@@ -1,25 +1,32 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 
-const transport = nodemailer.createTransport({
-    service: 'Mailgun',
+/*const transport = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-        user: process.env.MAILGUN_USER,
-        pass: process.env.MAILGUN_PASS
-    },
-    tls: {
-        rejectUnauthorized: false
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
     }
 });
+*/
+
+var email_smtp = nodemailer.createTransport({      
+    host: "smtp.gmail.com",
+    auth: {
+      type: "login", // default
+      user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+    }
+  });
 
 module.exports = {
     sendEmail(from, to, subject, html) {
-        return new Promise((resolve, reject) => {
-            transport.sendMail({ from, subject, to, html }, (err, info) => {
-                if (err) reject(err);
-
-                resolve(info);
-            });
+        return email_smtp.sendMail({ from, subject, to, html }, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
         });
     }
 }

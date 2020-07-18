@@ -516,10 +516,10 @@ app.post('/register', (req, res) => {
                     img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     logged_time: new Date(),
                     is_logged_in: false,
-                    //secrettoken: secrettoken, //will update when sendmail works
-                    //active: false, //will update when sendmail works
-                    secrettoken: '',
-                    active: true
+                    secrettoken: secrettoken, //will update when sendmail works
+                    active: false, //will update when sendmail works
+                    //secrettoken: '',
+                    //active: true
                 })
                 .then(user => {
                     const html = `Hi ${user[0].firstname} ${user[0].lastname},
