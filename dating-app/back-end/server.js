@@ -453,7 +453,6 @@ app.post('/login', (req, res) => {
                 .returning('*')
                 .where('email', '=', req.body.email)
                 .then(user => {
-                    /*will update when sendmail works
                     if (user[0].active === false) {
                         res.status(400).json('Please verify your email!');
                     } else {
@@ -464,14 +463,14 @@ app.post('/login', (req, res) => {
                         .then(user => {
                             res.json(user[0]);
                         })
-                    }*/
-                    db('users')
+                    }
+                    /*db('users')
                         .returning('*')
                         .update({ is_logged_in: true })
                         .where('email', '=', req.body.email)
                         .then(user => {
                             res.json(user[0]);
-                        })
+                        })*/
                 })
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
@@ -516,8 +515,8 @@ app.post('/register', (req, res) => {
                     img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
                     logged_time: new Date(),
                     is_logged_in: false,
-                    secrettoken: secrettoken, //will update when sendmail works
-                    active: false, //will update when sendmail works
+                    secrettoken: secrettoken, 
+                    active: false
                     //secrettoken: '',
                     //active: true
                 })
@@ -529,9 +528,8 @@ app.post('/register', (req, res) => {
                         <br/>
                         Token: <strong>${secrettoken}</strong>
                         <br/>
-                        On the following page:
-                        <a href="http://localhost:3000/verify">http://localhost:3000/verify</a>
-                        <br/>br/>
+                        On VERIFY EMAIL PAGE.
+                        <br/><br/>
                         Have a pleasant day!`;
                     mailer.sendEmail('admin@matcha.com', user[0].email, 'Please verify your email', html);
                     res.json(user[0]);
