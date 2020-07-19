@@ -79,8 +79,7 @@ body {
 
 .register-box input[type="submit"]:hover {
     cursor: pointer;
-    color: crimson;
-    background: rgba(0, 0, 0, 0.6);
+    background: maroon;
 }
 
 .continue__btn {
@@ -109,7 +108,7 @@ body {
 }
 
 .continue__btn:hover, .back__btn:hover {
-    background: #ccc;
+    background: #ddd;
     color: crimson;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
@@ -192,17 +191,18 @@ body {
 .update_err {
     color: crimson;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 200;
     text-align: center;
 }
 
 .error__msg {
     font-size: 14px !important;
     color: red !important;
+    font-weight: 200 !important;
     text-align: center !important;
-    background-color: rgb(184, 242, 247) !important;
+    background-color: rgb(252, 236, 207) !important;
     padding: 5px !important;
-    border: 1px solid red;
+    border: 1px solid orangered;
 }
 
 

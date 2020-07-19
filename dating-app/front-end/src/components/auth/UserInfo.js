@@ -65,12 +65,12 @@ class UserInfo extends Component {
                                 onClick={this.back}
                             >GO BACK</button>
                             <br/><br/>
-                            <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                             {
                                 error_msg ? <p className="error__msg">
                                     { error_msg }
                                 </p> : ''
                             }
+                            <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                         </form>
                     </div>
                 </div>  

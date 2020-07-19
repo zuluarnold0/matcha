@@ -74,12 +74,12 @@ class Verify extends Component {
                             value="Verify"
                             onClick={this.onFormSubmit}
                         />
-                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                         {
                             this.state.error_msg ? <p className="error__msg">
                                 { this.state.error_msg }
                             </p> : ''
                         }
+                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                     </div>
                 </div>
             </div>

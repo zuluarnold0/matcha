@@ -464,13 +464,6 @@ app.post('/login', (req, res) => {
                             res.json(user[0]);
                         })
                     }
-                    /*db('users')
-                        .returning('*')
-                        .update({ is_logged_in: true })
-                        .where('email', '=', req.body.email)
-                        .then(user => {
-                            res.json(user[0]);
-                        })*/
                 })
                 .catch(err => res.status(400).json('unable to get user'))
         } else {
@@ -517,8 +510,6 @@ app.post('/register', (req, res) => {
                     is_logged_in: false,
                     secrettoken: secrettoken, 
                     active: false
-                    //secrettoken: '',
-                    //active: true
                 })
                 .then(user => {
                     const html = `Hi ${user[0].firstname} ${user[0].lastname},
@@ -528,7 +519,8 @@ app.post('/register', (req, res) => {
                         <br/>
                         Token: <strong>${secrettoken}</strong>
                         <br/>
-                        On VERIFY EMAIL PAGE.
+                        On the following page:
+                        <a href="http://localhost:3001/verify">http://localhost:3001/verify</a>
                         <br/><br/>
                         Have a pleasant day!`;
                     mailer.sendEmail('admin@matcha.com', user[0].email, 'Please verify your email', html);
@@ -539,6 +531,42 @@ app.post('/register', (req, res) => {
         .catch(trx.rollback)
     })
     .catch(err => res.status(400).json(err));
+})
+
+app.post('/forgot', (req, res) => {
+    db.select('*')
+    .from('users')
+    .returning('*')
+    .where('email', '=', req.body.email)
+    .then(user => {
+        const html = `Hi ${user[0].firstname} ${user[0].lastname},
+            to reset your password please follow this link:
+            <br/><br/>
+            <a href="http://localhost:3001/reset/${user[0].id}">http://localhost:3001/reset</a>
+            <br/><br/>
+            Have a pleasant day!`;
+        if (user) {
+            mailer.sendEmail('admin@matcha.com', user[0].email, 'Reset Matcha Password', html);
+            res.json(user[0]);
+        }
+    })
+    .catch(err => res.status(400).json('Unable to get user'));
+})
+
+//UPDATING PASSWORD AND RETURNING UPDATED USER
+app.put('/resetpass', (req, res) => {
+    db('users')
+    .returning('email')
+    .where('id', '=', req.body.id)
+    .then(data => {
+        const hash = bcrypt.hashSync(req.body.password);
+        db('login')
+        .where('email', '=', data[0].email)
+        .update({ hash: hash })
+        .then(response => res.json('success'))
+        .catch(err => res.status(400).json('Error updating password'));
+    })
+    .catch(err => res.status(400).json('User not found'));
 })
  
 app.listen(port, () => console.log(`matcha app is listening at http://localhost:${port}`));

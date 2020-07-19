@@ -12,17 +12,19 @@ const Success = ({ error_msg, tryAgain }) => {
                     <br/>
                     {
                         error_msg === "success" ? 
-                        (
-                            <Link className="success__links" to="/verify">
-                                <strong> verify account</strong>
-                            </Link>
-                        )
-                          :
-                        (
-                            <p className="success__links showClick" onClick={tryAgain}>
-                                <strong>please try again</strong>
+                        <div>
+                            <p className="error__msg">
+                                Check your email to verify your account
                             </p>
-                        )
+                            <br/>
+                            <Link className="success__links" to="/login">
+                                <strong> Go to Login </strong>
+                            </Link>
+                        </div>
+                        :
+                        <p className="success__links showClick" onClick={tryAgain}>
+                            <strong>please try again</strong>
+                        </p>
                     }
                 </div>
             </div>  

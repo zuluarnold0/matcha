@@ -102,13 +102,13 @@ class Login extends React.Component {
                                 value="LOGIN"
                                 onClick={this.onFormSubmit}
                             />
-                            <Link className="success__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                            <Link className="success__links" to="/register"><span>Don't have an account?</span></Link><br/>
                             {
                                 this.state.error_msg ? <p className="error__msg">
                                     { this.state.error_msg }
                                 </p> : ''
                             }
+                            <Link className="success__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
+                            <Link className="success__links" to="/register"><span>Don't have an account?</span></Link><br/>
                         </div>
                     </div>
                 </div>

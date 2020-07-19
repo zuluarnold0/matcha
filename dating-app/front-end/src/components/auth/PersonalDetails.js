@@ -71,12 +71,12 @@ class PersonalDetails extends Component {
                             onClick={this.continue}
                         />
                         <br/>
-                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                         {
                             error_msg ? <p className="error__msg">
                                 { error_msg }
                             </p> : ''
                         }
+                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
                     </form>
                 </div>
             </div>

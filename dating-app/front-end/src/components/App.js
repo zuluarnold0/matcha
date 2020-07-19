@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import DashBoard from './dashboard/DashBoard';
 import User from './user/User';
 import Login from './auth/Login';
+import Reset from './auth/Reset';
+import Verify from './auth/Verify';
 import Forgot from './auth/Forgot';
 import Chats from './chat/client/Chats';
 import Chat from './chat/client/Chat';
 import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
+import DashBoard from './dashboard/DashBoard';
 import Notification from '../components/notifications/Notification';
-import Verify from './auth/Verify';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/register" component={Register} />
         <Route path="/forgot" component={Forgot} />
         <Route path="/verify" component={Verify} />
+        <Route path="/reset/:id" component={Reset} />
         <Route path="/chats" component={Chats} />
         <Route path="/chat/:id" component={Chat} />
         <Route path="/user/:id" component={User} />
