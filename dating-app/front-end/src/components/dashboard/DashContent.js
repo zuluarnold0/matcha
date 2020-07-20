@@ -56,6 +56,7 @@ class DashContent extends Component {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
+    
     render() {
         const { users, tag_, age_, popularity_, sexpref_, city_, sortValue } = this.state;
         return (

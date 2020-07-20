@@ -18,12 +18,12 @@ const Success = ({ error_msg, tryAgain }) => {
                             </p>
                             <br/>
                             <Link className="success__links" to="/login">
-                                <strong> Go to Login </strong>
+                                Go to Login
                             </Link>
                         </div>
                         :
                         <p className="success__links showClick" onClick={tryAgain}>
-                            <strong>please try again</strong>
+                            please try again
                         </p>
                     }
                 </div>

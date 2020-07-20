@@ -11,11 +11,11 @@ import Register from './auth/Register';
 import MyProfile from './profile/MyProfile';
 import DashBoard from './dashboard/DashBoard';
 import Notification from '../components/notifications/Notification';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Route exact path="/" component={DashBoard}/>
         <Route path="/login" component={Login}/>
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/profile" component={MyProfile} />
         <Route path="/notification" component={Notification} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 

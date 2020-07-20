@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class PersonalDetails extends Component {
+
     continue = (event) => {
         event.preventDefault();
-        if(this.props.validatePersonal())
+        if (this.props.validatePersonal())
             this.props.nextStep();
         else
             this.props.currentStep();
     }
+
     render () {
         const { error_msg, firstname, lastname, username, email, password, cpassword, handleChange } = this.props;
         return (
@@ -76,7 +78,9 @@ class PersonalDetails extends Component {
                                 { error_msg }
                             </p> : ''
                         }
-                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                        <Link className="success__links" to="/login">
+                            <span>Go to Login</span>
+                        </Link><br/>
                     </form>
                 </div>
             </div>

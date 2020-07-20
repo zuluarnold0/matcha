@@ -70,7 +70,9 @@ class UserInfo extends Component {
                                     { error_msg }
                                 </p> : ''
                             }
-                            <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                            <Link className="success__links" to="/login">
+                                <span>Go to Login</span>
+                            </Link><br/>
                         </form>
                     </div>
                 </div>  

@@ -15,19 +15,11 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false,
-            showBlock: false,
             user: props.user,
             users: [],
             likes: []
         }
     }
-
-    closeModal = () => this.setState({ show: false });
-    reportUser = () => this.setState({ show: true });
-
-    closeBlockModal = () => this.setState({ showBlock: false });
-    showBlockModal = () => this.setState({ showBlock: true });
 
     componentDidMount() {
         this.users_Likes_Adder = setInterval(() => {
@@ -58,7 +50,7 @@ class User extends Component {
 
     render () {
         const { _id, user } = this.props;
-        const { users, likes, show, showBlock } = this.state;
+        const { users, likes } = this.state;
         if (!user) {
             return <Redirect to="/login" />
         } else {
@@ -74,6 +66,7 @@ class User extends Component {
                 wasILiked =likes && likes.filter(whoLiked(viewed_user[0].email, user.email));
                 didILike = likes && likes.filter(whoLiked(user.email, viewed_user[0].email));
             }
+            
             return (
                 <div>
                     <Nav/>
@@ -84,12 +77,6 @@ class User extends Component {
                                 didILike={didILike}
                                 user={user}
                                 viewed_user={viewed_user[0]}
-                                show={show}
-                                closeModal={this.closeModal}
-                                reportUser={this.reportUser}
-                                showBlock={showBlock}
-                                closeBlockModal={this.closeBlockModal}
-                                showBlockModal={this.showBlockModal}
                             />
                             :
                             <div id="dot-loader">

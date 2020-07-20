@@ -2,6 +2,7 @@ import React from 'react';
 import './Auth.css';
 import imgP from "./images/profile.jpg";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Reset extends React.Component {
 
@@ -114,6 +115,9 @@ class Reset extends React.Component {
                                 { this.state.error_msg }
                             </p> : ''
                         }
+                        <Link className="success__links" to="/login">
+                            Go to Login
+                        </Link>
                     </div>
                 </div>
             </div>

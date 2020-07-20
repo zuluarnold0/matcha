@@ -107,8 +107,12 @@ class Login extends React.Component {
                                     { this.state.error_msg }
                                 </p> : ''
                             }
-                            <Link className="success__links" to="/forgot"><span>Forgot Password?</span></Link><br/>
-                            <Link className="success__links" to="/register"><span>Don't have an account?</span></Link><br/>
+                            <Link className="success__links" to="/forgot">
+                                <span>Forgot Password?</span>
+                            </Link><br/>
+                            <Link className="success__links" to="/register">
+                                <span>Don't have an account?</span>
+                            </Link><br/>
                         </div>
                     </div>
                 </div>

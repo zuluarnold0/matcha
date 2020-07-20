@@ -46,7 +46,9 @@ const ConfirmDetails = ({ prevStep, onFormSubmit, firstname, lastname, username,
                         onClick={prevStep}
                     >GO BACK</button>
                     <br/><br/>
-                    <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                    <Link className="success__links" to="/login">
+                        <span>Go to Login</span>
+                    </Link><br/>
                 </div>
             </div>
         </div>  

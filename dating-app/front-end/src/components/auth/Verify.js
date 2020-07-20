@@ -3,6 +3,7 @@ import imgP from "./images/profile.jpg";
 import { Link } from 'react-router-dom';
 
 class Verify extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -79,7 +80,9 @@ class Verify extends Component {
                                 { this.state.error_msg }
                             </p> : ''
                         }
-                        <Link className="success__links" to="/login"><span>Go to Login</span></Link><br/>
+                        <Link className="success__links" to="/login">
+                            <span>Go to Login</span>
+                        </Link><br/>
                     </div>
                 </div>
             </div>

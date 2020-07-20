@@ -77,7 +77,9 @@ class Forgot extends React.Component {
                             </p> : ''
                         }
                         <br/>
-                        <Link className="success__links" to="/login"><span> Go to Login</span></Link>
+                        <Link className="success__links" to="/login">
+                            <span> Go to Login</span>
+                        </Link>
                     </div>
                 </div>
             </div>

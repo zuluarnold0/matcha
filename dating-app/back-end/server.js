@@ -171,7 +171,8 @@ app.put('/pref', (req, res) => {
 
 //SETTING USERS ON DASHBOARD
 app.get('/', (req, res) => {
-    db.select('*').from('users')
+    db.select('*')
+    .from('users')
     .then(users => {
         res.json(users)
     })
@@ -222,6 +223,51 @@ app.get('/getmatches', (req, res) => {
     db.select('*').from('matches')
     .then(matches => { res.json(matches) })
     .catch(err => res.status(400).json('Unable to get matches'));
+})
+
+//BLOCKING A USER
+app.post('/block', (req, res) => {
+    db('blocks')
+    .insert({
+        blocker: req.body.blocker,
+        blocked: req.body.blocked
+    })
+    .then(() => {
+        db('likes')
+        .where(function() {
+            this.where({
+                user1: req.body.blocker,
+                user2: req.body.blocked
+            })
+            .orWhere({
+                user1: req.body.blocked,
+                user2: req.body.blocker
+            })
+        })
+        .del()
+    })
+    .then(() => {
+        db('matches')
+        .where(function() {
+            this.where({
+                user1: req.body.blocker,
+                user2: req.body.blocked
+            })
+            .orWhere({
+                user1: req.body.blocked,
+                user2: req.body.blocker
+            })
+        })
+        .del()
+    })
+    .then(() => {
+        db.select('*')
+        .from('users')
+        .where({ email: req.body.blocked })
+        .then(users => { res.json(users[0]) })
+        .catch(err => res.status(400).json('Error getting a user'));
+    })
+    .catch(err => res.status(400).json('error blocking user'))
 })
 
 //UPDATING INFO AND RETURNING UPDATED USER
