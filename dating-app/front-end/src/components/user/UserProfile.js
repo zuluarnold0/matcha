@@ -11,8 +11,7 @@ class UserProfile extends Component {
             viewed_user: props.viewed_user,
             user: props.user,
             show: false,
-            showBlock: false,
-            isBlocked: false
+            showBlock: false
         }
     }
     
@@ -42,25 +41,6 @@ class UserProfile extends Component {
         })
     }
 
-    blockUser = (event) => {
-        event.preventDefault();
-        const { viewed_user, user } = this.state;
-        fetch('http://localhost:3000/block', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                blocker: user.email,
-                blocked: viewed_user.email
-            })
-        })
-        .then(response => response.json())
-        .then(user => {
-            if (user.email) {
-                this.setState({ isBlocked: true });
-            }
-        })
-    }
-
     handleUnlike = (event) => {
         event.preventDefault();
         const { user, viewed_user } = this.state;
@@ -75,7 +55,7 @@ class UserProfile extends Component {
     }
 
     render() {
-        const { viewed_user, show, isBlocked/*, showBlock*/ } = this.state;
+        const { viewed_user, show, isBlocked, showBlock } = this.state;
         const { wasILiked, didILike } = this.props;
         if (!isBlocked) {
             if (viewed_user) {
@@ -92,15 +72,15 @@ class UserProfile extends Component {
                                 <button type="button" className="btn btn-xs btn-success likebtn" onClick={this.handleClick}><span className="fas fa-thumbs-up"></span> LIKE</button>
                             }
                             <button type="button" className="btn btn-xs btn-primary" onClick={this.handleUnlike}><span className="fas fa-thumbs-down"></span> UNLIKE</button>
-                            <button type="button" className="btn btn-xs btn-danger" onClick={this.blockUser} /*onClick={this.showBlockModal}*/><span className="fas fa-ban"></span> BLOCK</button>
-                            {/*
+                            <button type="button" className="btn btn-xs btn-danger" onClick={this.showBlockModal}><span className="fas fa-ban"></span> BLOCK</button>
+                            {
                                 showBlock === true ? <div id="myModal" className="modal">
                                     <div className="modal-content">
                                         <span onClick={this.closeBlockModal} className="close">&times;</span>
                                         <p className="modalMessage">You attempted to block <strong>{ viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1) }</strong>'s account. Matcha Team will block the user for you.</p>
                                     </div>
                                 </div>
-                                : ""*/
+                                : ""
                             }
                             <button type="button" onClick={this.reportUser} className="btn btn-xs btn-warning "><span className="fas fa-bullhorn"></span> REPORT</button>
                             {
