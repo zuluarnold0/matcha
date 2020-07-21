@@ -11,7 +11,7 @@ const findBloks = (my_blocks, users) => {
     let users_arr = [];
     for (let i = 0; i < users.length; i++) {
         for (let j = 0; j < my_blocks.length; j++) {
-            if (my_blocks[j].liker === users[i].email) {
+            if (my_blocks[j].blocked === users[i].email) {
                 users_arr.push(users[i]);
             }
         }
