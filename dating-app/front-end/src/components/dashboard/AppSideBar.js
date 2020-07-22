@@ -7,7 +7,7 @@ class AppSideBar extends React.Component {
             <div className="sidebar">
                 <center>
                     <img src={ user.photourl } className="profile_image" alt="img" />
-                    <h4>{ user.username }</h4>
+                    <h4>{ user.firstname }</h4>
                 </center>
                 <div className="sidebar-filter">
                     <div className="sidebar_section">

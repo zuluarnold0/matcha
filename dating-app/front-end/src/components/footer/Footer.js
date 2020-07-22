@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="footer">
-            star arnold © matcha
+            zulu arnold © matcha
         </footer>
     )
 }

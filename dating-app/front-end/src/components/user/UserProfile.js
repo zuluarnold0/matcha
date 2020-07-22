@@ -77,7 +77,7 @@ class UserProfile extends Component {
                                 showBlock === true ? <div id="myModal" className="modal">
                                     <div className="modal-content">
                                         <span onClick={this.closeBlockModal} className="close">&times;</span>
-                                        <p className="modalMessage">You attempted to block <strong>{ viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1) }</strong>'s account. Matcha Team will block the user for you.</p>
+                                        <p className="modalMessage">You attempted to block <strong>{ viewed_user.firstname[0].toUpperCase() + viewed_user.firstname.slice(1) }</strong>'s account. Matcha Team will block the user for you.</p>
                                     </div>
                                 </div>
                                 : ""
@@ -87,7 +87,7 @@ class UserProfile extends Component {
                                 show === true ? <div id="myModal" className="modal">
                                     <div className="modal-content">
                                         <span onClick={this.closeModal} className="close">&times;</span>
-                                        <p className="modalMessage">You reported <strong>{ viewed_user.username[0].toUpperCase() + viewed_user.username.slice(1) }</strong>'s account as a fake account. Further investigations will be done by Matcha Team</p>
+                                        <p className="modalMessage">You reported <strong>{ viewed_user.firstname[0].toUpperCase() + viewed_user.firstname.slice(1) }</strong>'s account as a fake account. Further investigations will be done by Matcha Team</p>
                                     </div>
                                 </div>
                                 : ""
