@@ -8,6 +8,7 @@ const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 const randomstring = require("randomstring");
 const mailer = require("./mailer");
+const register = require("./controllers/Register");
 
 var app = express();
 const port =  3000;
@@ -34,18 +35,8 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 })
 
-//UPDATING CITY AND RETURNING UPDATED USER
-app.put('/verify', (req, res) => {
-    db('users')
-    .returning('*')
-    .where('secrettoken', '=', req.body.secrettoken.trim())
-    .update({
-        secrettoken: '',
-        active: true
-    })
-    .then(user => res.json(user[0]))
-    .catch(err => res.status(400).json('Error encountered while updating token'));
-})
+//VRIFY REGISTERED USER
+app.put('/verify', (req, res) => { register.handleVerify(req, res, db) });
 
 //PROFILE IMAGE UPLOAD END POINT
 app.post('/profile-upload', (req, res) => {
@@ -444,130 +435,15 @@ app.post('/like', (req, res) => {
 })
 
 //LOGGING IN AND RETURNING LOGGED USER
-app.post('/login', (req, res) => {
-    db.select('email', 'hash').from('login')
-    .where('email', '=', req.body.email)
-    .then(data => {
-        const isValid = bcrypt.compareSync(req.body.password, data[0].hash)
-        if (isValid) {
-            db('users')
-                .returning('*')
-                .where('email', '=', req.body.email)
-                .then(user => {
-                    if (user[0].active === false) {
-                        res.status(400).json('Please verify your email!');
-                    } else {
-                        db('users')
-                        .returning('*')
-                        .update({ is_logged_in: true })
-                        .where('email', '=', req.body.email)
-                        .then(user => {
-                            res.json(user[0]);
-                        })
-                    }
-                })
-                .catch(err => res.status(400).json('unable to get user'))
-        } else {
-            res.status(400).json('wrong credentials')
-        }
-    })
-    .catch(err => res.status(400).json('wrong credentials'));
-})
+app.post('/login', (req, res) => { register.handleLogin(req, res, db, bcrypt) });
 
 //INSERTING USER INTO LOGIN AND USERS TABLES
-app.post('/register', (req, res) => {
-    const hash = bcrypt.hashSync(req.body.password);
-    db.transaction(trx => {
-        trx.insert({
-            hash: hash,
-            email: req.body.email
-        })
-        .into('login')
-        .returning('email')
-        .then(loginEmail => {
-            const secrettoken = randomstring.generate();
-            return trx('users')
-                .returning('*')
-                .insert({
-                    firstname: req.body.firstname,
-                    lastname: req.body.lastname,
-                    username: req.body.username,
-                    email: loginEmail[0],
-                    photourl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    bio: req.body.bio,
-                    gender: req.body.gender,
-                    age: req.body.age,
-                    sexpref: req.body.sexpref,
-                    tags: req.body.tags,
-                    city: req.body.city,
-                    longi: req.body.longi,
-                    lati: req.body.lati,
-                    popularity: 0,
-                    img1: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img3: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    logged_time: new Date(),
-                    is_logged_in: false,
-                    secrettoken: secrettoken, 
-                    active: false
-                })
-                .then(user => {
-                    const html = `Hi ${user[0].firstname} ${user[0].lastname},
-                        Thank you for registering to Matcha app!
-                        <br/><br/>
-                        Please verify your email by typing the following token:
-                        <br/>
-                        Token: <strong>${secrettoken}</strong>
-                        <br/>
-                        On the following page:
-                        <a href="http://localhost:3001/verify">http://localhost:3001/verify</a>
-                        <br/><br/>
-                        Have a pleasant day!`;
-                    mailer.sendEmail('admin@matcha.com', user[0].email, 'Please verify your email', html);
-                    res.json(user[0]);
-                })
-        })
-        .then(trx.commit)
-        .catch(trx.rollback)
-    })
-    .catch(err => res.status(400).json(err));
-})
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt, randomstring, mailer) });
 
-app.post('/forgot', (req, res) => {
-    db.select('*')
-    .from('users')
-    .returning('*')
-    .where('email', '=', req.body.email)
-    .then(user => {
-        const html = `Hi ${user[0].firstname} ${user[0].lastname},
-            to reset your password please follow this link:
-            <br/><br/>
-            <a href="http://localhost:3001/reset/${user[0].id}">http://localhost:3001/reset</a>
-            <br/><br/>
-            Have a pleasant day!`;
-        if (user) {
-            mailer.sendEmail('admin@matcha.com', user[0].email, 'Reset Matcha Password', html);
-            res.json(user[0]);
-        }
-    })
-    .catch(err => res.status(400).json('Unable to get user'));
-})
+//RESETTING PASSWORD
+app.post('/forgot', (req, res) => { register.handleForgot(req, res, db, mailer) })
 
 //UPDATING PASSWORD AND RETURNING UPDATED USER
-app.put('/resetpass', (req, res) => {
-    db('users')
-    .returning('email')
-    .where('id', '=', req.body.id)
-    .then(data => {
-        const hash = bcrypt.hashSync(req.body.password);
-        db('login')
-        .where('email', '=', data[0].email)
-        .update({ hash: hash })
-        .then(response => res.json('success'))
-        .catch(err => res.status(400).json('Error updating password'));
-    })
-    .catch(err => res.status(400).json('User not found'));
-})
+app.put('/resetpass', (req, res) =>  {register.handleReset(req, res, db, bcrypt) });
  
 app.listen(port, () => console.log(`matcha app is listening at http://localhost:${port}`));
