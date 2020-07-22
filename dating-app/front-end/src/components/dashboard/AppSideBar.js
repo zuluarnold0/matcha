@@ -39,7 +39,7 @@ class AppSideBar extends React.Component {
                         />
                     </div>
                         
-                    <div className="sidebar_section">
+                    <div className="">
                         <input
                             type="hidden"
                             name="sexpref_"
