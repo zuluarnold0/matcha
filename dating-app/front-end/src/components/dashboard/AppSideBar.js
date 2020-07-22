@@ -1,20 +1,56 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const AppSideBar = ({ user }) => { 
+class AppSideBar extends React.Component {
+    render() { 
+        const { handleChange, sexpref_, user } = this.props;
+        return (
+            <div className="sidebar">
+                <center>
+                    <img src={ user.photourl } className="profile_image" alt="img" />
+                    <h4>{ user.username }</h4>
+                </center>
+                <div className="sidebar-filter">
+                    <div className="sidebar_section">
+                        <span className="sidebar-title">Filter by tags: </span>
+                        <div className="sidebar-tags">
+                            <span className="tagz_">photography</span>
+                            <span className="tagz_">art</span>
+                            <span className="tagz_">music</span>
+                            <span className="tagz_">coding</span>
+                            <span className="tagz_">gym</span>
+                        </div>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="tag_"
+                            placeholder="Enter one tag from above..."
+                            onChange={handleChange}
+                        />
+                    </div>
 
-    return (
-        <div className="sidebar">
-            <center>
-                <img src={ user.photourl } className="profile_image" alt="img" />
-                <h4>{ user.username }</h4>
-            </center>
-            <Link style={{ textDecoration: 'none' }} to="/"><p><i className="fas fa-house-user"></i><span>Home</span></p></Link>
-            <Link style={{ textDecoration: 'none' }} to="/profile"><p><i className="fas fa-user-circle"></i><span>Profile</span></p></Link>
-            <Link style={{ textDecoration: 'none' }} to="/chats"><p><i className="fas fa-envelope"></i><span>Messages</span></p></Link>
-            <Link style={{ textDecoration: 'none' }} to="/notification"><p><i className="fas fa-bell"></i><span>Notifications</span></p></Link>
-        </div>
-    )
+                    <div className="sidebar_section">
+                        <span className="sidebar-title">Filter by location: </span>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="city_"
+                            placeholder="Search by city or town..."
+                            onChange={handleChange}
+                        />
+                    </div>
+                        
+                    <div className="sidebar_section">
+                        <input
+                            type="hidden"
+                            name="sexpref_"
+                            value={sexpref_}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default AppSideBar;

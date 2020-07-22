@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {  NavLink, Link } from 'react-router-dom';
 import "../nav/Nav.css";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { unSetUserFromState } from '../../store/actions/actions';
 
 class AppHeader extends React.Component {
 
@@ -22,6 +23,13 @@ class AppHeader extends React.Component {
                 email: this.props.user.email
             })
         })
+        .then(response => response.json())
+        .then(data => {
+            if (data === 'success') {
+                this.props.unSetUserFromState();
+            }
+        })
+        .catch(error => console.err(error));
     }
 
     render () {
@@ -31,7 +39,6 @@ class AppHeader extends React.Component {
         } else {
             return (
                 <nav className="nav-ba">
-                    
                     <ul>
                         <div className="push-nav-start">
                             <li>
@@ -44,6 +51,26 @@ class AppHeader extends React.Component {
                             </li>
                         </div>
                         <div className="push-nav-end">
+                            <li>
+                                <NavLink to="/profile" className="nav-img">
+                                    <img src={this.state.user.photourl} alt="img"/>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/">
+                                    <span className="nav-tags fas fa-house-user"></span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/chats">
+                                    <span className="nav-tags fas fa-envelope"></span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/notification">
+                                    <span className="nav-tags fas fa-bell"></span>
+                                </NavLink>
+                            </li>
                             <li>
                                 <Link onClick={this.logout}  to="/login" className="nav-logout nav-tags fas fa-power-off"></Link><br/>
                             </li>
@@ -61,4 +88,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(AppHeader);
+const mapDispatchToProps = dispatch => {
+    return {
+        unSetUserFromState: () => dispatch(unSetUserFromState())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

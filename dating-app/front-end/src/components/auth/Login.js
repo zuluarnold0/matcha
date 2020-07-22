@@ -59,7 +59,6 @@ class Login extends React.Component {
                         }
                     })
                     .catch(err => console.log('an error occured'));
-
                     //set user to global state
                     this.props.setUserToState(user);
                     this.setState({ user: user });

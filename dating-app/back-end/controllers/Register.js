@@ -29,6 +29,17 @@ const handleLogin = (req, res, db, bcrypt) => {
     .catch(err => res.status(400).json('wrong credentials'));
 }
 
+const handleLogout = (req, res, db) => {
+    db('users')
+    .where('email', '=', req.body.email)
+    .update({ 
+        is_logged_in: false,
+        logged_time: new Date()
+     })
+    .then(response => res.json('success'))
+    .catch(err => res.status(400).json('Error updating is_logged_in'));
+}
+
 //REGISTER ROUTE
 const handleRegister = (req, res, db, bcrypt, randomstring, mailer) => {
     const hash = bcrypt.hashSync(req.body.password);
@@ -144,5 +155,6 @@ module.exports = {
     handleRegister: handleRegister,
     handleForgot: handleForgot,
     handleReset: handleReset,
-    handleVerify: handleVerify
+    handleVerify: handleVerify,
+    handleLogout: handleLogout
 }

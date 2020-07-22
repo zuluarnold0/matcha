@@ -66,7 +66,7 @@ class ImportantUpdates extends React.Component {
             .then(user => {
                 if (user) {
                     this.props.setUserToState(user[0]);
-                    this.setState({ city_err_msg: `Your city is ${user[0].city}`})
+                    this.setState({ city_err_msg: `Your city has been updated to ${user[0].city}`})
                 }
             })
             .catch(err => this.setState({ city_err_msg: 'Unable to update City'}));
@@ -75,6 +75,7 @@ class ImportantUpdates extends React.Component {
     }
 
     onUploadImage1 = e => {
+        this.setState({ img1_err_msg: 'Uploading image 1...........'});
         const _id = this.state.user.id;
         const formData = new FormData();
         let fileToUpload = null;
@@ -105,6 +106,7 @@ class ImportantUpdates extends React.Component {
         let fileToUpload = null;
         fileToUpload = e.target.files[0];
 
+        this.setState({ img2_err_msg: 'Uploading image 2...........'});
         if (fileToUpload) {
             formData.append(_id, fileToUpload, fileToUpload.name);
             fetch('http://localhost:3000/image2-upload', {
@@ -130,6 +132,7 @@ class ImportantUpdates extends React.Component {
         let fileToUpload = null;
         fileToUpload = e.target.files[0];
 
+        this.setState({ img3_err_msg: 'Uploading image 3...........'});
         if (fileToUpload) {
             formData.append(_id, fileToUpload, fileToUpload.name);
             fetch('http://localhost:3000/image3-upload', {
@@ -155,6 +158,7 @@ class ImportantUpdates extends React.Component {
         let fileToUpload = null;
         fileToUpload = e.target.files[0];
 
+        this.setState({ img4_err_msg: 'Uploading image 4...........'});
         if (fileToUpload) {
             formData.append(_id, fileToUpload, fileToUpload.name);
             fetch('http://localhost:3000/image4-upload', {

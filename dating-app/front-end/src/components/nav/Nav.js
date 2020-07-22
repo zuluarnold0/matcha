@@ -3,6 +3,7 @@ import "./Nav.css";
 import {  NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { unSetUserFromState } from '../../store/actions/actions';
 
 class Nav extends React.Component {
     state = {
@@ -21,6 +22,13 @@ class Nav extends React.Component {
                 email: this.props.user.email
             })
         })
+        .then(response => response.json())
+        .then(data => {
+            if (data === 'success') {
+                this.props.unSetUserFromState();
+            }
+        })
+        .catch(error => console.err(error));
     }
 
     render () {
@@ -68,4 +76,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Nav);
+const mapDispatchToProps = dispatch => {
+    return {
+        unSetUserFromState: () => dispatch(unSetUserFromState())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

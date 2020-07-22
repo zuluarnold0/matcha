@@ -14,17 +14,6 @@
     width: 90%;
 }
 
-.filter-section  input[type="text"]
-{
-    height: 26px;
-    padding: 4px;
-    font-size: 13px;
-    margin-bottom: 3px;
-    border: none;
-    color: #000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
-
 .filter-title {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
@@ -46,26 +35,9 @@
 
 .filter-range-value {
     font-size:12px;
-    color:purple;
+    color: rgb(95, 50, 65);
     font-family: fantasy,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 100;
-}
-
-.display-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 5px;
-}
-
-.tag__ {
-    padding: 2px;
-    color: palevioletred;
-    background-color: #fff;
-    font-size: 13px;
-    margin-right: 8px;
-    border-radius: 5px;
-    border: 1px solid palevioletred;
 }
 
 @media only screen and (max-width: 640px) {
@@ -86,13 +58,13 @@
         padding:0;
         color: rgba(0, 0, 0, 0.7);
     }
-    .age__color {
+    .gray1 {
         background-color: #bbb;
     }
-    .tags__color {
+    .gray2 {
         background-color: #ccc;
     }
-    .rating__color {
+    .gray3 {
         background-color: #ddd;
     }
     .filter-section input[type="range"]

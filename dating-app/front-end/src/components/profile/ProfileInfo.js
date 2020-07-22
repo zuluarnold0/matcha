@@ -36,6 +36,7 @@ class ProfileInfo extends React.Component {
                     this.props.setUserToState(user[0]);
                 }
             })
+            .catch(error => console.err(error));
         }
     }
 
