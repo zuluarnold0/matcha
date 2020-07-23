@@ -36,10 +36,16 @@ class VisitsNotification extends React.Component {
         const { views, users, user } = this.state;
         const my_views = views && views.filter(view_ => view_.viewed === user.email);
         const v_users = (my_views.length > 0 && users.length > 0) ? findViewers(my_views, users) : [];
+        const mapped = v_users && v_users.map(view => <VisitCard key={view.id} user={user} view={view}/>);
         return (
             <div>
                 {
-                    v_users && v_users.map(view => <VisitCard key={view.id} user={user} view={view}/>)
+                    !mapped.length ? 
+                    <div className="no_data">
+                        <p>You don't have any profile visits!!</p>
+                    </div>
+                    :
+                    mapped
                 }
             </div>
         )

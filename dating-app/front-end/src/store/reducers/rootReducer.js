@@ -1,10 +1,8 @@
-import { userReducer, setUsersReducer, setTablesReducer } from './reducers';
+import { userReducer } from './reducers';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    user_reducer: userReducer,
-    users_redu_cer: setUsersReducer,
-    tables_reducer: setTablesReducer
+    user_reducer: userReducer
 })
 
 export default rootReducer;

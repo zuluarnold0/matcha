@@ -87,3 +87,25 @@ hr {
   50% { opacity: .3; transform: scale(2); }
   100% { transform: scale(1); }
 }
+
+.no_users {
+    position: relative;
+    margin: 20px auto;
+    color: palevioletred;
+    font-size: 20px;
+}
+
+.no_data {
+  position: relative;
+  margin: 50px auto;
+  color: palevioletred;
+  font-size: 18px;
+  width: 40%;
+}
+
+.users_count {
+  color: palevioletred;
+  font-size: 15px;
+  font-weight: 600;
+  padding-left: 20px;
+}

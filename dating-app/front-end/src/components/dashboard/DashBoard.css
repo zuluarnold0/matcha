@@ -46,6 +46,8 @@
     box-sizing: border-box;
     transition: 0.5s;
     transition-property: background;
+    box-shadow: 0 -5px 5px -5px dimgray;
+    box-shadow: 0 5px 5px -5px dimgray;
 }
 
 .sidebar-tags {

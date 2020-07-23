@@ -36,11 +36,17 @@ class ProfileLikes extends Component {
         const { likes, users, user } = this.state;
         const my_likes = likes && likes.filter(like_ => like_.liker === user.email)
         const l_users = (my_likes.length > 0 && users.length > 0) ? findLikers(my_likes, users) : [];
+        const mapped = l_users && l_users.map(like => <Like key={like.id} like={like} user={user}/>);
         return (
             <div>
                 {
-                    l_users && l_users.map(like => <Like key={like.id} like={like} user={user}/>)
-                }
+                !mapped.length ? 
+                    <div className="no_data">
+                        <p>You don't have any Likes!!</p>
+                    </div>
+                    :
+                    mapped
+                }   
             </div>
         )
     }

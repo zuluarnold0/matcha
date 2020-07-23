@@ -16,7 +16,7 @@ const messages = require("./controllers/Messages");
 const interactions = require("./controllers/Interactions");
 
 var app = express();
-const port =  3000;
+const port = process.env.PORT || 3000;
 
 //CONNECTING TO POSTGRES DATABASE
 const db = knex({

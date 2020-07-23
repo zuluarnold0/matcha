@@ -37,10 +37,16 @@ class ProfileMatches extends Component {
     render() {
         const { matches, users, user } = this.state;
         let m_users =  (matches.length > 0 && users.length > 0) ? findMatches(matches, users, user) : [];
+        const mapped = m_users && m_users.map(match => <Match key={match.id} user={user} match={match}/>);
         return (
             <div>
             {
-                m_users && m_users.map(match => <Match key={match.id} user={user} match={match}/>)
+                !mapped.length ? 
+                    <div className="no_data">
+                        <p>You don't have any Matches!!</p>
+                    </div>
+                    :
+                    mapped
             }
             </div>
         )
