@@ -18,7 +18,7 @@ const interactions = require("./controllers/Interactions");
 var app = express();
 const port = process.env.PORT || 3000;
 
-//CONNECTING TO POSTGRES DATABASE
+//CONNECTING TO POSTGRES DB
 const db = knex({
     client: 'pg',
     connection: {
