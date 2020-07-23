@@ -23,7 +23,7 @@ class FilterBar extends React.Component {
                     </div>
 
                     <div className="filter-section gray2">
-                        <span className="filter-title">Filter popularity: </span>
+                        <span className="filter-title">Filter by popularity: </span>
                         <span className="filter-range">0 - 2000</span><br/>
                         <input
                             type="range"
