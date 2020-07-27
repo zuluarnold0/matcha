@@ -39,9 +39,15 @@ class FindMatch extends Component {
     render() {
         const { matches, users, user } = this.state;
         const m_users = (matches.length > 0 && users.length > 0) ? findMatches(matches, users, user) : [];
+        const foundUsers = m_users && m_users.map(match => <Card key={match.id} match={match}/>)
         return <div>
                 {
-                    m_users && m_users.map(match => <Card key={match.id} match={match}/>)
+                    foundUsers.length ?
+                        foundUsers
+                        :
+                        <div className="no_data">
+                            <p>You don't have matches</p>
+                        </div>
                 }
             </div>
     }

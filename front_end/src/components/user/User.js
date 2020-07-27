@@ -60,20 +60,21 @@ class User extends Component {
             let didILike = [];
             let viewed_user = [];
 
-            if (users.length && likes.length) {
+            if (users.length) {
                 viewed_user = users.length && users.filter(usr => {
                     return usr.id === Number(_id);
                 });
-
+            }
+            if (likes.length) {
                 wasILiked =likes && likes.filter(whoLiked(viewed_user[0].email, user.email));
                 didILike = likes && likes.filter(whoLiked(user.email, viewed_user[0].email));
             }
-            
+            console.log(viewed_user[0])
             return (
                 <div>
                     <Nav/>
                     {
-                        (likes.length && users.length) ?
+                        (viewed_user[0]) ?
                             <ShowUser
                                 wasILiked={wasILiked}
                                 didILike={didILike}

@@ -67,7 +67,7 @@ class UserProfile extends Component {
                         <img src={viewed_user.photourl}  alt="img"/>
                         <div className="user__btns">
                             {
-                                viewed_user.photourl === "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS" ?
+                                viewed_user.photourl === "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png" ?
                                 <button type="button" className="btn btn-xs btn-success likebtn" disabled><span className="fas fa-thumbs-up"></span> LIKE</button>
                                 :
                                 <button type="button" className="btn btn-xs btn-success likebtn" onClick={this.handleClick}><span className="fas fa-thumbs-up"></span> LIKE</button>

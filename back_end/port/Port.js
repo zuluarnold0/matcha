@@ -1,5 +1,6 @@
-const port = 'http://localhost:3000';
+//front end port
+const port_ = 'http://localhost:3001';
 
 module.exports = {
-    port: port
+    port_: port_
 }

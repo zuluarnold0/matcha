@@ -61,7 +61,7 @@ const handleRegister = (req, res, db, bcrypt, randomstring, mailer) => {
                     lastname: req.body.lastname,
                     username: req.body.username,
                     email: loginEmail[0],
-                    photourl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
+                    photourl: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
                     bio: req.body.bio,
                     gender: req.body.gender,
                     age: req.body.age,
@@ -71,10 +71,10 @@ const handleRegister = (req, res, db, bcrypt, randomstring, mailer) => {
                     longi: req.body.longi,
                     lati: req.body.lati,
                     popularity: 0,
-                    img1: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img2: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img3: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
-                    img4: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm2hIJK-htqNGFQUUtshHh934Z_J3CDlSe9H7UHLWln9by7CoS",
+                    img1: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
+                    img2: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
+                    img3: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
+                    img4: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
                     logged_time: new Date(),
                     is_logged_in: false,
                     secrettoken: secrettoken, 
@@ -89,7 +89,7 @@ const handleRegister = (req, res, db, bcrypt, randomstring, mailer) => {
                         Token: <strong>${secrettoken}</strong>
                         <br/>
                         On the following page:
-                        <a href="${port__.port}/verify">${port__.port}/verify</a>
+                        <a href="${port__.port_}/verify">${port__.port_}/verify</a>
                         <br/><br/>
                         Have a pleasant day!`;
                     mailer.sendEmail('admin@matcha.com', user[0].email, 'Please verify your email', html);
@@ -125,7 +125,7 @@ const handleForgot = (req, res, db, mailer) => {
         const html = `Hi ${user[0].firstname} ${user[0].lastname},
             to reset your password please follow this link:
             <br/><br/>
-            <a href="${port__.port}/reset/${user[0].id}">${port__.port}/reset</a>
+            <a href="${port__.port_}/reset/${user[0].id}">${port__.port_}/reset</a>
             <br/><br/>
             Have a pleasant day!`;
         if (user) {
