@@ -62,11 +62,11 @@ const handleRegister = (req, res, db, bcrypt, randomstring, mailer) => {
                     username: req.body.username,
                     email: loginEmail[0],
                     photourl: "https://res.cloudinary.com/dsaj6ikxp/image/upload/v1595853508/p_avat_efz4hl.png",
-                    bio: req.body.bio,
-                    gender: req.body.gender,
-                    age: req.body.age,
-                    sexpref: req.body.sexpref,
-                    tags: req.body.tags,
+                    bio: "",
+                    gender: "",
+                    age: 0,
+                    sexpref: "",
+                    tags: [],
                     city: req.body.city,
                     longi: req.body.longi,
                     lati: req.body.lati,
@@ -152,11 +152,28 @@ const handleReset = (req, res, db, bcrypt) => {
     .catch(err => res.status(400).json('User not found'));
 }
 
+//EXTENDED PROFILE ROUTE
+const handleExtended = (req, res, db) => {
+    db('users')
+    .returning('*')
+    .where('email', '=', req.body.email)
+    .update({
+        bio: req.body.bio,
+        gender: req.body.gender,
+        age: req.body.age,
+        sexpref: req.body.sexpref,
+        tags: req.body.tags
+    })
+    .then(user => res.json(user[0]))
+    .catch(() => res.status(400).json('Error updating user profile'));
+}
+
 module.exports = {
     handleLogin: handleLogin,
     handleRegister: handleRegister,
     handleForgot: handleForgot,
     handleReset: handleReset,
     handleVerify: handleVerify,
-    handleLogout: handleLogout
+    handleLogout: handleLogout,
+    handleExtended: handleExtended
 }

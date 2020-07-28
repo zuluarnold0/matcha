@@ -1,23 +1,14 @@
 import React from 'react';
-import imgP from "./images/profile.jpg";
-import { Link } from 'react-router-dom';
+import imgP from "../auth/images/profile.jpg";
 
 //confirm your details
-const ConfirmDetails = ({ prevStep, onFormSubmit, firstname, lastname, username, email, bio, gender, age, sexpref, tags }) => {
+const ConfirmDetails = ({ prevStep, onFormSubmit, bio, gender, age, sexpref, tags, tryAgain, error_msg }) => {
     return (
         <div className="bg">
             <div className="register-box box__">
                 <img src={imgP} alt="img" className="avatar"/>
                 <h1>CONFIRM DETAILS</h1>
                 <div>
-                    <span className="register-key">FirstName:</span>
-                    <span className="register-value"> {firstname}</span><br/>
-                    <span className="register-key">LastName:</span>
-                    <span className="register-value"> {lastname}</span><br/>
-                    <span className="register-key">Username:</span>
-                    <span className="register-value"> {username}</span><br/>
-                    <span className="register-key">Email:</span>
-                    <span className="register-value"> {email}</span><br/>
                     <span className="register-key">Gender:</span>
                     <span className="register-value"> {gender}</span><br/>
                     <span className="register-key">Preference:</span>
@@ -46,10 +37,15 @@ const ConfirmDetails = ({ prevStep, onFormSubmit, firstname, lastname, username,
                         name="submit"
                         onClick={prevStep}
                     >GO BACK</button>
-                    <br/><br/>
-                    <Link className="success__links" to="/login">
-                        <span>Go to Login</span>
-                    </Link><br/>
+                    <br/>
+                    {
+                        error_msg === "failed to update profile" ?
+                            <p className="success__links showClick" onClick={tryAgain}>
+                                please here to try again
+                            </p>
+                            :
+                            "success"
+                    }
                 </div>
             </div>
         </div>  

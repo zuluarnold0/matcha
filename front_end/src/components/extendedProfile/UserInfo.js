@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import imgP from "./images/profile.jpg";
+import imgP from "../auth/images/profile.jpg";
 import Tag from '../update/Tag';
-import { Link } from 'react-router-dom';
 
 class UserInfo extends Component {
+
     back = (event) => {
         event.preventDefault();
         this.props.prevStep();
     }
+    
     continue = (event) => {
         event.preventDefault();
         if(this.props.validateInfo())
@@ -15,6 +16,7 @@ class UserInfo extends Component {
         else
             this.props.currentStep();
     }
+    
     render() {
         const { error_msg, containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_input, tags, bio, handleChange } = this.props;
         var tags_ = tags && tags.map((tag, i) => {
@@ -70,9 +72,6 @@ class UserInfo extends Component {
                                     { error_msg }
                                 </p> : ''
                             }
-                            <Link className="success__links" to="/login">
-                                <span>Go to Login</span>
-                            </Link><br/>
                         </form>
                     </div>
                 </div>  

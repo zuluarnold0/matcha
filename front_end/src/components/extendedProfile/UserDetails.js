@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import imgP from "./images/profile.jpg";
-import { Link } from 'react-router-dom';
+import imgP from "../auth/images/profile.jpg";
 
 class UserDetails extends Component {
-    back = (event) => {
-        event.preventDefault();
-        this.props.prevStep();
-    }
+
     continue = (event) => {
         event.preventDefault();
         if(this.props.validateDetails())
@@ -14,6 +10,7 @@ class UserDetails extends Component {
         else
             this.props.currentStep();
     }
+    
     render () {
         const { error_msg, handleChange, age, gender, sexpref } = this.props;
         return (
@@ -57,27 +54,18 @@ class UserDetails extends Component {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <button
-                                className="continue__btn"
+                           <input
                                 type="submit"
                                 name="submit"
+                                value="CONTINUE"
                                 onClick={this.continue}
-                            >CONTINUE</button>
-                            <button
-                                className="back__btn"
-                                type="submit"
-                                name="submit"
-                                onClick={this.back}
-                            >GO BACK</button>
+                            />
                             <br/><br/>
                             {
                                 error_msg ? <p className="error__msg">
                                     { error_msg }
                                 </p> : ''
                             }
-                            <Link className="success__links" to="/login">
-                                <span>Go to Login</span>
-                            </Link><br/>
                         </form>
                     </div>
                 </div>  

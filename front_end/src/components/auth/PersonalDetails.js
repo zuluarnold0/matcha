@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 
 class PersonalDetails extends Component {
 
-    continue = (event) => {
-        event.preventDefault();
-        if (this.props.validatePersonal())
-            this.props.nextStep();
-        else
-            this.props.currentStep();
-    }
-
     render () {
-        const { error_msg, firstname, lastname, username, email, password, cpassword, handleChange } = this.props;
+        const { error_msg, firstname, lastname, username, email, password, cpassword, handleChange, onFormSubmit } = this.props;
         return (
             <div className="bg">
                 <div className="register-box box__">
                     <h1>PERSONAL DETAILS</h1>
-                    <form>
+                    <div>
                         <p>First Name</p>
                         <input
                             type="text"
@@ -69,8 +61,8 @@ class PersonalDetails extends Component {
                         <input
                             type="submit"
                             name="submit"
-                            value="CONTINUE"
-                            onClick={this.continue}
+                            value="REGISTER"
+                            onClick={onFormSubmit}
                         />
                         <br/>
                         {
@@ -81,7 +73,7 @@ class PersonalDetails extends Component {
                         <Link className="success__links" to="/login">
                             <span>Go to Login</span>
                         </Link><br/>
-                    </form>
+                    </div>
                 </div>
             </div>
         )

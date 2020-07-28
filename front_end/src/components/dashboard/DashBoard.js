@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import DashContent from './DashContent';
 import { PORT } from '../port/Port';
+import ExtendedProfile from '../extendedProfile/ExtendedProfile';
 
 /************************** SEARCH ********************/
 const isSearchSexPref = (sexpref) => (user) => {
@@ -55,6 +56,7 @@ class DashBoard extends React.Component {
     componentDidMount() {
         //make fetch request to database to get users
         this.usersAdder = setInterval(() => {
+            this.setState({ user: this.props.user });
             fetch(`${PORT}/`)
             .then(response => response.json())
             .then(users_ => {
@@ -82,34 +84,41 @@ class DashBoard extends React.Component {
         } else {
             return (
                 <div>
-                    <input type="checkbox" id="check" />
-                    <AppHeader/>
-                    <AppSideBar 
-                        user={user}  
-                        handleChange={this.handleChange}
-                        sexpref_={user.sexpref}
-                    />
-                    <div className="content">
-                        <DashContent 
-                            users={users}
-                            user={user}
-                            handleChange={this.handleChange}
-                            sortValue={sortValue}
-                            popularity_={popularity_}
-                            age_={age_}
-                            sexpref_={user.sexpref}
-                            tag_={tag_}
-                            city_={city_}
-                            isSortPopularity={isSortPopularity}
-                            isSortAge={isSortAge}
-                            isSearchedAge={isSearchedAge}
-                            isSearchSexPref={isSearchSexPref}
-                            isSearchedPopularity={isSearchedPopularity}
-                            isSearchedTag={isSearchedTag}
-                            isSearchedcity={isSearchedcity}
-                        />
-                    </div>
-                    <Footer />
+                    {
+                        (user.age === 0 || user.sexpref === "" || user.gender === "" || !user.tags.length) ?
+                            <ExtendedProfile user={user}/>
+                            :
+                        <div>
+                            <input type="checkbox" id="check" />
+                            <AppHeader/>
+                            <AppSideBar 
+                                user={user}  
+                                handleChange={this.handleChange}
+                                sexpref_={user.sexpref}
+                            />
+                            <div className="content">
+                                <DashContent 
+                                    users={users}
+                                    user={user}
+                                    handleChange={this.handleChange}
+                                    sortValue={sortValue}
+                                    popularity_={popularity_}
+                                    age_={age_}
+                                    sexpref_={user.sexpref}
+                                    tag_={tag_}
+                                    city_={city_}
+                                    isSortPopularity={isSortPopularity}
+                                    isSortAge={isSortAge}
+                                    isSearchedAge={isSearchedAge}
+                                    isSearchSexPref={isSearchSexPref}
+                                    isSearchedPopularity={isSearchedPopularity}
+                                    isSearchedTag={isSearchedTag}
+                                    isSearchedcity={isSearchedcity}
+                                />
+                            </div>
+                            <Footer />
+                        </div>
+                    }
                 </div>
             )
         }

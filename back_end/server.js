@@ -48,6 +48,9 @@ app.post('/login', (req, res) => { register.handleLogin(req, res, db, bcrypt) })
 //INSERTING USER INTO LOGIN AND USERS TABLES
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt, randomstring, mailer) });
 
+//EXTENDING USER PROFILE
+app.post('/extendedprofile', (req, res) => { register.handleExtended(req, res, db) });
+
 //RESETTING PASSWORD
 app.post('/forgot', (req, res) => { register.handleForgot(req, res, db, mailer) })
 
