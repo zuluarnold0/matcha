@@ -69,7 +69,6 @@ class User extends Component {
                 wasILiked =likes && likes.filter(whoLiked(viewed_user[0].email, user.email));
                 didILike = likes && likes.filter(whoLiked(user.email, viewed_user[0].email));
             }
-            console.log(viewed_user[0])
             return (
                 <div>
                     <Nav/>
