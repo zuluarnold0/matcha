@@ -471,7 +471,7 @@
 # CREATE TABLE login (id serial PRIMARY KEY, hash VARCHAR (100) NOT NULL, email TEXT UNIQUE NOT NULL);
 # CREATE TABLE likes (id serial PRIMARY KEY, liker TEXT, liked TEXT, liketype SMALLINT);
 + CREATE TABLE matches (id serial PRIMARY KEY, user1 TEXT, user2 TEXT);
-# CREATE TABLE chats (id serial PRIMARY KEY, sender TEXT, reciever TEXT, message TEXT, _time TIMESTAMP);
+# CREATE TABLE chats (id serial PRIMARY KEY, sender TEXT, reciever TEXT, message TEXT, time_ TIMESTAMP);
 ```
 
 <h3> Exit: </h3>
