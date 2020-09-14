@@ -63,7 +63,7 @@ class Verify extends Component {
                     <img src={imgP} alt="img" className="avatar"/>
                     <h1>VERIFY YOUR EMAIL</h1>
                     <div>
-                        <p>Secret Token</p>
+                        <label htmlFor="secret_token">Secret Token</label><br/>
                         <input
                             type='text'
                             name="secretToken"

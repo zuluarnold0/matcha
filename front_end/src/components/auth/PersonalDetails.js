@@ -8,9 +8,9 @@ class PersonalDetails extends Component {
         return (
             <div className="bg">
                 <div className="register-box box__">
-                    <h1>PERSONAL DETAILS</h1>
+                    <h1>REGISTER TO MATCHA</h1>
                     <div>
-                        <p>First Name</p>
+                        <label htmlFor="firstname">First Name</label><br/>
                         <input
                             type="text"
                             name="firstname"
@@ -18,7 +18,7 @@ class PersonalDetails extends Component {
                             onChange={handleChange}
                             placeholder="Enter First Name..."
                         />
-                        <p>Last Name</p>
+                        <label htmlFor="lastname">Last Name</label><br/>
                         <input
                             type="text"
                             name="lastname"
@@ -26,7 +26,7 @@ class PersonalDetails extends Component {
                             onChange={handleChange}
                             placeholder="Enter Last Name..."
                         />
-                        <p>User Name</p>
+                        <label htmlFor="username">User Name</label><br/>
                         <input
                             type="text"
                             name="username"
@@ -34,7 +34,7 @@ class PersonalDetails extends Component {
                             onChange={handleChange}
                             placeholder="Enter User Name..."
                         />
-                        <p>Email</p>
+                        <label htmlFor="email">Email</label><br/>
                         <input
                             type="email"
                             name="email"
@@ -42,7 +42,7 @@ class PersonalDetails extends Component {
                             onChange={handleChange}
                             placeholder="Enter Your Email..."
                         />
-                        <p>Password</p>
+                        <label htmlFor="password">Password</label><br/>
                         <input
                             type="password"
                             name="password"
@@ -50,7 +50,7 @@ class PersonalDetails extends Component {
                             onChange={handleChange}
                             placeholder="Enter Your Password..."
                         />
-                        <p>Confirm Password</p>
+                        <label htmlFor="confirm_password">Confirm Password</label><br/>
                         <input
                             type="password"
                             name="cpassword"

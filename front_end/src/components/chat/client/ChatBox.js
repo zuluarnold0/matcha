@@ -10,7 +10,7 @@ const ChatBox = ({ chat, sender, receiver }) => {
             </div>
             <div className="chat-message">
                 <p>{ chat.message }</p>
-                <span className="time__">{moment(sender.time_).calendar()}</span>
+                <span className="time__">{moment(chat.time_).calendar()}</span>
             </div>
         </div>
             :
@@ -20,7 +20,7 @@ const ChatBox = ({ chat, sender, receiver }) => {
             </div>
             <div className="chat-message">
                 <p>{ chat.message }</p>
-                <span className="time__">{moment(receiver.time_).calendar()}</span>
+                <span className="time__">{moment(chat.time_).calendar()}</span>
             </div>
         </div>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProfileCover from './ProfileCover';
 import UpdateLinks from './UpdateLinks';
 import ProfileContent from './ProfileContent';
-import UserMap from '../map/UserMap';
+import UserMap from '../sharedComponents/map/UserMap';
 import './Profile.css';
 import Nav from '../nav/Nav';
 import Footer from '../footer/Footer';

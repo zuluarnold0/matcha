@@ -166,7 +166,7 @@ class UpdateLinks extends React.Component {
     }
 
     onKeyUp = (e) => {
-        if (e.which === 32) {
+        if (e.keyCode === 32) {
             let input = e.target.value.trim().split(" ");
             if (input.length === 0 || input[0] === "") return;
             if (input[0].toLowerCase() !== "gym" && input[0].toLowerCase() !== "art" && input[0].toLowerCase() !== "music" && input[0].toLowerCase() !== "photography" && input[0].toLowerCase() !== "coding"){

@@ -40,7 +40,7 @@ class UserInfo extends Component {
                             <div className="wrong_input">{ invalid_input }</div>
                             <div style={containerStyle}>
                                 { tags_ }
-                                <input className="form-control" style={inputStyle} onKeyUp={ (e) => onKeyUp(e) } type="text" placeholder="Type tag name and press SPACE..." />
+                                <input className="form-control" style={inputStyle} onKeyUp={ (e) => onKeyUp(e) } type="text" placeholder="Type tag and press SPACE..." />
                             </div>
                             <br/>
                             <div>

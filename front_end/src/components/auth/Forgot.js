@@ -4,6 +4,7 @@ import imgP from "./images/profile.jpg";
 import { Link } from 'react-router-dom';
 import { PORT } from '../port/Port';
 
+//reset your password
 class Forgot extends React.Component {
 
     constructor(props) {
@@ -58,7 +59,7 @@ class Forgot extends React.Component {
                     <img src={imgP} alt="img" className="avatar"/>
                     <h1>FORGOT PASSWORD</h1>
                     <div>
-                        <p>Email</p>
+                        <label htmlFor="email">Email</label><br/>
                         <input
                             type="email"
                             name="email"

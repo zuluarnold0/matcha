@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import UserMap from '../map/UserMap';
+import UserMap from '../sharedComponents/map/UserMap';
+import Bio from '../sharedComponents/bio/Bio';
 import moment from 'moment';
 import { Redirect } from 'react-router-dom';
 import { PORT } from '../port/Port';
@@ -95,29 +96,10 @@ class UserProfile extends Component {
                             }
                         </div>
                         <div className="user__info">
-                        <span className="info__key"><span className="fas fa-user"></span> </span><span className="info__value"> { viewed_user.username } </span><br/>
-                            <span className="info__key"><span className="fas fa-venus-mars"></span> </span><span className="info__value"> { viewed_user.gender } </span><br/>
-                            <span className="info__key"><span className="fas fa-history"></span> </span><span className="info__value"> { viewed_user.age } years</span><br/>
-                            <span className="info__key"><span className="fas fa-heart"></span> </span><span className="info__value">{ viewed_user.sexpref }</span><br/>
-                            <span className="info__key"><span className="fas fa-star"></span> </span><span className="info__value">{ viewed_user.popularity }</span><br/>
-                            <span className="info__key"><span className="fas fa-map-marker-alt"></span> </span><span className="info__value">{ viewed_user.city }</span><br/>
-                            <span className="info__key"><span className="fas fa-signal"></span> </span><span className="status__value">{ status }</span><br/>
-                            <hr/>
-                            <span className="info__key"></span><span className="user__bio">{ viewed_user.bio }</span><br/>
-                            <hr/>
-                            <span className="info__key"><span className="fas fa-tags"></span></span>{" "}
-                            {
-                                viewed_user.tags && viewed_user.tags.map(tag => {
-                                    return <span className="user__tag" key={tag}> { tag } </span>;
-                                })
-                            }
-                            <hr/>
-                            <div className="profile__imgs">
-                                <img src={ viewed_user.img1 } alt="img"/>
-                                <img src={ viewed_user.img2 } alt="img"/>
-                                <img src={ viewed_user.img3 } alt="img"/>
-                                <img src={ viewed_user.img4 } alt="img"/>
-                            </div>
+                            <Bio 
+                                user={viewed_user}
+                                status={status}
+                            />
                             <hr/>
                             <span className="you__liked">
                             {

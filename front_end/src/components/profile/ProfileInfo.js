@@ -1,7 +1,7 @@
 import React from 'react';
 import  ImageUpload from '../upload/ImageUpload';
 import ImportantUpdates from './ImportantUpdates';
-import Bio from '../bio/Bio';
+import Bio from '../sharedComponents/bio/Bio';
 import { connect } from 'react-redux';
 import { setUserToState } from '../../store/actions/actions';
 import { PORT } from '../port/Port';
@@ -10,7 +10,8 @@ class ProfileInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: props.user
+            user: props.user,
+            showUploadModal: false,
         }
     }
 
@@ -19,6 +20,9 @@ class ProfileInfo extends React.Component {
         this.setState({ user: user })
     }
 
+    uploadPic = () => this.setState({ showUploadModal: true });
+    closeUploadModal = () => this.setState({ showUploadModal: false });
+
     onUploadProfile = e => {
         const _id = this.state.user.id;
         const formData = new FormData();
@@ -26,6 +30,8 @@ class ProfileInfo extends React.Component {
         fileToUpload = e.target.files[0];
 
         if (fileToUpload) {
+            //open modal
+            this.uploadPic();
             formData.append(_id, fileToUpload, fileToUpload.name);
             fetch(`${PORT}/profile-upload`, {
                 method: 'POST',
@@ -38,15 +44,25 @@ class ProfileInfo extends React.Component {
                 }
             })
             .catch(error => console.err(error));
+            //close modal
+            this.closeUploadModal();
         }
     }
 
     render() {
-        const { user } = this.state;
+        const { user, showUploadModal } = this.state;
         return (
             <div  className="profile_info_box">
                 <div className="profile__info">
                     <ImageUpload onUploadProfile={this.onUploadProfile} />
+                    {
+                        showUploadModal === true ? <div id="myModal" className="modal">
+                            <div className="modal-content">
+                                <p className="modalMessage"> Profile image uploading.............</p>
+                            </div>
+                        </div>
+                        : ""
+                    }
                     <div className="user__info">
                         <Bio user={user} />
                         <hr/>

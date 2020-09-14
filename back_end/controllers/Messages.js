@@ -13,7 +13,7 @@ const handleMessages = (req, res, db) => {
         .then(lchats => { res.json(lchats) })
         .catch(err => res.status(400).json('Unable to get chats'));
     })
-    .catch(err => res.status(400).json('error inserting chats'))
+    .catch(err => res.status(400).json('error inserting chats'));
 }
 
 module.exports = {

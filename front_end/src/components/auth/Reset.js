@@ -89,7 +89,7 @@ class Reset extends React.Component {
                     <img src={imgP} alt="img" className="avatar"/>
                     <h1>RESET PASSWORD</h1>
                     <div>
-                        <p>Password</p>
+                        <label htmlFor="password">Password</label><br/>
                         <input
                             type="password"
                             name="password"
@@ -97,7 +97,7 @@ class Reset extends React.Component {
                             onChange={this.handleInputChange}
                             placeholder="Enter Your Password..."
                         />
-                        <p>Confirm Password</p>
+                        <label htmlFor="confirm_password">Confirm Password</label><br/>
                         <input
                             type="password"
                             name="cpassword"

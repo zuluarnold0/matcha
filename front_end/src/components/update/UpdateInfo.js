@@ -8,14 +8,14 @@ const UpdateInfo = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_
     });
     return (
         <div>
-            <form className="profile__form" onSubmit={handleInfoSubmit}>
+            <div className="profile__form">
                 <h5 className="profile__heading">Update Info</h5>
                 <span className="form__title">Enter any from the following TAGS</span><br/>
                 <span className="form__tags"> art, photography, coding, gym, music </span><br />
                 <div className="wrong__input">{ invalid_input }</div>
                 <div style={containerStyle}>
                     { tags_ }
-                    <input className="form-control" style={inputStyle} onKeyUp={ (e) => onKeyUp(e) } type="text" placeholder="Type tag name and press SPACE..." />
+                    <input className="form-control" style={inputStyle} onKeyUp={ (e) => onKeyUp(e) } type="text" placeholder="Type tag and press SPACE..." />
                     <br/>
                 </div>
                 <div>
@@ -29,13 +29,17 @@ const UpdateInfo = ({ containerStyle, inputStyle, onDeleteTag, onKeyUp, invalid_
                         placeholder="Write about yourself..."
                     />
                 </div><br/>
-                <button type="submit" className="btn btn-sm btn-warning">Update</button>
+                <button 
+                    type="submit" 
+                    className="btn btn-sm btn-warning"
+                    onClick={handleInfoSubmit}
+                > Update </button>
                 {
                     info_err_msg ? <div><br />
                         <p className="error__msg">{ info_err_msg }</p>
                     </div> : ''
                 }
-            </form>
+            </div>
         </div>
     )
 }

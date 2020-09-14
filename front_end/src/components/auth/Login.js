@@ -71,7 +71,7 @@ class Login extends React.Component {
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>LOGIN TO MATCHA</h1>
                         <div>
-                            <p>Email</p>
+                            <label htmlFor="email">Email</label><br/>
                             <input
                                 type="email"
                                 name="email"
@@ -79,7 +79,7 @@ class Login extends React.Component {
                                 onChange={this.handleInputChange}
                                 placeholder="Enter Your Email..."
                             />
-                            <p>Password</p>
+                            <label htmlFor="password">Password</label><br/>
                             <input
                                 type="password"
                                 name="password"

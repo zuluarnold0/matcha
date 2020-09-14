@@ -3,7 +3,7 @@ import React from 'react';
 const PageNotFound = () => {
     return (
         <div>
-            <h2 style={{color:'red', fontSize:'20px', textAlign:'center', marginTop:'100px'}}>
+            <h2 className="invalid_page">
                 Page Not Found
             </h2>;
         </div>

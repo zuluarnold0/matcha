@@ -77,21 +77,11 @@
 
 @media only screen and (min-width: 600px) {
     .chat-container {
-        margin-top: 140px;
+        margin-top: 120px;
     }
     .chatbox {
         width: 600px;
         min-width: 600px;
-    }
-}
-
-@media only screen and (min-width: 1000px) {
-    .chat-container {
-        margin-top: 200px;
-    }
-    .chatbox {
-        width: 660px;
-        min-width: 660px;
     }
 }
 

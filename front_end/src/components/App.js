@@ -1,35 +1,50 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
-import User from './user/User';
-import Login from './auth/Login';
-import Reset from './auth/Reset';
-import Verify from './auth/Verify';
-import Forgot from './auth/Forgot';
-import Chats from './chat/client/Chats';
-import Chat from './chat/client/Chat';
-import Register from './auth/Register';
-import MyProfile from './profile/MyProfile';
-import DashBoard from './dashboard/DashBoard';
-import Notification from '../components/notifications/Notification';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+//pages
+const User = lazy(() => import('./user/User'));
+const Login = lazy(() => import('./auth/Login'));
+const Reset = lazy(() => import('./auth/Reset'));
+const Verify = lazy(() => import('./auth/Verify'));
+const Forgot = lazy(() => import('./auth/Forgot'));
+const Chats = lazy(() => import('./chat/client/Chats'));
+const Chat = lazy(() => import('./chat/client/Chat'));
+const Register = lazy(() => import('./auth/Register'));
+const MyProfile = lazy(() => import('./profile/MyProfile'));
+const DashBoard = lazy(() => import('./dashboard/DashBoard'));
+const PageNotFound = lazy(() => import('./extendedProfile/PageNotFound'));
+const Notification = lazy(() => import('../components/notifications/Notification'));
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={DashBoard}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/register" component={Register} />
-        <Route path="/forgot" component={Forgot} />
-        <Route path="/verify" component={Verify} />
-        <Route path="/reset/:id" component={Reset} />
-        <Route path="/chats" component={Chats} />
-        <Route path="/chat/:id" component={Chat} />
-        <Route path="/user/:id" component={User} />
-        <Route path="/profile" component={MyProfile} />
-        <Route path="/notification" component={Notification} />
-      </Switch>
-    </BrowserRouter>
+    <Suspense fallback={
+      <div id="dot-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      }
+      >
+      <Router>
+        <Switch>
+          <Route exact path="/" component={DashBoard}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register} />
+          <Route path="/forgot" component={Forgot} />
+          <Route path="/verify" component={Verify} />
+          <Route path="/reset/:id" component={Reset} />
+          <Route path="/chats" component={Chats} />
+          <Route path="/chat/:id" component={Chat} />
+          <Route path="/user/:id" component={User} />
+          <Route path="/profile" component={MyProfile} />
+          <Route path="/notification" component={Notification} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </Router>
+    </Suspense>
   );
 }
 

@@ -20,7 +20,7 @@ class UserDetails extends Component {
                         <img src={imgP} alt="img" className="avatar"/>
                         <h1>USER DETAILS</h1>
                         <form className="user__details">
-                            <p>Gender</p>
+                            <label htmlFor="gender">Gender</label><br/>
                             <select
                                 className="form-control form-control-sm mb-2"
                                 name="gender"
@@ -32,7 +32,7 @@ class UserDetails extends Component {
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
                             </select>
-                            <p>Preference</p>
+                            <label htmlFor="preference">Preference</label><br/>
                             <select
                                 className="form-control form-control-sm mb-2"
                                 name="sexpref"
@@ -44,7 +44,7 @@ class UserDetails extends Component {
                                 <option value="male">Male</option>
                             </select>
                             <div >
-                                <p>Age</p>
+                                <label htmlFor="age">Age</label><br/>
                                 <input 
                                     type="text" 
                                     className="form-control form-control-sm mb-2"

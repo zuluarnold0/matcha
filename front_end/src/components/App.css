@@ -88,7 +88,7 @@ hr {
   100% { transform: scale(1); }
 }
 
-.no_users {
+.no_users, .invalid_page {
     position: relative;
     margin: 20px auto;
     color: palevioletred;

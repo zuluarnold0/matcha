@@ -1,7 +1,7 @@
 import React from 'react';
 import './Bio.css';
 
-const Bio = ({ user }) => {
+const Bio = ({ user, status }) => {
     return (
         <div>
             <span className="info__key"><span className="fas fa-user"></span> </span><span className="info__value"> { user.username } </span><br/>
@@ -10,7 +10,7 @@ const Bio = ({ user }) => {
             <span className="info__key"><span className="fas fa-heart"></span> </span><span className="info__value">{ user.sexpref }</span><br/>
             <span className="info__key"><span className="fas fa-star"></span> </span><span className="info__value">{ user.popularity }</span><br/>
             <span className="info__key"><span className="fas fa-map-marker-alt"></span> </span><span className="info__value">{ user.city }</span><br/>
-            <span className="info__key"><span className="fas fa-signal"></span> </span><span className="status__value">Online</span><br/>
+            <span className="info__key"><span className="fas fa-signal"></span> </span><span className="status__value">{ status ? status : "Online" }</span><br/>
             <hr/>
             <span className="info__key"></span><span className="user__bio">{ user.bio }</span><br/>
             <hr/>
